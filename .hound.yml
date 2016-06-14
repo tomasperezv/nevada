@@ -1,0 +1,9 @@
+javascript:
+  enabled: false
+
+eslint:
+  enabled: true
+  config_file: .eslintrc
+
+coffeescript:
+  config_file: .coffeescript-style.json

@@ -1,0 +1,8 @@
+node_modules
+temp
+.tmp
+dist/styles.css
+npm-debug.log
+doc
+strip-types/
+dist/**/*.map

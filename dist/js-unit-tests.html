@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <!-- stylesheets -->
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/jt-fw-2.0.2.css">
+  </head>
+  <body>
+    <h2>JT Frontend Framework version 2.0.2</h2>
+    <div id="mocha"></div>
+  </body>
+  <!-- javascript -->
+  <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+  <script>
+    mocha.setup({
+      ui: 'bdd'
+    });
+  </script>
+  <script src="./dist/jt-fw-2.0.2.test-runner.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</html>

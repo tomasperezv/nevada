@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="./dist/jt-fw-2.0.2.css">
+  </head>
+  <body class="jt">
+    <h2>JT CSS Framework 2.0.2</h2>
+    <section>
+      <h3>Typography</h3>
+      <span class="bold">Bold</span>
+    </section>
+    <section>
+      <h3>Components</h3>
+      <span class="bold">Popup</span>
+      <div id="popup" class="hidden">
+        <div class="popup overlay" data-trigger="trigger" data-where="where">
+          <div class="wrapper wrapper_primary">
+            <a href="#" class="close close_primary" data-where="close_modal">
+              Close
+            </a>
+            <div>
+              Popup content
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" id="popup-example">Trigger link</a>
+      <script type="text/javascript">
+        window.addEventListener('jt-core-loaded', function() {
+          var Loader = modulejs.require('LoaderController');
+          var Trigger = modulejs.require('TriggerController');
+          var loader = new Loader(
+            [{ id: 'Popup', locator: '#popup',  action: 'show' }],
+            new Trigger({ locator: '#popup-example' })
+          );
+        });
+      </script>
+    </section>
+  <script type="text/javascript" src=".././dist/jt-fw-2.0.2.core.js"></script></body>
+</html>

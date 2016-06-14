@@ -1,0 +1,38 @@
+{
+  "source": "./strip-types",
+  "destination": "./dist/doc",
+  "unexportIdentifier": true,
+  "undocumentIdentifier": false,
+  "includes": [
+    "/src/*",
+    "/test/*"
+  ],
+  "excludes": [
+    "node_modules",
+    "doc",
+    "git"
+  ],
+  "manual": {
+    "asset": "./manual/asset",
+    "overview": ["./manual/overview.md"],
+    "installation": ["./manual/installation.md"],
+    "usage": ["./manual/usage.md"],
+    "example": ["./manual/example.md"],
+    "faq": ["./manual/faq.md"]
+  },
+  "test": {
+    "type": "mocha",
+    "source": "./test/",
+    "includes": ["\\.(js|es6)$"]
+  },
+  "coverage": true,
+  "autoPrivate": true,
+  "access": ["public"],
+  "plugins": [
+    {
+      "name": "./builder/esdoc-jt-frontend-plugin.js"
+    }
+  ],
+  "title": "Jobandtalent",
+  "styles": ["./manual/styles.css"]
+}

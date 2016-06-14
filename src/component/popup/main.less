@@ -1,0 +1,45 @@
+@import '../../stylesheets/colors.less';
+@import '../../stylesheets/mixins.less';
+
+.jt {
+  .popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+
+    .wrapper {
+      position: relative;
+      margin:0 auto;
+      @media only screen and (max-width: 650px) {
+        margin: 0;
+      }
+    }
+
+    .wrapper_primary {
+      margin-top: 133px;
+      width: 500px;
+      @media only screen and (max-width: 650px) {
+        margin-top: 0;
+        width: auto;
+      }
+    }
+
+    .close {
+      text-decoration:none;
+    }
+
+    .close_primary {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+      background:url(/assets/common/ico_close_big_white.png) no-repeat left top;
+      text-indent: -999;
+    }
+  }
+}
