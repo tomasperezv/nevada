@@ -1,0 +1,43 @@
+<html lang="en">
+  <% version = htmlWebpackPlugin.options.version %>
+  <head>
+    <meta charset="utf-8">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="./dist/jt-fw-<%= version %>.css">
+  </head>
+  <body>
+    <h2>JT CSS Framework <%= version %></h2>
+    <section>
+      <h3>Typography</h3>
+      <span class="bold">Bold</span>
+    </section>
+    <section>
+      <h3>Components</h3>
+      <span class="bold">Popup</span>
+      <div id="popup" class="hidden">
+        <div class="m_popup m_popup_with_header hidden" data-trigger="trigger" data-where="where">
+          <div class="m_popup_with_header_header">
+            <a href="#" data-where="close_modal"><small>Cerrar</small></a>
+            <span>Popup header</span>
+          </div>
+          <div class="m_popup_with_header_content">
+            <div class="m_popup_with_header_content_block">
+              Popup content
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" id="popup-example">Trigger link</a>
+      <script type="text/javascript">
+        window.addEventListener('jt-core-loaded', function() {
+          var Loader = modulejs.require('LoaderController');
+          var Trigger = modulejs.require('TriggerController');
+          var loader = new Loader(
+            [{ id: 'Popup', locator: '#popup',  action: 'show' }],
+            new Trigger({ locator: '#popup-example' })
+          );
+        });
+      </script>
+    </section>
+  </body>
+</html>
