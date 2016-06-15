@@ -1,4 +1,4 @@
-# Nevada ![Build Status](https://circleci.com/gh/jobandtalent/nevada.png?style=shield)
+# Nevada [![Build Status](https://circleci.com/gh/jobandtalent/nevada.png?style=shield)](https://circleci.com/gh/jobandtalent/nevada) [![npm version](https://badge.fury.io/js/%40jobandtalent%2Fnevada.svg)](https://badge.fury.io/js/%40jobandtalent%2Fnevada)
 
 This repository contains Jobandtalent frontend code components (less, javascript and coffeescript).
 
