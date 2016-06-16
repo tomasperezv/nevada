@@ -95,8 +95,17 @@ class EventActions {
             typeof locator.__set__ === 'undefined') {
           // Views can avoid having to define the listeners methods by using object locators,
           // that way we support passing simple state changes view -> controller -> dispatcher -> view
-          // $FlowFixMe: Review Indexable property not found
-          target[eventListenerName] = () => {}; // eslint-disable-line no-param-reassign
+          /* eslint-disable no-param-reassign */
+          if (typeof locator.handler === 'function') {
+            // $FlowFixMe: Review Indexable property not found
+            target[eventListenerName] = locator.handler;
+          } else {
+            // Empty event handler for simple message passing
+            // $FlowFixMe: Review Indexable property not found
+            target[eventListenerName] = () => {};
+          }
+          /* eslint-enable no-param-reassign */
+
           locator.__set__ = true;
           preventDefault = locator.preventDefault || true;
         }
@@ -148,7 +157,6 @@ class EventActions {
    */
   _attachEventListener(element: Node, eventName: string, callback: EventListener): void {
     if (element !== null) {
-      // TODO: Replace this by proper polyfill
       element.addEventListener(eventName, callback, false);
       this._eventMap.set(eventName, callback);
     }
@@ -164,7 +172,6 @@ class EventActions {
   _detachEventListener(element: Node, eventName: string): void {
     const eventHandler = this._eventMap.get(eventName);
     if (element !== null && typeof eventHandler !== 'undefined') {
-      // TODO: Replace this by proper polyfill
       element.removeEventListener(eventName, eventHandler, false);
       this._eventMap.delete(eventName);
     }

@@ -14,6 +14,21 @@ describe('EventActions', () => {
   // Initialize the fake DOM that jsdom exposes
   jsdom();
 
+  let view = null;
+
+  beforeEach(() => {
+    view = new BaseControllerView();
+    view.locators = {
+      Button: '#button'
+    };
+
+    view.onButtonClick = () => {};
+  });
+
+  afterEach(() => {
+    view = null;
+  });
+
   /**
    * @method constructDom
    */
@@ -49,30 +64,15 @@ describe('EventActions', () => {
   });
 
   it('Augments views based on locators', () => {
-    const view = new BaseControllerView();
-    view.locators = {
-      Button: '#button'
-    };
-    view.onButtonClick = () => {};
-
     checkAugmentation(view, 'onButtonClick', () => DOMUtil.sendClickEvent.bind(DOMUtil)('button'));
   });
 
   it('Augments views based on generic events', () => {
-    const view = new BaseControllerView();
-    view.locators = {
-      Button: '#button'
-    };
     view.onResize = () => {};
-
     checkAugmentation(view, 'onResize', DOMUtil.sendResizeEvent.bind(DOMUtil));
   });
 
   it('Clears event handlers', () => {
-    const view = new BaseControllerView();
-    view.locators = {
-      Button: '#button'
-    };
     view.onButtonClick = () => {};
 
     const spy = new Spy();
@@ -88,6 +88,42 @@ describe('EventActions', () => {
     DOMUtil.sendClickEvent('button');
     assert.equal(view.onButtonClick.counter, 1);
     view.onButtonClick.restore();
+  });
+
+  it('Event handlers receive the event object', (done) => {
+    const eventActions = new EventActions();
+
+    view.onButtonClick = (e) => {
+      assert.equal(e instanceof Event, true);
+      assert.equal(e.isTrusted, false);
+      eventActions.clear(view);
+      done();
+    };
+
+    constructDom();
+
+    eventActions.augment(view);
+    DOMUtil.sendClickEvent('button');
+  });
+
+  it('Object locators receive the event object', (done) => {
+    view.locators = {
+      Button: {
+        id: '#button',
+        handler: (e) => {
+          assert.equal(e instanceof Event, true);
+          assert.equal(e.isTrusted, false);
+          done();
+        }
+      }
+    };
+
+    constructDom();
+
+    const eventActions = new EventActions();
+    eventActions.augment(view);
+
+    DOMUtil.sendClickEvent('button');
   });
 
   it('Translates locator object/strings', () => {
