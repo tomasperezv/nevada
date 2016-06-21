@@ -9,7 +9,7 @@ import cssnano from 'cssnano';
 import FlowStatusWebpackPlugin from 'flow-status-webpack-plugin';
 import GenerateLatest from './builder/generate-latest';
 import strip from './builder/webpack-strip-loader';
-import enviromentPlugin from './builder/production-enviroment';
+import environmentPlugin from './builder/production-environment';
 
 import bundleName from './builder/bundle-name';
 const outputBundle = bundleName.generate();
@@ -19,7 +19,7 @@ import plugins from './builder/autoload-webpack-plugins';
 plugins.push(new ExtractTextPlugin(outputBundle, { allChunks: true }));
 plugins.push(new FlowStatusWebpackPlugin());
 plugins.push(new GenerateLatest({ version: bundleName.getVersion() }));
-plugins.push(enviromentPlugin);
+plugins.push(environmentPlugin);
 
 // Autoload javascript components
 import rawComponents from './builder/autoload-components';
