@@ -34,12 +34,14 @@ const ModuleJS = require('@lrsjng/modulejs');
 const BaseController = require('./javascript/component/base/base-controller').default;
 const BaseView = require('./javascript/component/base/base-controller-view').default;
 const CookieStorage = require('./javascript/cookie-storage').default;
+const CloneObject = require('./javascript/clone-object').default;
 
 ModuleJS.define('EventBusModule', () => require('./coffeescript/event_bus.coffee'));
 ModuleJS.define('LoggerModule', () => require('./coffeescript/logger.coffee'));
 ModuleJS.define('BaseController', () => BaseController);
 ModuleJS.define('BaseControllerView', () => BaseView);
 ModuleJS.define('CookieStorage', () => CookieStorage);
+ModuleJS.define('CloneObject', () => CloneObject);
 
 // Exposes the ModuleJS object in the global scope, that way
 // we can preserve compatibility with the current projects.

@@ -63,6 +63,7 @@ const config = {
       './test/javascript/component/base/test.event-actions',
       './test/javascript/test.cookie-storage',
       './test/javascript/test.emit-core-ready-event',
+      './test/javascript/test.clone-object',
       './test/javascript/polyfill/test.polyfill'
     ]
   },
