@@ -28,7 +28,7 @@ const ERBTemplating = {
   /**
    * Applies the Regex replacements
    * @param {String} input
-   * @return {String}
+   * @returns {String}
    */
   filter(input) {
     const self = this;
@@ -49,7 +49,7 @@ const ERBTemplating = {
    * Matches the groups returned by the regular expression with the filter replacements.
    * @param {String} placeholder
    * @param {Array} matches
-   * @return {String}
+   * @returns {String}
    * @method _replaceMatches
    */
   _replaceMatches(placeholder, matches) {

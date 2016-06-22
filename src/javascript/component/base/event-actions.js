@@ -127,7 +127,7 @@ class EventActions {
 
   /**
    * @param {Object|string} locator
-   * @return {String}
+   * @returns {String}
    * @method _getLocatorString
    */
   _getLocatorString(locator: Object|string): string {

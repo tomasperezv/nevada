@@ -44,7 +44,7 @@ class DOMMutationBase {
   /**
    * @param {Node} node
    * @method observe
-   * @return {Promise}
+   * @returns {Promise}
    * @public
    */
   observe(node: Node): Promise {

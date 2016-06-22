@@ -34,7 +34,7 @@ class GenerateLatest {
 
   /**
    * @method _getNewFilename
-   * @return {String}
+   * @returns {String}
    * @private
    */
   _getNewFilename(filename) {

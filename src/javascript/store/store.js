@@ -16,7 +16,7 @@ class Store {
   /**
    * Creates a new Redux Store
    * @param  {Object} initialState
-   * @return {Object}
+   * @returns {Object}
    * @public
    */
   configureStore(reducers: Object, initialState: Object = {}) {

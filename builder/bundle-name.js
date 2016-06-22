@@ -11,7 +11,7 @@ module.exports = {
   _packageInfo: null,
 
   /**
-   * @return {Object}
+   * @returns {Object}
    * @method _getPackageInfo
    * @private
    */
@@ -26,7 +26,7 @@ module.exports = {
   /**
    * Returns the framework bundle name that corresponds based on its resource identifier.
    * @method generate
-   * @return {String}
+   * @returns {String}
    */
   generate() {
     var outputName = '';
@@ -42,7 +42,7 @@ module.exports = {
 
   /**
    * @method getVersion
-   * @return {String}
+   * @returns {String}
    * @public
    */
   getVersion() {

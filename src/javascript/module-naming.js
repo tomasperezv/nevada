@@ -8,7 +8,7 @@
 class ModuleNaming {
   /**
    * @param {String} input
-   * @return {String}
+   * @returns {String}
    * @method underScoreToCamelCase
    * @public
    */

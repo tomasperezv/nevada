@@ -4,8 +4,8 @@
   "unexportIdentifier": true,
   "undocumentIdentifier": false,
   "includes": [
-    "/src/*",
-    "/test/*"
+    "src",
+    "test"
   ],
   "excludes": [
     "node_modules",

@@ -11,7 +11,7 @@ class Inject {
    * in order to support multiple execution modes.
    *
    * @method _getGlobalObject
-   * @return {Object}
+   * @returns {Object}
    * @private
    */
   static _getGlobalObject(): Object {

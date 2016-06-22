@@ -36,7 +36,7 @@ class Environment {
   }
 
   /**
-   * @return {string}
+   * @returns {string}
    * @public
    */
   get environment(): string {

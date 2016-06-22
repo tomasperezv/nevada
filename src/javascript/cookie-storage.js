@@ -11,8 +11,8 @@ class CookieStorage {
   /**
    * @param {String} id
    * @param {String} value
+   * @param {Object} props
    * @method set
-   * @return {Object}
    */
   set(id: string, value: string, props: Object = {}): void {
     Cookie.set(id, value, props);
@@ -21,7 +21,7 @@ class CookieStorage {
   /**
    * @param {String} id
    * @method get
-   * @return {String}
+   * @returns {String}
    */
   get(id: string): string {
     return Cookie.get(id);
