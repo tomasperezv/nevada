@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">strip-types/test/javascript/builder/test.erb-templates.js | Jobandtalent API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+<link data-ice="userStyle" rel="stylesheet" href="user/css/0-styles.css">
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a><a href="../js-unit-tests.html">Unit tests</a>
+  <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/test-framework</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-util.js~DOMUtil.html">DOMUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/inject.js~Inject.html">Inject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/mock.js~Mock.html">Mock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/modulejs.js~ModuleJS.html">ModuleJS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/proxy-spy-handler.js~ProxySpyHandler.html">ProxySpyHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/spy.js~Spy.html">Spy</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/test-framework/dom-mutation</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/factory.js~DOMMutationFactory.html">DOMMutationFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-base.js~DOMMutationBase.html">DOMMutationBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-events.js~DOMMutationEvents.html">DOMMutationEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-observer.js~DOMMutationObserver.html">DOMMutationObserver</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">strip-types/test/javascript/builder/test.erb-templates.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+
+import assert from &apos;assert&apos;;
+import ERBTemplates from &apos;../../../builder/erb-templates&apos;;
+
+/**
+ * @test {ERBTemplates}
+ */
+describe(&apos;ERBTemplates&apos;, () =&gt; {
+  /**
+   * @test {ERBTemplates#filter}
+   */
+  it(&apos;Filter individual strings&apos;, () =&gt; {
+    assert.equal(ERBTemplates.filter(&apos;&lt;%= t(&quot;cookie_consent.find_out_more&quot;) %&gt;&apos;), &apos;find_out_more&apos;);
+    assert.equal(ERBTemplates.filter(&apos;&lt;%= t(&quot;cookie_consent.cookies_explanation&quot;) %&gt;&apos;), &apos;cookies_explanation&apos;);
+    assert.equal(ERBTemplates.filter(&apos;&lt;%= link_to t(&quot;cookie_consent.find_out_more&quot;), cookies_path, target: &quot;_blank&quot; %&gt;&apos;), &apos;&lt;a href=&quot;cookies_path&quot; target=&quot;_blank&quot;&gt;find_out_more&lt;/a&gt;&apos;);
+    assert.equal(ERBTemplates.filter(&apos;&lt;%= NO MATCH %&gt;&apos;), &apos;NO MATCH&apos;);
+  });
+
+  it(&apos;Filter templates with multiple matches&apos;, () =&gt; {
+    const template = `&lt;p class=&quot;landing_cookie_explanation&quot;&gt;
+      &lt;%= t(&quot;cookie_consent.cookies_explanation&quot;) %&gt;
+      &lt;%= t(&quot;cookie_consent.cookies_extra&quot;) %&gt;
+      &lt;%= link_to t(&quot;cookie_consent.find_out_more&quot;), cookies_path, target: &quot;_blank&quot; %&gt;
+    &lt;/p&gt;`;
+
+    const expected = `&lt;p class=&quot;landing_cookie_explanation&quot;&gt;
+      cookies_explanation
+      cookies_extra
+      &lt;a href=&quot;cookies_path&quot; target=&quot;_blank&quot;&gt;find_out_more&lt;/a&gt;
+    &lt;/p&gt;`;
+    assert.equal(ERBTemplates.filter(template), expected);
+  });
+
+  it(&apos;Replacing placeholders with matches&apos;, () =&gt; {
+    assert.equal(ERBTemplates._replaceMatches(&apos;[1]&apos;, [&apos;test&apos;]), &apos;test&apos;);
+    assert.equal(ERBTemplates._replaceMatches(&apos;&lt;a href=&quot;[1]&quot;&gt;[2]&lt;/a&gt;&apos;, [&apos;href&apos;, &apos;text&apos;]), &apos;&lt;a href=&quot;href&quot;&gt;text&lt;/a&gt;&apos;);
+  });
+});</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

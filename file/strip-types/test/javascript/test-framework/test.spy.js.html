@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">strip-types/test/javascript/test-framework/test.spy.js | Jobandtalent API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+<link data-ice="userStyle" rel="stylesheet" href="user/css/0-styles.css">
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a><a href="../js-unit-tests.html">Unit tests</a>
+  <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/clone-object.js~CloneObject.html">CloneObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/cookie-storage.js~CookieStorage.html">CookieStorage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/environment.js~Environment.html">Environment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/module-naming.js~ModuleNaming.html">ModuleNaming</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ERBTemplating">ERBTemplating</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/event-actions.js~EventActions.html">EventActions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DocumentEvents">DocumentEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ElementEvents">ElementEvents</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/dom</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-$">$</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/test-framework</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-util.js~DOMUtil.html">DOMUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/inject.js~Inject.html">Inject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/mock.js~Mock.html">Mock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/modulejs.js~ModuleJS.html">ModuleJS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/proxy-spy-handler.js~ProxySpyHandler.html">ProxySpyHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/spy.js~Spy.html">Spy</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/test-framework/dom-mutation</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/factory.js~DOMMutationFactory.html">DOMMutationFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-base.js~DOMMutationBase.html">DOMMutationBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-events.js~DOMMutationEvents.html">DOMMutationEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/test-framework/dom-mutation/mutation-observer.js~DOMMutationObserver.html">DOMMutationObserver</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">strip-types/test/javascript/test-framework/test.spy.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+
+import assert from &apos;assert&apos;;
+import Spy from &apos;../../../src/javascript/test-framework/spy&apos;;
+import ModuleJS from &apos;@lrsjng/modulejs&apos;;
+
+/**
+ * @test {Spy}
+ */
+describe(&apos;Spy&apos;, () =&gt; {
+  /**
+   * @type {Object} testObject
+   */
+  const testObject = {
+    property: 5,
+    method: () =&gt; {}
+  };
+
+  /**
+   * @type {Object|null} spied
+   */
+  let spied = null;
+
+  /**
+   * @type {Spy|null} spied
+   */
+  let spy = null;
+
+  /**
+   * @method beforeEach
+   * @private
+   */
+  beforeEach(() =&gt; {
+    spy = new Spy();
+    spied = spy.watch(testObject);
+  });
+
+  /**
+   * @method afterEach
+   * @private
+   */
+  afterEach(() =&gt; {
+    if (spy.watched(testObject, &apos;method&apos;)) {
+      testObject.method.restore();
+    }
+    spy = null;
+  });
+
+  /**
+   * @method assertSpyRegister
+   * @param {Spy} spyObject
+   * @param {String} property
+   * @param {Object} register
+   *   {Boolean} called
+   *   {Number} count
+   *   {Boolean} isDefined
+   */
+  const assertSpyRegister = function (spyObject, property, register) {
+    Object.keys(register).forEach(key =&gt; {
+      assert.equal(spyObject.get(property)[key], register[key]);
+    });
+  };
+
+  /**
+   * @test {Spy#watch}
+   */
+  it(&apos;#spy spied proxy preserves original values&apos;, () =&gt; {
+    assert.equal(spied.property, testObject.property);
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts property sets&apos;, () =&gt; {
+    assert.equal(spy.get(&apos;property&apos;), null);
+
+    spied.property = &apos;test&apos;;
+    assertSpyRegister(spy, &apos;property&apos;, { called: true, count: 1, isDefined: true });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts invalid property sets&apos;, () =&gt; {
+    spied.fake = &apos;test&apos;;
+    assertSpyRegister(spy, &apos;fake&apos;, { called: true, count: 1, isDefined: false });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy counts properly multiple property sets&apos;, () =&gt; {
+    assert.equal(spy.get(&apos;property&apos;), null);
+
+    spied.property = &apos;test-1&apos;;
+    spied.property = &apos;test-2&apos;;
+    assertSpyRegister(spy, &apos;property&apos;, { count: 2 });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts property gets&apos;, () =&gt; {
+    const test = spied.property; // eslint-disable-line no-unused-vars
+    assertSpyRegister(spy, &apos;property&apos;, { called: true, count: 1, isDefined: true });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts multiple property sets&apos;, () =&gt; {
+    var test = spied.property; // eslint-disable-line no-unused-vars
+    test = spied.property;
+    assertSpyRegister(spy, &apos;property&apos;, { count: 2 });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts invalid property sets&apos;, () =&gt; {
+    const test = spied.fake; // eslint-disable-line no-unused-vars
+    assertSpyRegister(spy, &apos;fake&apos;, { called: true, count: 1, isDefined: false });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts method calls&apos;, () =&gt; {
+    assert.equal(spy.get(&apos;method&apos;), null);
+
+    spied.method();
+    assertSpyRegister(spy, &apos;method&apos;, { called: true, count: 1, isDefined: true });
+  });
+
+  /**
+   * @test {Spy#get}
+   */
+  it(&apos;#spy intercepts multiple method calls&apos;, () =&gt; {
+    assert.equal(spy.get(&apos;method&apos;), null);
+
+    spied.method();
+    spied.method();
+    assertSpyRegister(spy, &apos;method&apos;, { count: 2 });
+  });
+
+  /**
+   * @test {Spy#intercept}
+   */
+  it(&apos;#intercept overrides method calls&apos;, () =&gt; {
+    assert.equal(typeof testObject.method.called, &apos;undefined&apos;);
+    spy.intercept(testObject, &apos;method&apos;);
+    assert.notEqual(typeof testObject.method.called, &apos;undefined&apos;);
+    assert.equal(testObject.method.called, false);
+  });
+
+  /**
+   * @test {Spy#intercept}
+   */
+  it(&apos;#intercept registers method calls&apos;, () =&gt; {
+    spy.intercept(testObject, &apos;method&apos;);
+
+    testObject.method();
+    assert.equal(testObject.method.called, true);
+  });
+
+  /**
+   * @test {Spy#intercept}
+   */
+  it(&apos;#intercept counts method calls&apos;, () =&gt; {
+    spy.intercept(testObject, &apos;method&apos;);
+
+    assert.equal(testObject.method.counter, 0);
+
+    testObject.method();
+    assert.equal(testObject.method.counter, 1);
+
+    testObject.method();
+    assert.equal(testObject.method.counter, 2);
+  });
+
+  /**
+   * @test {Spy#intercept}
+   */
+  it(&apos;#intercept can receive stubs&apos;, () =&gt; {
+    const stub = () =&gt; &apos;test-result&apos;;
+    spy.intercept(testObject, &apos;method&apos;, stub);
+
+    assert.equal(testObject.method.counter, 0);
+
+    const result = testObject.method();
+    assert.equal(testObject.method.counter, 1);
+    assert.equal(result, &apos;test-result&apos;);
+  });
+
+  /**
+   * @test {Spy#watched}
+   */
+  it(&apos;#watched&apos;, () =&gt; {
+    assert.ok(!spy.watched(testObject, &apos;method&apos;));
+    spy.intercept(testObject, &apos;method&apos;);
+    assert.ok(spy.watched(testObject, &apos;method&apos;));
+    assert.equal(typeof testObject.method.called, &apos;boolean&apos;);
+  });
+
+  /**
+   * @test {Spy#restore}
+   */
+  it(&apos;#instance.method.restore&apos;, () =&gt; {
+    spy.intercept(testObject, &apos;method&apos;);
+    testObject.method.restore();
+    assert.ok(!spy.watched(testObject, &apos;method&apos;));
+  });
+
+  /**
+   * @test {Spy#mock}
+   */
+  it(&apos;#mock can override modulejs modules&apos;, () =&gt; {
+    const obj = {
+      property: 5,
+      method: () =&gt; &apos;test-value&apos;
+    };
+
+    spy.mock(obj, &apos;testObject&apos;, true);
+    const mockObject = ModuleJS.require(&apos;testObject&apos;);
+
+    mockObject.property = 6;
+    assert.equal(spy.get(&apos;property&apos;).called, true);
+    assert.equal(spy.get(&apos;property&apos;).count, 1);
+    assert.equal(spy.get(&apos;property&apos;).isDefined, true);
+
+    mockObject.propertyUnexistent = 6;
+    assert.equal(spy.get(&apos;propertyUnexistent&apos;).called, true);
+    assert.equal(spy.get(&apos;propertyUnexistent&apos;).count, 1);
+    assert.equal(spy.get(&apos;propertyUnexistent&apos;).isDefined, false);
+
+    spy.restore(obj);
+    const originalObject = ModuleJS.require(&apos;testObject&apos;);
+    assert.equal(spy.get(&apos;property&apos;), null);
+    assert.equal(originalObject.property, 5);
+  });
+
+  /**
+   * @test {Spy#mock}
+   */
+  it(&apos;#mock can restore modulejs modules&apos;, () =&gt; {
+    const obj = {
+      property: 5,
+      method: () =&gt; &apos;test-value&apos;
+    };
+
+    spy.mock(obj, &apos;testObject&apos;, true);
+    spy.restore(obj);
+
+    const originalObject = ModuleJS.require(&apos;testObject&apos;);
+    originalObject.property = 10;
+
+    assert.equal(spy.get(&apos;property&apos;), null);
+  });
+});</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
