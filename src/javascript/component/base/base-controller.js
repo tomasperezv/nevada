@@ -100,7 +100,7 @@ class BaseController {
    */
   _getViewInstance(): BaseControllerView {
     const View = this._requireAndGetViewClass();
-    return new View({ locator: this._options.locator, controller: this });
+    return new View({ locator: this._options.locator, controller: this, id: this._options.id });
   }
 
   /**

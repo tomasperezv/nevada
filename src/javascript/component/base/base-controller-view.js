@@ -2,6 +2,7 @@
 'use strict';
 
 import EventActions from './event-actions';
+import Environment from '../../environment';
 
 /**
  * The base class for views
@@ -10,6 +11,8 @@ import EventActions from './event-actions';
 class BaseControllerView {
   locators: Object;
   _controller: Object|null;
+  _id: string;
+  _template: string|null;
   $: Function;
 
   /**
@@ -21,8 +24,24 @@ class BaseControllerView {
     }
     this.locators.main = options.locator || null;
     this._controller = options.controller || null;
-    this._attachEvents();
     this.$ = require('../../dom/core');
+
+    this._loadTemplate();
+    this._attachEvents();
+  }
+
+  /**
+   * Autoloads the template in the development environment.
+   *
+   * @method _loadTemplate
+   * @private
+   */
+  _loadTemplate(): void {
+    if (Environment.isDevelopment()) {
+      if (this._template !== null) {
+        this.$(this.locators.main).replaceWith(this._template);
+      }
+    }
   }
 
   /**

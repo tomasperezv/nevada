@@ -48,6 +48,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "flow-bin": "^0.24.2",
     "flow-status-webpack-plugin": "^0.1.4",
+    "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.0",
     "html5shiv": "^3.7.3",
     "jquery": "^1.12.4",

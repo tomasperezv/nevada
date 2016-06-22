@@ -8,11 +8,11 @@ class Logger
     @verbose_level = level || 'debug'
 
   @fromEnvironment: (environment) ->
-    JTFrontend = require '../javascript/jt-frontend.js'
-    level = if JTFrontend.environment == 'production'
-      'warn'
-    else
+    Environment = require '../javascript/environment'
+    if Environment.isDevelopment
       'debug'
+    else
+      'warn'
 
     new Logger(level)
 

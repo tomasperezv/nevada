@@ -22,7 +22,23 @@ componentDirectories.forEach((currentComponentDirectory) => {
     const extension = path.extname(currentComponentFile);
     if (AVAILABLE_EXTENSIONS.indexOf(extension) >= 0){
       const filepath = `${directoryPath}/${currentComponentFile}`;
-      components.push({ path: filepath, name: moduleJSResolveName(currentComponentFile) });
+
+      const templatePath = `${directoryPath}/template.html`;
+      let template = '';
+      try {
+        // Resolve component template
+        if (fs.statSync(templatePath).isFile()) {
+          template = templatePath;
+        }
+      } catch (e) {
+        // eslint-disable-line no-empty
+      }
+
+      components.push({
+        path: filepath,
+        name: moduleJSResolveName(currentComponentFile),
+        templatePath: template
+      });
     }
   });
 });

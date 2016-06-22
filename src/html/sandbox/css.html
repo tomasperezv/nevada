@@ -28,6 +28,7 @@
         </div>
       </div>
       <a href="#" id="popup-example">Trigger link</a>
+      <div id="cookie_consent_box"></div>
       <script type="text/javascript">
         window.addEventListener('jt-core-loaded', function() {
           var Loader = modulejs.require('LoaderController');
@@ -36,6 +37,9 @@
             [{ id: 'Popup', locator: '#popup',  action: 'show' }],
             new Trigger({ locator: '#popup-example' })
           );
+
+          var CookieConsent = modulejs.require('CookieConsentController');
+          var cookie = new CookieConsent({ locator: '#cookie_consent_box' });
         });
       </script>
     </section>

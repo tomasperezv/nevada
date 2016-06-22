@@ -8,6 +8,7 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import FlowStatusWebpackPlugin from 'flow-status-webpack-plugin';
 import GenerateLatest from './builder/generate-latest';
+import CopyTemplates from './builder/copy-templates';
 import strip from './builder/webpack-strip-loader';
 import environmentPlugin from './builder/production-environment';
 
@@ -19,6 +20,7 @@ import plugins from './builder/autoload-webpack-plugins';
 plugins.push(new ExtractTextPlugin(outputBundle, { allChunks: true }));
 plugins.push(new FlowStatusWebpackPlugin());
 plugins.push(new GenerateLatest({ version: bundleName.getVersion() }));
+plugins.push(new CopyTemplates());
 plugins.push(environmentPlugin);
 
 // Autoload javascript components
@@ -58,6 +60,8 @@ const config = {
       './test/javascript/test-framework/test.spy',
       './test/javascript/test.logger',
       './test/javascript/test.event-bus',
+      './test/javascript/test.environment',
+      './test/javascript/test.erb-templating',
       './test/javascript/component/base/test.base-controller',
       './test/javascript/component/base/test.base-controller-view',
       './test/javascript/component/base/test.event-actions',
@@ -109,7 +113,15 @@ const config = {
         loader: 'webpack-append',
         query: rawComponents.map((dep) =>
           `ModuleJS.define("${dep.name}", () => { const dep = require("../../${dep.path}");
-           return dep.default ? dep.default : dep; });`
+           const dependency = dep.default ? dep.default : dep;
+           const ERBTemplating = require('../../src/javascript/erb-templating').default;
+           if ('${dep.templatePath}' !== '') {
+             const rawTemplate = require('html!../../${dep.templatePath}');
+             dependency.prototype._template = ERBTemplating.filter(rawTemplate);
+           } else {
+             dependency.prototype._template = null;
+           }
+           return dependency; });`
         ).join('')
       },
       {

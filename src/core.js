@@ -36,11 +36,16 @@ const BaseView = require('./javascript/component/base/base-controller-view').def
 const CookieStorage = require('./javascript/cookie-storage').default;
 const CloneObject = require('./javascript/clone-object').default;
 
+// Define the environment depending on NODE_ENV
+const Environment = require('./javascript/environment').default;
+Environment.environment = process.env.NODE_ENV;
+
 ModuleJS.define('EventBusModule', () => require('./coffeescript/event_bus.coffee'));
 ModuleJS.define('LoggerModule', () => require('./coffeescript/logger.coffee'));
 ModuleJS.define('BaseController', () => BaseController);
 ModuleJS.define('BaseControllerView', () => BaseView);
 ModuleJS.define('CookieStorage', () => CookieStorage);
+ModuleJS.define('Environment', () => Environment);
 ModuleJS.define('CloneObject', () => CloneObject);
 
 // Exposes the ModuleJS object in the global scope, that way
