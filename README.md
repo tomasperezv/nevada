@@ -17,7 +17,7 @@ It supports live-reload, so if you modify a module both javascript, coffeescript
 
 ### Documentation
 
-You can find the extensive documentation in the sandbox.
+You can find the extensive documentation in the sandbox or [read it online](https://jobandtalent.github.io/nevada/).
 
 - [Overview](manual/overview.md)  
 - [Installation](manual/installation.md)  
