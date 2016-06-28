@@ -5,6 +5,8 @@ import BaseControllerView from '../../../../src/javascript/component/base/base-c
 import DOMUtil from '../../../../src/javascript/test-framework/dom-util';
 import jsdom from 'mocha-jsdom';
 import Spy from '../../../../src/javascript/test-framework/spy';
+import Environment from '../../../../src/javascript/environment';
+import ERBTemplating from '../../../../src/javascript/erb-templating';
 
 /**
  * @test {BaseControllerView}
@@ -12,6 +14,31 @@ import Spy from '../../../../src/javascript/test-framework/spy';
 describe('BaseControllerView', () => {
   // Initialize the fake DOM that jsdom exposes
   jsdom();
+
+  /**
+   * @method beforeEach
+   * @private
+   */
+  afterEach(() => {
+    Environment.environment = Environment.PRODUCTION;
+  });
+
+  /**
+   * @method overrideDomSelector
+   * @param  {String} selector
+   * @return {Object}
+   * @private
+   */
+  const overrideDomSelector = (selector) => {
+    return {
+      replaceWith: (template) => {
+        const element = document.getElementById(selector);
+        const parent = element.parentElement;
+        parent.removeChild(element);
+        parent.innerHTML += template;
+      }
+    };
+  };
 
   /**
    * @method constructDom
@@ -55,4 +82,22 @@ describe('BaseControllerView', () => {
     const baseView = new BaseControllerView();
     assert.equal(typeof baseView.$, 'function');
   });
+
+  /**
+   * @test {BaseControllerView#loadTemplate}
+   */
+  it('Autoloads the template in the development environment', () => {
+    const rawTemplate = '<div id="button_template"></div>';
+    BaseControllerView.prototype._template = ERBTemplating.filter(rawTemplate);
+    const baseView = new BaseControllerView({locator: 'button'});
+    const spy = new Spy();
+    spy.intercept(baseView, '$', overrideDomSelector);
+
+    Environment.environment = Environment.DEVELOPMENT;
+    assert.equal(Environment.isDevelopment(), true);
+    baseView._loadTemplate();
+    assert.notEqual(document.getElementById('button_template'), null);
+    assert.equal(baseView.$.counter, 1)
+  });
+
 });
