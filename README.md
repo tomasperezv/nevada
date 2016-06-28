@@ -1,5 +1,7 @@
 # Nevada [![Build Status](https://circleci.com/gh/jobandtalent/nevada.png?style=shield)](https://circleci.com/gh/jobandtalent/nevada) [![npm version](https://badge.fury.io/js/%40jobandtalent%2Fnevada.svg)](https://badge.fury.io/js/%40jobandtalent%2Fnevada)
 
+![npm](https://nodei.co/npm/@jobandtalent/nevada.png?mini=true)
+
 This repository contains Jobandtalent frontend code components (less, javascript and coffeescript).
 
 The core is based on es6 combined with [Facebook Flow](https://github.com/facebook/flow) (for static type capabilities) and [Redux](http://redux.js.org/) as an internal architecture.
