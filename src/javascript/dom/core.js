@@ -6,6 +6,7 @@
 
 // Fallback
 let $ = () => {};
+/* istanbul ignore if */
 if (!process || process.env.NODE_ENV !== 'test') {
   $ = require('jquery/src/core');
   require('jquery/src/core/init');
