@@ -12,10 +12,16 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
  */
 if (typeof window !== 'undefined') {
-  // Expose the jt-core-loaded through the window object
-  // TODO: only functional for modern browsers
+  const eventName = 'jt-core-loaded';
   if (typeof document.createEvent !== 'undefined') {
-    const event = new CustomEvent('jt-core-loaded');
-    window.dispatchEvent(event);
+    try {
+      // Expose the jt-core-loaded through the window object
+      const event = new CustomEvent('jt-core-loaded');
+      window.dispatchEvent(event);
+    } catch (e) {
+      // Fallback
+      const $ = require('./dom/core');
+      $(window).trigger(eventName);
+    }
   }
 }
