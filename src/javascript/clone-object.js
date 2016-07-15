@@ -2,9 +2,8 @@
 'use strict';
 
 /**
- * Adapter object for storing data in cookies without depending on a specific implementation.
+ * Object for adding utilities for cloning objects
  * @module CloneObject
- * @see https://www.npmjs.com/package/js-cookiethis._storage(id);
  */
 class CloneObject {
   /**
