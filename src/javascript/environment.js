@@ -7,7 +7,7 @@
 class Environment {
   PRODUCTION: string;
   DEVELOPMENT: string;
-  _environment: string;
+  environment: string;
 
   constructor() {
     /**
@@ -24,23 +24,7 @@ class Environment {
      * @type {string} _environment
      * @private
      */
-    this._environment = this.PRODUCTION;
-  }
-
-  /**
-   * @param {string} environment
-   * @public
-   */
-  set environment(environment: string): void {
-    this._environment = environment;
-  }
-
-  /**
-   * @returns {string}
-   * @public
-   */
-  get environment(): string {
-    return this._environment;
+    this.environment = this.PRODUCTION;
   }
 
   /**
@@ -48,7 +32,7 @@ class Environment {
    * @return {Boolean}
    */
   isDevelopment(): boolean {
-    return (this._environment === this.DEVELOPMENT);
+    return (this.environment === this.DEVELOPMENT);
   }
 }
 
