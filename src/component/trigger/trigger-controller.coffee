@@ -1,7 +1,7 @@
 'use strict'
 
 BaseController = require('../../javascript/component/base/base-controller').default
-BaseView = require('../../javascript/component/base/base-controller-view').default
+BaseView = require('../../javascript/component/base/base-view').default
 
 class TriggerController extends BaseController
   constructor: (options) ->

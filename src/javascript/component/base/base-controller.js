@@ -2,7 +2,7 @@
 /* global window */
 'use strict';
 
-import BaseControllerView from './base-controller-view';
+import BaseView from './base-view';
 // $FlowFixMe: Importing coffee modules
 import EventBus from '../../../coffeescript/event_bus.coffee';
 import Store from '../../store/store';
@@ -13,7 +13,7 @@ import BaseReducer from '../../reducer/base';
  * @module BaseController
  */
 class BaseController {
-  _view: BaseControllerView;
+  _view: BaseView;
   _id: string;
   _stateId: string;
   _options: Object;
@@ -63,10 +63,10 @@ class BaseController {
 
   /**
    * @method getView
-   * @returns {BaseControllerView}
+   * @returns {BaseView}
    * @public
    */
-  getView(): BaseControllerView {
+  getView(): BaseView {
     return this._view;
   }
 
@@ -75,13 +75,13 @@ class BaseController {
    * @returns {Class}
    * @private
    */
-  _requireAndGetViewClass(): Class<BaseControllerView> { // eslint-disable-line
+  _requireAndGetViewClass(): Class<BaseView> { // eslint-disable-line
     let dependency = null;
 
     /* global modulejs */
     // $FlowFixMe: modulejs is not defined
     if (typeof modulejs !== 'undefined') {
-      dependency = modulejs.require(`${this._id}View`);
+      dependency = modulejs.require(`${this._id.replace('Controller', '')}View`);
     }
 
     if (dependency === null) {
@@ -95,10 +95,10 @@ class BaseController {
 
   /**
    * @method _getViewInstance
-   * @returns {BaseControllerView}
+   * @returns {BaseView}
    * @private
    */
-  _getViewInstance(): BaseControllerView {
+  _getViewInstance(): BaseView {
     const View = this._requireAndGetViewClass();
     return new View({ locator: this._options.locator, controller: this, id: this._options.id });
   }
@@ -133,7 +133,7 @@ class BaseController {
       return result;
     });
 
-    return viewName.join('');
+    return viewName.join('').replace('controller-', '');
   }
 
   /**

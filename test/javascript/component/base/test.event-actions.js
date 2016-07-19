@@ -5,7 +5,7 @@ import assert from 'assert';
 import EventActions from '../../../../src/javascript/component/base/event-actions';
 import Spy from '../../../../src/javascript/test-framework/spy';
 import DOMUtil from '../../../../src/javascript/test-framework/dom-util';
-import BaseControllerView from '../../../../src/javascript/component/base/base-controller-view';
+import BaseView from '../../../../src/javascript/component/base/base-view';
 
 /**
  * @test {EventActions}
@@ -17,7 +17,7 @@ describe('EventActions', () => {
   let view = null;
 
   beforeEach(() => {
-    view = new BaseControllerView();
+    view = new BaseView();
     view.locators = {
       Button: '#button'
     };

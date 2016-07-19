@@ -1,6 +1,6 @@
 'use strict'
 
-BaseView = require('../../javascript/component/base/base-controller-view').default
+BaseView = require('../../javascript/component/base/base-view').default
 require('!style!css!less!./main.less')
 
 class OverlayView extends BaseView

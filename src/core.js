@@ -32,7 +32,7 @@ window.jQuery = window.$ = require('./javascript/dom/core');
 // ModuleJS modules
 const ModuleJS = require('@lrsjng/modulejs');
 const BaseController = require('./javascript/component/base/base-controller').default;
-const BaseView = require('./javascript/component/base/base-controller-view').default;
+const BaseView = require('./javascript/component/base/base-view').default;
 const CookieStorage = require('./javascript/cookie-storage').default;
 const CloneObject = require('./javascript/clone-object').default;
 
@@ -43,7 +43,7 @@ Environment.environment = process.env.NODE_ENV;
 ModuleJS.define('EventBusModule', () => require('./coffeescript/event_bus.coffee'));
 ModuleJS.define('LoggerModule', () => require('./coffeescript/logger.coffee'));
 ModuleJS.define('BaseController', () => BaseController);
-ModuleJS.define('BaseControllerView', () => BaseView);
+ModuleJS.define('BaseView', () => BaseView);
 ModuleJS.define('CookieStorage', () => CookieStorage);
 ModuleJS.define('Environment', () => Environment);
 ModuleJS.define('CloneObject', () => CloneObject);

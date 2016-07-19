@@ -6,9 +6,9 @@ import Environment from '../../environment';
 
 /**
  * The base class for views
- * @module BaseControllerView
+ * @module BaseView
  */
-class BaseControllerView {
+class BaseView {
   locators: Object;
   _controller: Object|null;
   _id: string;
@@ -71,4 +71,4 @@ class BaseControllerView {
   }
 }
 
-export default BaseControllerView;
+export default BaseView;

@@ -1,6 +1,6 @@
 'use strict'
 
-BaseView = require('../../javascript/component/base/base-controller-view').default
+BaseView = require('../../javascript/component/base/base-view').default
 Overlay = require('../overlay/overlay-controller.coffee').default
 require('!style!css!less!./main.less')
 

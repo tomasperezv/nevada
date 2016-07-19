@@ -1,7 +1,7 @@
 'use strict';
 
 import assert from 'assert';
-import BaseControllerView from '../../../../src/javascript/component/base/base-controller-view';
+import BaseView from '../../../../src/javascript/component/base/base-view';
 import DOMUtil from '../../../../src/javascript/test-framework/dom-util';
 import jsdom from 'mocha-jsdom';
 import Spy from '../../../../src/javascript/test-framework/spy';
@@ -9,9 +9,9 @@ import Environment from '../../../../src/javascript/environment';
 import ERBTemplating from '../../../../src/javascript/erb-templating';
 
 /**
- * @test {BaseControllerView}
+ * @test {BaseView}
  */
-describe('BaseControllerView', () => {
+describe('BaseView', () => {
   // Initialize the fake DOM that jsdom exposes
   jsdom();
 
@@ -68,30 +68,30 @@ describe('BaseControllerView', () => {
 
   it('Gets augmented via EventActions', () => {
     constructDom();
-    BaseControllerView.prototype.locators = {
+    BaseView.prototype.locators = {
       label: {
         id: '#button',
         event: 'click'
       }
     };
-    BaseControllerView.prototype.onLabelClick = () => {};
-    const view = new BaseControllerView();
+    BaseView.prototype.onLabelClick = () => {};
+    const view = new BaseView();
 
     checkAugmentation(view, 'onLabelClick', () => DOMUtil.sendClickEvent('button'));
   });
 
   it('has a $ property', () => {
-    const baseView = new BaseControllerView();
+    const baseView = new BaseView();
     assert.equal(typeof baseView.$, 'function');
   });
 
   /**
-   * @test {BaseControllerView#loadTemplate}
+   * @test {BaseView#loadTemplate}
    */
   it('Autoloads the template in the development environment', () => {
     const rawTemplate = '<div id="button_template"></div>';
-    BaseControllerView.prototype._template = ERBTemplating.filter(rawTemplate);
-    const baseView = new BaseControllerView({ locator: 'button' });
+    BaseView.prototype._template = ERBTemplating.filter(rawTemplate);
+    const baseView = new BaseView({ locator: 'button' });
     const spy = new Spy();
     spy.intercept(baseView, '$', overrideDomSelector);
 

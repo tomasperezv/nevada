@@ -2,7 +2,7 @@
 /* global EventListener */
 'use strict';
 
-import BaseControllerView from './base-controller-view';
+import BaseView from './base-view';
 import { ElementEvents, DocumentEvents } from './event';
 
 /**
@@ -22,11 +22,11 @@ class EventActions {
   }
 
   /**
-   * @param {BaseControllerView} target
+   * @param {BaseView} target
    * @method augment
    * @public
    */
-  augment(target: BaseControllerView): void {
+  augment(target: BaseView): void {
     if (typeof document !== 'undefined') {
       const attachCallback = (options) => {
         // $FlowFixMe: Property not found
@@ -46,11 +46,11 @@ class EventActions {
   }
 
   /**
-   * @param {BaseControllerView} target
+   * @param {BaseView} target
    * @method clear
    * @public
    */
-  clear(target: BaseControllerView): void {
+  clear(target: BaseView): void {
     const detachCallback = (options) => {
       this._detachEventListener(options.element, options.eventName, options.eventHandler);
     };
@@ -59,12 +59,12 @@ class EventActions {
   }
 
   /**
-   * @param {BaseControllerView} target
+   * @param {BaseView} target
    * @param {Function} callback
    * @method _genericEventProcess
    * @private
    */
-  _genericEventProcess(target: BaseControllerView, callback: Function) {
+  _genericEventProcess(target: BaseView, callback: Function) {
     this._augmentTargetBasedOnEventTypes(target, ElementEvents, target.locators, callback);
     this._augmentTargetBasedOnEventTypes(target, DocumentEvents, { Document: document }, callback);
   }
@@ -73,7 +73,7 @@ class EventActions {
    * @method _augmentTargetBasedOnEventTypes
    * @private
    */
-  _augmentTargetBasedOnEventTypes(target: BaseControllerView, events: Array<string>, locators: Object,
+  _augmentTargetBasedOnEventTypes(target: BaseView, events: Array<string>, locators: Object,
     callback: Function): void {
     for (let i = 0; i < events.length; i++) {
       const eventName = events[i];

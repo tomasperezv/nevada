@@ -34,9 +34,9 @@ Probably you'll need a view for your controller. Views are automatically set in 
 /* @flow */
 'use strict';
 
-import BaseControllerView from '../../javascript/component/base/base-controller-view';
+import BaseView from '../../javascript/component/base/base-view';
 
-class ExampleView extends BaseControllerView {
+class ExampleView extends BaseView {
 
   constructor(options: Object) {
     super(options);
@@ -56,9 +56,9 @@ What is important here and you don't have to forget is `the locator name has to 
 /* @flow */
 'use strict';
 
-import BaseControllerView from '../../javascript/component/base/base-controller-view';
+import BaseView from '../../javascript/component/base/base-view';
 
-class ExampleView extends BaseControllerView {
+class ExampleView extends BaseView {
   _element: Object;
 
   constructor(options: Object) {

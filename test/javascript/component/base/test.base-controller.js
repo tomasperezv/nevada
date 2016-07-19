@@ -4,7 +4,7 @@ import assert from 'assert';
 import jsdom from 'mocha-jsdom';
 import Spy from '../../../../src/javascript/test-framework/spy';
 import BaseController from '../../../../src/javascript/component/base/base-controller';
-import BaseControllerView from '../../../../src/javascript/component/base/base-controller-view';
+import BaseView from '../../../../src/javascript/component/base/base-view';
 import EventBus from '../../../../src/coffeescript/event_bus.coffee';
 import DOMUtil from '../../../../src/javascript/test-framework/dom-util';
 
@@ -31,7 +31,7 @@ describe('BaseController', () => {
    */
   const mockCustomView = (render, callback) => {
     const spy = new Spy();
-    const mock = spy.mock(new BaseControllerView());
+    const mock = spy.mock(new BaseView());
     spy.intercept(BaseController.prototype, '_getViewInstance', () => mock);
     const baseController = new BaseController({ render });
     callback(spy, baseController);
@@ -83,7 +83,7 @@ describe('BaseController', () => {
 
   it('generates properly a view name based on controller\'s class name', (done) => {
     const baseController = new BaseController({ render: false });
-    assert.equal(baseController._getViewImportName(), 'base-controller-view');
+    assert.equal(baseController._getViewImportName(), 'base-view');
     done();
   });
 
@@ -109,7 +109,7 @@ describe('BaseController', () => {
     div.id = 'button';
     document.getElementsByTagName('body')[0].appendChild(div);
 
-    BaseControllerView.prototype.locators = {
+    BaseView.prototype.locators = {
       show: {
         id: '#button',
         event: 'click'

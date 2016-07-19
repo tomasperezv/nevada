@@ -1,11 +1,11 @@
 /* @flow */
 'use strict';
 
-import BaseControllerView from '../../javascript/component/base/base-controller-view';
+import BaseView from '../../javascript/component/base/base-view';
 // $FlowFixMe
 import '!style!css!less!./main.less';
 
-class CookieConsentView extends BaseControllerView {
+class CookieConsentView extends BaseView {
   _element: Object;
 
   constructor(options: Object) {
