@@ -29,6 +29,7 @@ describe('BaseControllerView', () => {
    * @return {Object}
    * @private
    */
+  /* eslint-disable arrow-body-style */
   const overrideDomSelector = (selector) => {
     return {
       replaceWith: (template) => {
@@ -39,6 +40,7 @@ describe('BaseControllerView', () => {
       }
     };
   };
+  /* eslint-enable arrow-body-style */
 
   /**
    * @method constructDom
@@ -89,7 +91,7 @@ describe('BaseControllerView', () => {
   it('Autoloads the template in the development environment', () => {
     const rawTemplate = '<div id="button_template"></div>';
     BaseControllerView.prototype._template = ERBTemplating.filter(rawTemplate);
-    const baseView = new BaseControllerView({locator: 'button'});
+    const baseView = new BaseControllerView({ locator: 'button' });
     const spy = new Spy();
     spy.intercept(baseView, '$', overrideDomSelector);
 
@@ -97,7 +99,6 @@ describe('BaseControllerView', () => {
     assert.equal(Environment.isDevelopment(), true);
     baseView._loadTemplate();
     assert.notEqual(document.getElementById('button_template'), null);
-    assert.equal(baseView.$.counter, 1)
+    assert.equal(baseView.$.counter, 1);
   });
-
 });

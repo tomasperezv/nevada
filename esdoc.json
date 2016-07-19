@@ -10,7 +10,8 @@
   "excludes": [
     "node_modules",
     "doc",
-    "git"
+    "git",
+    "coverage"
   ],
   "manual": {
     "asset": "./manual/asset",
