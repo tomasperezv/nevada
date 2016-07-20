@@ -63,7 +63,7 @@ const config = {
       './test/javascript/test.environment',
       './test/javascript/test.erb-templating',
       './test/javascript/component/base/test.base-controller',
-      './test/javascript/component/base/test.base-controller-view',
+      './test/javascript/component/base/test.base-view',
       './test/javascript/component/base/test.event-actions',
       './test/javascript/test.cookie-storage',
       './test/javascript/test.emit-core-ready-event',
