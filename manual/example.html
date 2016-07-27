@@ -19,6 +19,7 @@
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf('nevada') > -1 ? './js-unit-tests.html' : '../js-unit-tests.html';" href="#">Unit tests</a>
   <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
@@ -125,9 +126,9 @@ export default ExampleController;</code>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">/* @flow */
 &apos;use strict&apos;;
 
-import BaseControllerView from &apos;../../javascript/component/base/base-controller-view&apos;;
+import BaseView from &apos;../../javascript/component/base/base-view&apos;;
 
-class ExampleView extends BaseControllerView {
+class ExampleView extends BaseView {
 
   constructor(options: Object) {
     super(options);
@@ -142,9 +143,9 @@ export default ExampleView;</code>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">/* @flow */
 &apos;use strict&apos;;
 
-import BaseControllerView from &apos;../../javascript/component/base/base-controller-view&apos;;
+import BaseView from &apos;../../javascript/component/base/base-view&apos;;
 
-class ExampleView extends BaseControllerView {
+class ExampleView extends BaseView {
   _element: Object;
 
   constructor(options: Object) {

@@ -19,6 +19,7 @@
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf('nevada') > -1 ? './js-unit-tests.html' : '../js-unit-tests.html';" href="#">Unit tests</a>
   <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
@@ -37,8 +38,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/environment.js~Environment.html">Environment</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/module-naming.js~ModuleNaming.html">ModuleNaming</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ERBTemplating">ERBTemplating</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-view.js~BaseView.html">BaseView</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/event-actions.js~EventActions.html">EventActions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DocumentEvents">DocumentEvents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ElementEvents">ElementEvents</a></span></span></li>
@@ -58,6 +59,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="nevada-build-status-https-circleci-com-gh-jobandtalent-nevada-png-style-shield-https-circleci-com-gh-jobandtalent-nevada-npm-version-https-badge-fury-io-js-40jobandtalent-2fnevada-svg-https-badge-fury-io-js-40jobandtalent-2fnevada-">Nevada <a href="https://circleci.com/gh/jobandtalent/nevada"><img src="https://circleci.com/gh/jobandtalent/nevada.png?style=shield" alt="Build Status"></a> <a href="https://badge.fury.io/js/%40jobandtalent%2Fnevada"><img src="https://badge.fury.io/js/%40jobandtalent%2Fnevada.svg" alt="npm version"></a></h1>
+<p><img src="https://nodei.co/npm/@jobandtalent/nevada.png?mini=true" alt="npm"></p>
 <p>This repository contains Jobandtalent frontend code components (less, javascript and coffeescript).</p>
 <p>The core is based on es6 combined with <a href="https://github.com/facebook/flow">Facebook Flow</a> (for static type capabilities) and <a href="http://redux.js.org/">Redux</a> as an internal architecture.</p>
 <h3 id="goals">Goals</h3>
@@ -65,11 +67,13 @@
 <li>Avoid having duplicated code across our different projects.  </li>
 <li>Reuse code and components easily.  </li>
 </ul>
-<h3 id="sandbox">Sandbox</h3>
+<h3 id="unit-tests">Unit tests</h3>
 <p>Run <code>npm run server</code> and open the <a href="./js-unit-tests.html">webpack-dev-server link</a></p>
 <p>It supports live-reload, so if you modify a module both javascript, coffeescript or less it will be automatically compiled and the browser will take the changes without needing a page refresh.</p>
+<p>You can also run the tests manually <code>npm test</code>.</p>
+<p><a href="https://circleci.com/api/v1/project/jobandtalent/nevada/latest/artifacts/0//home/ubuntu/nevada/coverage/index.html">Code coverage</a></p>
 <h3 id="documentation">Documentation</h3>
-<p>You can find the extensive documentation in the sandbox.</p>
+<p>You can find the extensive documentation in the sandbox or <a href="https://jobandtalent.github.io/nevada/">read it online</a>.</p>
 <ul>
 <li><a href="./manual/index.html">Overview</a>  </li>
 <li><a href="./manual/installation.html">Installation</a>  </li>

@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 70,
-  "actualCount": 70,
+  "expectCount": 68,
+  "actualCount": 68,
   "files": {
     "strip-types/src/dom/core.js": {
       "expectCount": 1,
@@ -13,7 +13,7 @@
       "actualCount": 5,
       "undocumentLines": []
     },
-    "strip-types/src/component/base/base-controller-view.js": {
+    "strip-types/src/component/base/base-view.js": {
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []
@@ -29,8 +29,8 @@
       "undocumentLines": []
     },
     "strip-types/src/environment.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     },
     "strip-types/src/test-framework/dom-mutation/mutation-base.js": {

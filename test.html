@@ -19,6 +19,7 @@
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf('nevada') > -1 ? './js-unit-tests.html' : '../js-unit-tests.html';" href="#">Unit tests</a>
   <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
@@ -37,8 +38,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/environment.js~Environment.html">Environment</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/module-naming.js~ModuleNaming.html">ModuleNaming</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ERBTemplating">ERBTemplating</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-view.js~BaseView.html">BaseView</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/event-actions.js~EventActions.html">EventActions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DocumentEvents">DocumentEvents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ElementEvents">ElementEvents</a></span></span></li>
@@ -68,27 +69,6 @@
   </thead>
 
   <tbody data-ice="tests">
-<tr class="test-describe" data-ice="testDescribe" style="display: none;" data-test-depth="0">
-  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber12"><p>BaseControllerView</p>
-</a></span></td>
-  <td data-ice="testTarget" class="test-target"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></td>
-  <td data-ice="testCount">2</td>
-</tr>
-
-<tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber40"><p>Gets augmented via EventActions</p>
-</a></span></td>
-  <td data-ice="testTarget" class="test-target">-</td>
-  <td></td>
-</tr>
-<tr data-ice="testIt" style="display: none;" data-test-depth="1">
-  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber54"><p>has a $ property</p>
-</a></span></td>
-  <td data-ice="testTarget" class="test-target">-</td>
-  <td></td>
-</tr>
-
-
 <tr class="test-describe" data-ice="testDescribe" style="display: none;" data-test-depth="0">
   <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/javascript/component/base/test.base-controller.js.html#lineNumber14"><p>BaseController</p>
 </a></span></td>
@@ -148,6 +128,33 @@
   <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-controller.js.html#lineNumber106"><p>State changes are propagated</p>
 </a></span></td>
   <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+
+
+<tr class="test-describe" data-ice="testDescribe" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span class="toggle closed"></span><span><a href="test-file/test/javascript/component/base/test.base-view.js.html#lineNumber14"><p>BaseView</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/strip-types/src/component/base/base-view.js~BaseView.html">BaseView</a></span></td>
+  <td data-ice="testCount">3</td>
+</tr>
+
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-view.js.html#lineNumber69"><p>Gets augmented via EventActions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-view.js.html#lineNumber83"><p>has a $ property</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+  <td></td>
+</tr>
+<tr data-ice="testIt" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/javascript/component/base/test.base-view.js.html#lineNumber91"><p>Autoloads the template in the development environment</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>BaseView#loadTemplate</span></td>
   <td></td>
 </tr>
 

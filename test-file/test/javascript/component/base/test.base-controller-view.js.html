@@ -66,6 +66,8 @@ import BaseControllerView from &apos;../../../../src/javascript/component/base/b
 import DOMUtil from &apos;../../../../src/javascript/test-framework/dom-util&apos;;
 import jsdom from &apos;mocha-jsdom&apos;;
 import Spy from &apos;../../../../src/javascript/test-framework/spy&apos;;
+import Environment from &apos;../../../../src/javascript/environment&apos;;
+import ERBTemplating from &apos;../../../../src/javascript/erb-templating&apos;;
 
 /**
  * @test {BaseControllerView}
@@ -73,6 +75,31 @@ import Spy from &apos;../../../../src/javascript/test-framework/spy&apos;;
 describe(&apos;BaseControllerView&apos;, () =&gt; {
   // Initialize the fake DOM that jsdom exposes
   jsdom();
+
+  /**
+   * @method beforeEach
+   * @private
+   */
+  afterEach(() =&gt; {
+    Environment.environment = Environment.PRODUCTION;
+  });
+
+  /**
+   * @method overrideDomSelector
+   * @param  {String} selector
+   * @return {Object}
+   * @private
+   */
+  const overrideDomSelector = (selector) =&gt; {
+    return {
+      replaceWith: (template) =&gt; {
+        const element = document.getElementById(selector);
+        const parent = element.parentElement;
+        parent.removeChild(element);
+        parent.innerHTML += template;
+      }
+    };
+  };
 
   /**
    * @method constructDom
@@ -116,6 +143,24 @@ describe(&apos;BaseControllerView&apos;, () =&gt; {
     const baseView = new BaseControllerView();
     assert.equal(typeof baseView.$, &apos;function&apos;);
   });
+
+  /**
+   * @test {BaseControllerView#loadTemplate}
+   */
+  it(&apos;Autoloads the template in the development environment&apos;, () =&gt; {
+    const rawTemplate = &apos;&lt;div id=&quot;button_template&quot;&gt;&lt;/div&gt;&apos;;
+    BaseControllerView.prototype._template = ERBTemplating.filter(rawTemplate);
+    const baseView = new BaseControllerView({locator: &apos;button&apos;});
+    const spy = new Spy();
+    spy.intercept(baseView, &apos;$&apos;, overrideDomSelector);
+
+    Environment.environment = Environment.DEVELOPMENT;
+    assert.equal(Environment.isDevelopment(), true);
+    baseView._loadTemplate();
+    assert.notEqual(document.getElementById(&apos;button_template&apos;), null);
+    assert.equal(baseView.$.counter, 1)
+  });
+
 });
 </code></pre>
 

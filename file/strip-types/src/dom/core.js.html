@@ -19,7 +19,7 @@
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  <a href="test.html" data-ice="testLink">Test</a><a href="../js-unit-tests.html">Unit tests</a>
+  <a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf('nevada') > -1 ? './js-unit-tests.html' : '../js-unit-tests.html';" href="#">Unit tests</a>
   <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
@@ -38,8 +38,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/environment.js~Environment.html">Environment</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/module-naming.js~ModuleNaming.html">ModuleNaming</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ERBTemplating">ERBTemplating</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-view.js~BaseView.html">BaseView</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/event-actions.js~EventActions.html">EventActions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DocumentEvents">DocumentEvents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ElementEvents">ElementEvents</a></span></span></li>
@@ -68,10 +68,13 @@
 // Fallback
 
 let $ = () =&gt; {};
+/* istanbul ignore if */
 if (!process || process.env.NODE_ENV !== &apos;test&apos;) {
   $ = require(&apos;jquery/src/core&apos;);
   require(&apos;jquery/src/core/init&apos;);
+  require(&apos;jquery/src/core/parseHTML&apos;);
   require(&apos;jquery/src/css&apos;);
+  require(&apos;jquery/src/css/hiddenVisibleSelectors&apos;);
   require(&apos;jquery/src/attributes&apos;);
   require(&apos;jquery/src/data&apos;);
   require(&apos;jquery/src/dimensions&apos;);
@@ -79,6 +82,13 @@ if (!process || process.env.NODE_ENV !== &apos;test&apos;) {
   require(&apos;jquery/src/effects&apos;);
   require(&apos;jquery/src/deprecated&apos;);
   require(&apos;jquery/src/event&apos;);
+  require(&apos;jquery/src/event/alias&apos;);
+  require(&apos;jquery/src/ajax&apos;);
+  require(&apos;jquery/src/ajax/script&apos;);
+  require(&apos;jquery/src/ajax/xhr&apos;);
+  require(&apos;jquery/src/wrap&apos;);
+  require(&apos;jquery/src/serialize&apos;);
+  require(&apos;jquery/src/queue/delay&apos;);
 }
 
 module.exports = $;</code></pre>

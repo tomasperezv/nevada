@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../../">
-  <title data-ice="title">strip-types/test/javascript/component/base/test.base-controller-view.js | Jobandtalent API Document</title>
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">strip-types/src/component/base/base-view.js | Jobandtalent API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -19,7 +19,7 @@
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  <a href="test.html" data-ice="testLink">Test</a><a href="../js-unit-tests.html">Unit tests</a>
+  <a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf('nevada') > -1 ? './js-unit-tests.html' : '../js-unit-tests.html';" href="#">Unit tests</a>
   <a data-ice="repoURL" href="https://github.com/jobandtalent/nevada" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
@@ -38,8 +38,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/environment.js~Environment.html">Environment</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/module-naming.js~ModuleNaming.html">ModuleNaming</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ERBTemplating">ERBTemplating</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html">BaseControllerView</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">src/component/base</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-controller.js~BaseController.html">BaseController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/base-view.js~BaseView.html">BaseView</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/strip-types/src/component/base/event-actions.js~EventActions.html">EventActions</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DocumentEvents">DocumentEvents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ElementEvents">ElementEvents</a></span></span></li>
@@ -58,109 +58,75 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">strip-types/test/javascript/component/base/test.base-controller-view.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">strip-types/src/component/base/base-view.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+&apos;use strict&apos;;
 
-import assert from &apos;assert&apos;;
-import BaseControllerView from &apos;../../../../src/javascript/component/base/base-controller-view&apos;;
-import DOMUtil from &apos;../../../../src/javascript/test-framework/dom-util&apos;;
-import jsdom from &apos;mocha-jsdom&apos;;
-import Spy from &apos;../../../../src/javascript/test-framework/spy&apos;;
-import Environment from &apos;../../../../src/javascript/environment&apos;;
-import ERBTemplating from &apos;../../../../src/javascript/erb-templating&apos;;
+import EventActions from &apos;./event-actions&apos;;
+import Environment from &apos;../../environment&apos;;
 
 /**
- * @test {BaseControllerView}
+ * The base class for views
+ * @module BaseView
  */
-describe(&apos;BaseControllerView&apos;, () =&gt; {
-  // Initialize the fake DOM that jsdom exposes
-  jsdom();
+class BaseView {
 
   /**
-   * @method beforeEach
+   * @constructor
+   */
+  constructor(options = {}) {
+    if (typeof this.locators === &apos;undefined&apos;) {
+      this.locators = options.locators || {};
+    }
+    this.locators.main = options.locator || null;
+    this._controller = options.controller || null;
+    this.$ = require(&apos;../../dom/core&apos;);
+
+    this._loadTemplate();
+    this._attachEvents();
+  }
+
+  /**
+   * Autoloads the template in the development environment.
+   *
+   * @method _loadTemplate
    * @private
    */
-  afterEach(() =&gt; {
-    Environment.environment = Environment.PRODUCTION;
-  });
+  _loadTemplate() {
+    if (Environment.isDevelopment()) {
+      if (this._template !== null) {
+        this.$(this.locators.main).replaceWith(this._template);
+      }
+    }
+  }
 
   /**
-   * @method overrideDomSelector
-   * @param  {String} selector
-   * @return {Object}
+   * @method _attachEvents
    * @private
    */
-  const overrideDomSelector = selector =&gt; {
-    return {
-      replaceWith: template =&gt; {
-        const element = document.getElementById(selector);
-        const parent = element.parentElement;
-        parent.removeChild(element);
-        parent.innerHTML += template;
-      }
-    };
-  };
+  _attachEvents() {
+    const eventActions = new EventActions();
+    eventActions.augment(this);
+  }
 
   /**
-   * @method constructDom
+   * @method render
+   * @public
    */
-  const constructDom = () =&gt; {
-    // Initialize the dom structure
-    const div = document.createElement(&apos;div&apos;);
-    div.id = &apos;button&apos;;
-    document.getElementsByTagName(&apos;body&apos;)[0].appendChild(div);
-  };
+  render() {}
 
   /**
-   * @method checkAugmentation
+   * @method
+   * @param {String} state
    */
-  const checkAugmentation = (targetView, eventListenerMethod, eventDispatch) =&gt; {
-    const spy = new Spy();
-    spy.intercept(targetView, &apos;onLabelClick&apos;);
-    targetView._attachEvents();
-    assert.equal(targetView.onLabelClick.counter, 0);
-    eventDispatch();
+  _notifyParentOfStateChange(state) {
+    if (this._controller !== null) {
+      this._controller.onStateChange(state);
+    }
+  }
+}
 
-    assert.equal(targetView.onLabelClick.counter, 1);
-    targetView.onLabelClick.restore();
-  };
-
-  it(&apos;Gets augmented via EventActions&apos;, () =&gt; {
-    constructDom();
-    BaseControllerView.prototype.locators = {
-      label: {
-        id: &apos;#button&apos;,
-        event: &apos;click&apos;
-      }
-    };
-    BaseControllerView.prototype.onLabelClick = () =&gt; {};
-    const view = new BaseControllerView();
-
-    checkAugmentation(view, &apos;onLabelClick&apos;, () =&gt; DOMUtil.sendClickEvent(&apos;button&apos;));
-  });
-
-  it(&apos;has a $ property&apos;, () =&gt; {
-    const baseView = new BaseControllerView();
-    assert.equal(typeof baseView.$, &apos;function&apos;);
-  });
-
-  /**
-   * @test {BaseControllerView#loadTemplate}
-   */
-  it(&apos;Autoloads the template in the development environment&apos;, () =&gt; {
-    const rawTemplate = &apos;&lt;div id=&quot;button_template&quot;&gt;&lt;/div&gt;&apos;;
-    BaseControllerView.prototype._template = ERBTemplating.filter(rawTemplate);
-    const baseView = new BaseControllerView({ locator: &apos;button&apos; });
-    const spy = new Spy();
-    spy.intercept(baseView, &apos;$&apos;, overrideDomSelector);
-
-    Environment.environment = Environment.DEVELOPMENT;
-    assert.equal(Environment.isDevelopment(), true);
-    baseView._loadTemplate();
-    assert.notEqual(document.getElementById(&apos;button_template&apos;), null);
-    assert.equal(baseView.$.counter, 1);
-  });
-});</code></pre>
+export default BaseView;</code></pre>
 
 </div>
 

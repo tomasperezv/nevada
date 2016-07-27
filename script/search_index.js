@@ -12,9 +12,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@jobandtalent/nevada/strip-types/src/component/base/base-controller-view.js~basecontrollerview",
-    "class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html",
-    "<span>BaseControllerView</span> <span class=\"search-result-import-path\">@jobandtalent/nevada/strip-types/src/component/base/base-controller-view.js</span>",
+    "@jobandtalent/nevada/strip-types/src/component/base/base-view.js~baseview",
+    "class/strip-types/src/component/base/base-view.js~BaseView.html",
+    "<span>BaseView</span> <span class=\"search-result-import-path\">@jobandtalent/nevada/strip-types/src/component/base/base-view.js</span>",
     "class"
   ],
   [
@@ -186,21 +186,27 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "basecontrollerview strip-types/src/component/base/base-controller-view.js~basecontrollerview,basecontrollerview",
-    "test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber12",
-    "BaseControllerView",
+    "baseview strip-types/src/component/base/base-view.js~baseview,baseview",
+    "test-file/test/javascript/component/base/test.base-view.js.html#lineNumber14",
+    "BaseView",
+    "test"
+  ],
+  [
+    "baseview#loadtemplate baseview#loadtemplate,baseview#loadtemplate",
+    "test-file/test/javascript/component/base/test.base-view.js.html#lineNumber91",
+    "BaseView Autoloads the template in the development environment",
     "test"
   ],
   [
     "",
-    "test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber40",
-    "BaseControllerView Gets augmented via EventActions",
+    "test-file/test/javascript/component/base/test.base-view.js.html#lineNumber69",
+    "BaseView Gets augmented via EventActions",
     "test"
   ],
   [
     "",
-    "test-file/test/javascript/component/base/test.base-controller-view.js.html#lineNumber54",
-    "BaseControllerView has a $ property",
+    "test-file/test/javascript/component/base/test.base-view.js.html#lineNumber83",
+    "BaseView has a $ property",
     "test"
   ],
   [
@@ -697,13 +703,13 @@ window.esdocSearchIndex = [
   ],
   [
     "mock strip-types/src/test-framework/mock.js~mock,mock",
-    "test-file/test/javascript/test-framework/test.mock.js.html#lineNumber9",
+    "test-file/test/javascript/test-framework/test.dom-observer.js.html#lineNumber10",
     "Mock",
     "test"
   ],
   [
     "mock strip-types/src/test-framework/mock.js~mock,mock",
-    "test-file/test/javascript/test-framework/test.dom-observer.js.html#lineNumber10",
+    "test-file/test/javascript/test-framework/test.mock.js.html#lineNumber9",
     "Mock",
     "test"
   ],
@@ -966,24 +972,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "strip-types/src/component/base/base-controller-view.js",
-    "file/strip-types/src/component/base/base-controller-view.js.html",
-    "strip-types/src/component/base/base-controller-view.js",
-    "file"
-  ],
-  [
-    "strip-types/src/component/base/base-controller-view.js~basecontrollerview#constructor",
-    "class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html#instance-constructor-constructor",
-    "strip-types/src/component/base/base-controller-view.js~BaseControllerView#constructor",
-    "method"
-  ],
-  [
-    "strip-types/src/component/base/base-controller-view.js~basecontrollerview#render",
-    "class/strip-types/src/component/base/base-controller-view.js~BaseControllerView.html#instance-method-render",
-    "strip-types/src/component/base/base-controller-view.js~BaseControllerView#render",
-    "method"
-  ],
-  [
     "strip-types/src/component/base/base-controller.js",
     "file/strip-types/src/component/base/base-controller.js.html",
     "strip-types/src/component/base/base-controller.js",
@@ -1011,6 +999,24 @@ window.esdocSearchIndex = [
     "strip-types/src/component/base/base-controller.js~basecontroller#render",
     "class/strip-types/src/component/base/base-controller.js~BaseController.html#instance-method-render",
     "strip-types/src/component/base/base-controller.js~BaseController#render",
+    "method"
+  ],
+  [
+    "strip-types/src/component/base/base-view.js",
+    "file/strip-types/src/component/base/base-view.js.html",
+    "strip-types/src/component/base/base-view.js",
+    "file"
+  ],
+  [
+    "strip-types/src/component/base/base-view.js~baseview#constructor",
+    "class/strip-types/src/component/base/base-view.js~BaseView.html#instance-constructor-constructor",
+    "strip-types/src/component/base/base-view.js~BaseView#constructor",
+    "method"
+  ],
+  [
+    "strip-types/src/component/base/base-view.js~baseview#render",
+    "class/strip-types/src/component/base/base-view.js~BaseView.html#instance-method-render",
+    "strip-types/src/component/base/base-view.js~BaseView#render",
     "method"
   ],
   [
@@ -1101,18 +1107,6 @@ window.esdocSearchIndex = [
     "strip-types/src/environment.js~environment#production",
     "class/strip-types/src/environment.js~Environment.html#instance-member-PRODUCTION",
     "strip-types/src/environment.js~Environment#PRODUCTION",
-    "member"
-  ],
-  [
-    "strip-types/src/environment.js~environment#environment",
-    "class/strip-types/src/environment.js~Environment.html#instance-set-environment",
-    "strip-types/src/environment.js~Environment#environment",
-    "member"
-  ],
-  [
-    "strip-types/src/environment.js~environment#environment",
-    "class/strip-types/src/environment.js~Environment.html#instance-get-environment",
-    "strip-types/src/environment.js~Environment#environment",
     "member"
   ],
   [
@@ -1309,13 +1303,13 @@ window.esdocSearchIndex = [
   ],
   [
     "strip-types/src/test-framework/mock.js~mock#mock",
-    "class/strip-types/src/test-framework/mock.js~Mock.html#instance-set-mock",
+    "class/strip-types/src/test-framework/mock.js~Mock.html#instance-get-mock",
     "strip-types/src/test-framework/mock.js~Mock#mock",
     "member"
   ],
   [
     "strip-types/src/test-framework/mock.js~mock#mock",
-    "class/strip-types/src/test-framework/mock.js~Mock.html#instance-get-mock",
+    "class/strip-types/src/test-framework/mock.js~Mock.html#instance-set-mock",
     "strip-types/src/test-framework/mock.js~Mock#mock",
     "member"
   ],
@@ -1410,15 +1404,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "strip-types/test/javascript/component/base/test.base-controller-view.js",
-    "file/strip-types/test/javascript/component/base/test.base-controller-view.js.html",
-    "strip-types/test/javascript/component/base/test.base-controller-view.js",
-    "file"
-  ],
-  [
     "strip-types/test/javascript/component/base/test.base-controller.js",
     "file/strip-types/test/javascript/component/base/test.base-controller.js.html",
     "strip-types/test/javascript/component/base/test.base-controller.js",
+    "file"
+  ],
+  [
+    "strip-types/test/javascript/component/base/test.base-view.js",
+    "file/strip-types/test/javascript/component/base/test.base-view.js.html",
+    "strip-types/test/javascript/component/base/test.base-view.js",
     "file"
   ],
   [
@@ -1506,15 +1500,15 @@ window.esdocSearchIndex = [
     "testFile"
   ],
   [
-    "test/javascript/component/base/test.base-controller-view.js",
-    "test-file/test/javascript/component/base/test.base-controller-view.js.html",
-    "test/javascript/component/base/test.base-controller-view.js",
-    "testFile"
-  ],
-  [
     "test/javascript/component/base/test.base-controller.js",
     "test-file/test/javascript/component/base/test.base-controller.js.html",
     "test/javascript/component/base/test.base-controller.js",
+    "testFile"
+  ],
+  [
+    "test/javascript/component/base/test.base-view.js",
+    "test-file/test/javascript/component/base/test.base-view.js.html",
+    "test/javascript/component/base/test.base-view.js",
     "testFile"
   ],
   [
