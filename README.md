@@ -11,11 +11,15 @@ The core is based on es6 combined with [Facebook Flow](https://github.com/facebo
 - Avoid having duplicated code across our different projects.  
 - Reuse code and components easily.  
 
-### Sandbox
+### Unit tests
 
 Run `npm run server` and open the [webpack-dev-server link](http://localhost:8080/webpack-dev-server/js-unit-tests.html)
 
 It supports live-reload, so if you modify a module both javascript, coffeescript or less it will be automatically compiled and the browser will take the changes without needing a page refresh.
+
+You can also run the tests manually `npm test`.
+
+[Code coverage](https://circleci.com/api/v1/project/jobandtalent/nevada/latest/artifacts/0//home/ubuntu/nevada/coverage/index.html)
 
 ### Documentation
 

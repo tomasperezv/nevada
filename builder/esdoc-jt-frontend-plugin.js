@@ -16,7 +16,7 @@ const ESDocJTFrontendPlugin = {
   _templates: [
     {
       id: '<a href="test.html" data-ice="testLink">Test</a>',
-      value: '<a href="test.html" data-ice="testLink">Test</a><a href="../js-unit-tests.html">Unit tests</a>'
+      value: '<a href="test.html" data-ice="testLink">Test</a><a onclick="window.location = document.location.pathname.indexOf(\'nevada\') > -1 ? \'./js-unit-tests.html\' : \'../js-unit-tests.html\';" href="#">Unit tests</a>'
     },
     {
       id: 'manual/overview.md',

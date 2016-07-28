@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <!-- stylesheets -->
     <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./dist/jt-fw-<%= version %>.css">
+    <link rel="stylesheet" href="./jt-fw-<%= version %>.css">
   </head>
   <body>
     <h2>JT Frontend Framework version <%= version %></h2>
+    <a href="https://circleci.com/api/v1/project/jobandtalent/nevada/latest/artifacts/0//home/ubuntu/nevada/coverage/index.html">Code coverage</a>
     <div id="mocha"></div>
   </body>
   <!-- javascript -->
@@ -18,7 +19,7 @@
       ui: 'bdd'
     });
   </script>
-  <script src="./dist/jt-fw-<%= version %>.test-runner.js"></script>
+  <script src="./jt-fw-<%= version %>.test-runner.js"></script>
   <script>
     mocha.run();
   </script>
