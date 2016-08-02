@@ -31,9 +31,10 @@
   "access": ["public"],
   "plugins": [
     {
-      "name": "./builder/esdoc-jt-frontend-plugin.js"
+      "name": "./builder/documentation/esdoc-jt-frontend-plugin.js"
     }
   ],
   "title": "Jobandtalent",
-  "styles": ["./manual/styles.css"]
+  "styles": ["./manual/styles.css"],
+  "scripts": ["./builder/documentation/esdoc-jt-frontend.js"]
 }
