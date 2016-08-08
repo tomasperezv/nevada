@@ -11,8 +11,10 @@ import GenerateLatest from './builder/generate-latest';
 import CopyTemplates from './builder/copy-templates';
 import strip from './builder/webpack-strip-loader';
 import environmentPlugin from './builder/production-environment';
+import entries from './builder/bundle/entries';
+import rawComponents from './builder/autoload-components';
 
-import bundleName from './builder/bundle-name';
+import bundleName from './builder/bundle/bundle-name';
 const outputBundle = bundleName.generate();
 
 // Autoload the webpack plugins
@@ -22,13 +24,6 @@ plugins.push(new FlowStatusWebpackPlugin());
 plugins.push(new GenerateLatest({ version: bundleName.getVersion() }));
 plugins.push(new CopyTemplates());
 plugins.push(environmentPlugin);
-
-// Autoload javascript components
-import rawComponents from './builder/autoload-components';
-const components = rawComponents.map((current) => current.path);
-components.push('./src/javascript/modulejs-core');
-components.push('./src/javascript/emit-core-ready-event');
-components.unshift('./src/core.js');
 
 const config = {
   entry: {
@@ -43,7 +38,11 @@ const config = {
     /**
      * Core Javascript library
      */
-    'core.js': components,
+    'core.js': entries.core(),
+    /**
+     * Core Javascript library: lightweight version
+     */
+    'core-light.js': entries.lightweight(),
     /**
      * Unit tests library
      */

@@ -1,7 +1,7 @@
 'use strict';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import bundleName from '../bundle-name';
+import bundleName from '../bundle/bundle-name';
 
 /**
  * Mapper in order to abstract the HtmlWebpackPlugin initialization

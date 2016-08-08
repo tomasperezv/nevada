@@ -24,4 +24,18 @@ describe('Environment', () => {
     assert.equal(Environment.isDevelopment(), true);
     assert.equal(Environment.environment, Environment.DEVELOPMENT);
   });
+
+  /**
+   * @test {Environment#isTest}
+   */
+  it('isTest', () => {
+    assert.equal(Environment.isTest(), true);
+  });
+
+  /**
+   * @test {Environment#version}
+   */
+  it('version', () => {
+    assert.equal(Environment.getVersion(), Environment.NEVADA);
+  });
 });

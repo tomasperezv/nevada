@@ -2,7 +2,8 @@
 
 /**
  * Webpack module loader
- * @module core framework
+ * Defines the list of base files that are used by all of the core bundles
+ * @module base
  */
 
 // core-js polyfills
@@ -21,27 +22,15 @@ require('core-js/modules/es6.array.index-of.js');
 require('core-js/modules/es6.function.bind.js');
 require('core-js/modules/es6.date.now');
 
-// Other Polyfills: <=IE8
-require('html5shiv');
-require('./javascript/polyfill/add-event-listener');
-require('./javascript/polyfill/custom-event');
-
-// DOM Library
-window.jQuery = window.$ = require('./javascript/dom/core');
-
 // ModuleJS modules
 const ModuleJS = require('@lrsjng/modulejs');
-const BaseController = require('./javascript/component/base/base-controller').default;
-const BaseView = require('./javascript/component/base/base-view').default;
-const CookieStorage = require('./javascript/cookie-storage').default;
-const CloneObject = require('./javascript/clone-object').default;
+const BaseController = require('../component/base/base-controller').default;
+const BaseView = require('../component/base/base-view').default;
+const CookieStorage = require('../cookie-storage').default;
+const CloneObject = require('../clone-object').default;
 
-// Define the environment depending on NODE_ENV
-const Environment = require('./javascript/environment').default;
-Environment.environment = process.env.NODE_ENV;
-
-ModuleJS.define('EventBusModule', () => require('./coffeescript/event_bus.coffee'));
-ModuleJS.define('LoggerModule', () => require('./coffeescript/logger.coffee'));
+ModuleJS.define('EventBusModule', () => require('../../coffeescript/event_bus.coffee'));
+ModuleJS.define('LoggerModule', () => require('../../coffeescript/logger.coffee'));
 ModuleJS.define('BaseController', () => BaseController);
 ModuleJS.define('BaseView', () => BaseView);
 ModuleJS.define('CookieStorage', () => CookieStorage);

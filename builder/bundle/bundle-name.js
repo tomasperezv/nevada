@@ -17,7 +17,7 @@ module.exports = {
    */
   _getPackageInfo() {
     if (this._packageInfo === null) {
-      this._packageInfo = require('../package.json');
+      this._packageInfo = require('../../package.json');
     }
 
     return this._packageInfo;
