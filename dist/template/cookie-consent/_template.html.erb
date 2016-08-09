@@ -1,0 +1,19 @@
+<div id="cookie_consent_box" class="landing_cookie_consent">
+
+  <div class="landing_cookie_image landing_sprite landing_sprite_cookie"></div>
+  <div class="cookie_message_text">
+    <h3 class="cookie_consent_header">
+      <%= t("cookie_consent.cookies_header") %>
+    </h3>
+
+    <p class="landing_cookie_explanation">
+      <%= t("cookie_consent.cookies_explanation") %>
+      <%= link_to t("cookie_consent.find_out_more"), cookies_path, target: "_blank" %>
+    </p>
+
+    <a href="#" id="close_cookies_box" class="landing_cookie_close">
+      <%= t("landing.ok_cookies") %>
+    </a>
+  </div>
+
+</div>
