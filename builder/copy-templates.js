@@ -45,7 +45,7 @@ class CopyTemplates {
     files.forEach((template) => {
       if (template.match(/\.html$/)) {
         const basename = path.basename(template);
-        const destination = `${distPath}/${id}/${basename}.erb`;
+        const destination = `${distPath}/${id}/_${basename}.erb`;
         const source = `${componentPath}/${template}`;
 
         try {
