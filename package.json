@@ -15,7 +15,7 @@
     "doc-ghpages": "npm build && sh ./builder/documentation/publish-gh-pages.sh",
     "debug-tests": "babel-node-debug --debug-brk node_modules/.bin/mocha",
     "check": "jt-frontend --lint-js --es6 . && jt-frontend --lint-less ./src/stylesheets && npm run test",
-    "server": "webpack-dev-server --inline --content-base ./dist/",
+    "server": "webpack-dev-server --inline --content-base ./dist/ --host 0.0.0.0 --port 8080",
     "flow": "flow",
     "coverage": "nyc npm test"
   },
