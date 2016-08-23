@@ -1,7 +1,7 @@
 import jsdom from 'mocha-jsdom';
 
 /**
- * @test {EventBus}
+ * @test {emit-core-ready-event}
  */
 describe('emit-core-ready-event', () => {
   // Initialize the fake DOM that jsdom exposes

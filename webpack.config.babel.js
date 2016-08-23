@@ -33,7 +33,8 @@ const config = {
     css: [
       './src/stylesheets/colors.less',
       './src/stylesheets/typography.less',
-      './src/stylesheets/main.less'
+      './src/stylesheets/main.less',
+      './src/stylesheets/form-builder.less'
     ],
     /**
      * Core Javascript library
@@ -67,7 +68,10 @@ const config = {
       './test/javascript/test.cookie-storage',
       './test/javascript/test.emit-core-ready-event',
       './test/javascript/test.clone-object',
-      './test/javascript/polyfill/test.polyfill'
+      './test/javascript/polyfill/test.polyfill',
+      './test/javascript/dom/builder/test.factory',
+      './test/javascript/dom/builder/test.builder',
+      './test/javascript/dom/builder/fragment/test.base'
     ]
   },
   output: {

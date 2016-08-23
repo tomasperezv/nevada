@@ -7,7 +7,7 @@ class Logger
     @_ensureConsoleLog()
     @verbose_level = level || 'debug'
 
-  @fromEnvironment: (environment) ->
+  @fromEnvironment: (level = 'info') ->
     Environment = require '../javascript/environment'
     if Environment.isDevelopment
       'debug'

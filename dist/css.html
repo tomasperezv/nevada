@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!-- stylesheets -->
     <link rel="stylesheet" href="./jt-fw-2.0.10.css">
-  </head>
+ </head>
   <body>
     <h2>JT CSS Framework 2.0.10</h2>
     <section>
@@ -29,8 +29,30 @@
       </div>
       <a href="#" id="popup-example">Trigger link</a>
       <div id="cookie_consent_box"></div>
+      <div id="form"></div>
+      <script id="dom-builder-form" type="text/template">
+        <div class="dynamic_form_container">
+          <header>
+            <h3 class="dynamic_form_title"></h3>
+            <p class="dynamic_form_description"></p>
+          </header>
+          <form class="dynamic_form" action="" method=""></form>
+        </div>
+      </script>
+      <script id="dom-builder-string" type="text/template">
+        <div class="dynamic_form_field dynamic_form_field_string">
+          <input class="dynamic_form_input">
+          <label></label>
+        </div>
+      </script>
       <script type="text/javascript">
+        var eventEmitted = false;
         window.addEventListener('jt-core-loaded', function() {
+          if (eventEmitted) {
+            return;
+          }
+
+          eventEmitted = true;
           var Loader = modulejs.require('LoaderController');
           var Trigger = modulejs.require('TriggerController');
           var loader = new Loader(
@@ -40,8 +62,12 @@
 
           var CookieConsent = modulejs.require('CookieConsentController');
           var cookie = new CookieConsent({ locator: '#cookie_consent_box' });
+
+          var FragmentFactory = modulejs.require('Builder/Factory');
+          var FragmentType = modulejs.require('Builder/Type');
+          FragmentFactory.create({ wrapper: '#form', data: formData, type: FragmentType.Form });
         });
       </script>
     </section>
-  <script type="text/javascript" src=".././dist/jt-fw-2.0.10.core.js"></script><script type="text/javascript" src=".././dist/jt-fw-2.0.10.core-light.js"></script></body>
+  <script type="text/javascript" src=".././dist/jt-fw-2.0.10.core-light.js"></script></body>
 </html>

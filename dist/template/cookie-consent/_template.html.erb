@@ -8,7 +8,7 @@
 
     <p class="landing_cookie_explanation">
       <%= t("cookie_consent.cookies_explanation") %>
-      <%= link_to t("cookie_consent.find_out_more"), cookies_path, target: "_blank" %>
+      <%= link_to t("cookie_consent.find_out_more"), FrontendFrameworkRails::Config.cookies_path(@current_country.code_for_url), target: "_blank" %>
     </p>
 
     <a href="#" id="close_cookies_box" class="landing_cookie_close">

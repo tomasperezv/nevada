@@ -23,7 +23,7 @@ module.exports = {
    * @returns {Array}
    * @public
    */
-  core: function() {
+  core() {
     const components = this._base();
     components.unshift('./src/javascript/core/core.js');
     components.unshift('./src/javascript/core/base.js');
@@ -35,7 +35,7 @@ module.exports = {
    * @returns {Array}
    * @public
    */
-  lightweight: function() {
+  lightweight() {
     const components = this._base();
     components.unshift('./src/javascript/core/lightweight.js');
     components.unshift('./src/javascript/core/base.js');
