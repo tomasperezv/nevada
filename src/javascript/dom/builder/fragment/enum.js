@@ -42,20 +42,19 @@ class Enum extends Base {
   _overrideChildren() {
     // Transform data in order to render option elements
     const enumValues = this._options.data.enum_values;
-    const children = [];
     const type = this._identifyChildrenType(this._options.data.type_hint);
-    for (let optionKey in enumValues) {
-      children.push({
-        parentName: this._options.data.key,
-        type: type,
-        id: this._options.data.id,
-        value: optionKey,
-        title: enumValues[optionKey],
-        selected: this._options.data.value === enumValues[optionKey] ? true : false
-      });
-    }
+    const self = this;
 
-    return children;
+    return enumValues.map((current) => {
+      return {
+        parentName: self._options.data.key,
+        type,
+        id: self._options.data.id,
+        value: current.key,
+        title: current.value,
+        selected: self._options.data.value === current.value
+      };
+    });
   }
 
   /**
