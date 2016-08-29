@@ -3,7 +3,7 @@
 BaseController = require('../../javascript/component/base/base-controller').default
 
 class OverlayController extends BaseController
-  constructor: (options) ->
+  constructor: (options = {}) ->
     options.id = 'Overlay'
     super(options)
 

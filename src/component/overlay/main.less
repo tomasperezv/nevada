@@ -1,6 +1,15 @@
-@import '../../stylesheets/colors.less';
-.jt {
-  .overlay {
-    background-color: @dark-text;
+@import '../../stylesheets/colors';
+
+.page_overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: @high-dark-border;
+  z-index: 20;
+
+  &.over_header{
+    z-index: 997;
   }
 }
