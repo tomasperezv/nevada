@@ -2,6 +2,8 @@
 
 import Base from './fragment/base';
 import Boolean from './fragment/boolean';
+import Button from './fragment/button';
+import ButtonList from './fragment/button-list';
 import ChecklistRow from './fragment/checklist-row';
 import Checklist from './fragment/checklist';
 import ComboEnumOption from './fragment/combo-enum-option';
@@ -29,7 +31,9 @@ const Type = {
   File: 'file',
   Checklist: 'checklist',
   ChecklistRow: 'checklist-row',
-  Decimal: 'decimal'
+  Decimal: 'decimal',
+  Button: 'button',
+  ButtonList: 'button-list'
 };
 
 /**
@@ -40,6 +44,8 @@ const Map = {};
 
 Map[Type.Base] = Base;
 Map[Type.Boolean] = Boolean;
+Map[Type.Button] = Button;
+Map[Type.ButtonList] = ButtonList;
 Map[Type.ChecklistRow] = ChecklistRow;
 Map[Type.Checklist] = Checklist;
 Map[Type.ComboEnumOption] = ComboEnumOption;
