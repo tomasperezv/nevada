@@ -12,7 +12,10 @@ class Button extends Base {
     options.locators = [ // eslint-disable-line no-param-reassign
       {
         selector: '.data_collection_button',
-        value: options.data.title
+        value: options.data.title,
+        attributes: {
+          'data-value': options.data.value
+        }
       }
     ];
 

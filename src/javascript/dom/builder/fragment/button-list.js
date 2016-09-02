@@ -14,6 +14,14 @@ class ButtonList extends Base {
         selector: '.data_collection_button_list',
         type: 'children',
         id: 'options'
+      },
+      {
+        selector: '.dynamic_form_title',
+        value: options.data.title
+      },
+      {
+        selector: '.dynamic_form_description',
+        value: options.data.description
       }];
 
     super(options, type);
