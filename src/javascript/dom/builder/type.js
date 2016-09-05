@@ -12,6 +12,7 @@ import Enum from './fragment/enum';
 import EnumOption from './fragment/enum-option';
 import Form from './fragment/form';
 import String from './fragment/string';
+import SimpleButton from './fragment/simple-button';
 
 /**
  * Represents dom fragment types
@@ -33,7 +34,8 @@ const Type = {
   ChecklistRow: 'checklist-row',
   Decimal: 'decimal',
   Button: 'button',
-  ButtonList: 'button-list'
+  ButtonList: 'button-list',
+  SimpleButton: 'simple-button'
 };
 
 /**
@@ -54,6 +56,7 @@ Map[Type.Enum] = Enum;
 Map[Type.EnumOption] = EnumOption;
 Map[Type.Form] = Form;
 Map[Type.String] = String;
+Map[Type.SimpleButton] = SimpleButton;
 
 // Expose the modules
 export default Type;
