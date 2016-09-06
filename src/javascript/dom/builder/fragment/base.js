@@ -14,7 +14,8 @@ class Base {
     this._options = {
       wrapper: '',
       data: {},
-      locators: []
+      locators: [],
+      groups: []
     };
     Object.assign(this._options, overrides);
 
@@ -59,6 +60,8 @@ class Base {
 
     this._renderLocators();
     this._decorate();
+    this.group();
+
     return this._fragment;
   }
 
@@ -171,6 +174,79 @@ class Base {
   _renderChildren(element, locator) {
     const children = this._options.data[locator.id];
     this._renderChildrenList(element, children, locator);
+  }
+
+  /**
+   * In charge of reorganizing the fragment content based on the
+   * groups information that is optionally passed by the constructor.
+   *
+   * e.g. Given a structure like this:
+   * <div class="dynamic_dom">
+   *  <div class="integer">COMPONENT 1</div>
+   *  <div class="simple_button">COMPONENT 2</div>
+   * </div>
+   *
+   * And a groups parameter defined as:
+   *  _options.groups = [
+   *    {
+   *      wrapperClass: 'group',
+   *      start: '.integer',
+   *      end: '.button'
+   *    }
+   *  ]
+   *
+   *  It will redistribute the HTML to be:
+   *
+   * <div class="dynamic_dom">
+   *  <div class="group">
+   *    <div class="integer">COMPONENT 1</div>
+   *    <div class="button">COMPONENT 2</div>
+   *  </div>
+   * </div>
+   *
+   * - In the previous example we see only one group, but you can have a random number of them.
+   * - It can only group 2 by 2 elements.
+   * @method group
+   * @public
+   */
+  group() {
+    var self = this;
+    this._options.groups.map((group) => {
+      self._applyGroup(group);
+    });
+  }
+
+  /**
+   * @method _applyGroup
+   * @param {Object} group
+   * @private
+   * @see this.group
+   */
+  _applyGroup(group) {
+    let elements = this._fragment.querySelectorAll(group.start);
+
+    // Operate the NodeList as an Array
+    elements = [].slice.call(elements);
+    elements.map((element, index) => {
+      const sibling = element.nextElementSibling;
+      if (`.${sibling.className}`.indexOf(group.end) === -1 && `#${sibling.id}` !== group.end) {
+        // Skip processing
+        return;
+      }
+
+      // Prepare the wrapper container
+      const wrapper = document.createElement('div');
+      wrapper.className += group.wrapperClass;
+
+      // We need to clone the `element` node cause that way we won't be able
+      // to run `replaceChild` and `removeChild` on its parent.
+      wrapper.appendChild(element.cloneNode(true));
+      wrapper.appendChild(sibling.cloneNode(true));
+
+      // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild
+      element.parentNode.replaceChild(wrapper, element);
+      sibling.parentNode.removeChild(sibling);
+    });
   }
 }
 

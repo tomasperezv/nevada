@@ -18,6 +18,9 @@ class FragmentFactory {
   /**
    * @method create
    * @param {Object} params
+   *  @type {String} type
+   *  @type {Object} data
+   *  @type {Object} groups
    * @returns {FragmentComponent}
    * @public
    */
@@ -34,6 +37,9 @@ class FragmentFactory {
   /**
    * @method _instantiate
    * @param {Object} params
+   *  @type {String} type
+   *  @type {Object} data
+   *  @type {Object} groups
    * @private
    */
   _instantiate(params) {

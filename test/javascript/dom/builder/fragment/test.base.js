@@ -140,4 +140,49 @@ describe('Base', () => {
 
     FragmentBuilder.get.restore();
   });
+
+  /**
+   * @test {Base#group}
+   */
+  it('Group fragment content', () => {
+    // Prepare the template
+    const spy = new Spy();
+    spy.intercept(FragmentBuilder, 'get', () => {
+      const template = document.createElement('div');
+      template.innerHTML = `<div class="dynamic_dom">
+         <div class="integer">INT1</div>
+         <div class="button">BTN1</div>
+         <div class="integer">INT2</div>
+         <div class="button">BTN2</div>
+        </div>`;
+
+      const fragment = document.createDocumentFragment();
+      fragment.appendChild(template);
+      return fragment;
+    });
+
+    let base = new Base({
+      locators: [],
+      data: {},
+      groups: [
+        {
+          wrapperClass: 'wrapper',
+          start: '.integer',
+          end: '.button'
+        }
+      ]
+    });
+
+    const fragment = base.getFragment();
+    assert.notEqual(fragment.querySelector('.wrapper'), null);
+
+    const groups = fragment.querySelectorAll('.wrapper');
+    assert.equal(groups.length, 2);
+    assert.equal(groups[0].querySelector('.integer').innerHTML, 'INT1');
+    assert.equal(groups[0].querySelector('.button').innerHTML, 'BTN1');
+    assert.equal(groups[1].querySelector('.integer').innerHTML, 'INT2');
+    assert.equal(groups[1].querySelector('.button').innerHTML, 'BTN2');
+
+    FragmentBuilder.get.restore();
+  });
 });
