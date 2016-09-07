@@ -21,8 +21,12 @@ class String extends Base {
         value: options.data.title
       },
       {
-        selector: '.dynamic_form_hint',
+        selector: '.dynamic_form_description',
         value: options.data.description
+      },
+      {
+        selector: '.dynamic_form_hint',
+        value: options.data.hint
       },
       {
         selector: '.dynamic_form_input',

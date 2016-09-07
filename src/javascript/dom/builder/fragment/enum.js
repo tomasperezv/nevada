@@ -28,7 +28,7 @@ class Enum extends Base {
     },
     {
       selector: '.dynamic_form_hint',
-      value: options.data.description
+      value: options.data.hint
     }];
 
     if (options.data.type_hint === 'combo') {

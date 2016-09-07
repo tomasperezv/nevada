@@ -22,7 +22,7 @@ class DateField extends Base {
       },
       {
         selector: '.dynamic_form_hint',
-        value: options.data.description
+        value: options.data.hint
       }
     ];
 
