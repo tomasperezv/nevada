@@ -229,7 +229,11 @@ class Base {
     elements = [].slice.call(elements);
     elements.map((element, index) => {
       const sibling = element.nextElementSibling;
-      if (`.${sibling.className}`.indexOf(group.end) === -1 && `#${sibling.id}` !== group.end) {
+      if (sibling === null) {
+        return;
+      }
+
+      if (sibling.className.indexOf(group.end.replace('.', '')) === -1 && `#${sibling.id}` !== group.end) {
         // Skip processing
         return;
       }

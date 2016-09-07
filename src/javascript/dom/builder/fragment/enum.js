@@ -16,14 +16,20 @@ class Enum extends Base {
       type: 'children',
       id: 'fields'
     },
-   {
-     selector: '.dynamic_form_title',
-     value: options.data.title
-   },
-   {
-     selector: '.dynamic_form_hint',
-     value: options.data.description
-   }];
+    {
+      selector: '.dynamic_form_title',
+      value: options.data.title
+    },
+    {
+      selector: '.dom_builder_field',
+      attributes: {
+        name: options.data.key
+      }
+    },
+    {
+      selector: '.dynamic_form_hint',
+      value: options.data.description
+    }];
 
     if (options.data.type_hint === 'combo') {
       options.locators[0].selector = '.dynamic_form_field_combo_enum';

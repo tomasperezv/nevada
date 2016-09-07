@@ -12,7 +12,7 @@ class SimpleButton extends Base {
   constructor(options, type) {
     options.locators = [ // eslint-disable-line no-param-reassign
       {
-       selector: '.data_collection_ok_button',
+        selector: '.data_collection_ok_button',
         value: options.data.text
       },
       {
