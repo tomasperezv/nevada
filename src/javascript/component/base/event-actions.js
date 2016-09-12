@@ -79,14 +79,17 @@ class EventActions {
       const eventName = events[i];
       for (const locatorName in locators) { // eslint-disable-line guard-for-in
         const locator = locators[locatorName];
-        const locatorAsString = this._getLocatorString(locator);
+        let locatorAsString = this._getLocatorString(locator);
         let eventListenerName = this._getEventListenerName(eventName, locatorName);
         let element;
         if (locator === document) {
           element = document;
           eventListenerName = eventListenerName.replace('Document', '');
-        } else {
-          // TODO: Replace this by the proper DOM access polyfill
+        } else if (typeof locatorAsString !== 'undefined') {
+          if (typeof locators.wrapper !== 'undefined') {
+            locatorAsString = `${locators.wrapper} ${locatorAsString}`;
+          }
+
           element = document.querySelector(locatorAsString);
         }
 
@@ -156,7 +159,7 @@ class EventActions {
    * @private
    */
   _attachEventListener(element: Node, eventName: string, callback: EventListener): void {
-    if (element !== null) {
+    if (element !== null && typeof element !== 'undefined') {
       element.addEventListener(eventName, callback, false);
       this._eventMap.set(eventName, callback);
     }

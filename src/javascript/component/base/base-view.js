@@ -22,12 +22,22 @@ class BaseView {
     if (typeof this.locators === 'undefined'){
       this.locators = options.locators || {};
     }
+
+    if (typeof options.attachEvents === 'undefined') {
+      options.attachEvents = true;
+    }
+
+    Object.assign(this.locators, options.locators);
+
     this.locators.main = options.locator || null;
     this._controller = options.controller || null;
     this.$ = require('../../dom/core');
 
     this._loadTemplate();
-    this._attachEvents();
+
+    if (options.attachEvents) {
+      this._attachEvents();
+    }
   }
 
   /**
