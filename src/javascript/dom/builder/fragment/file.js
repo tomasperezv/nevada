@@ -3,7 +3,7 @@
 import Base from './base';
 import Type from '../type';
 
-class String extends Base {
+class File extends Base {
   /**
    * @param {Object} options
    * @param {String} type
@@ -11,11 +11,6 @@ class String extends Base {
    */
   constructor(options, type) {
     options.locators = [ // eslint-disable-line no-param-reassign
-      {
-       selector: '.dynamic_form',
-       type: 'children',
-       id: 'fields',
-      },
       {
         selector: '.dynamic_form_title',
         value: options.data.title
@@ -25,21 +20,25 @@ class String extends Base {
         value: options.data.description
       },
       {
-        selector: '.dynamic_form_hint',
-        value: options.data.hint
-      },
-      {
         selector: '.dynamic_form_input',
         attributes: {
-          placeholder: options.data.title,
           name: options.data.key,
           value: options.data.value
         }
       }
     ];
 
+    if (options.data.type_hint === 'image-url') {
+      options.locators.push({
+        selector: '.dynamic_form_image_preview',
+        attributes: {
+          src: options.data.value
+        }
+      });
+    }
+
     super(options, type);
   }
 }
 
-export default String;
+export default File;
