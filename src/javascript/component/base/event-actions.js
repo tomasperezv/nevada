@@ -35,7 +35,12 @@ class EventActions {
           target._notifyParentOfStateChange(options.locatorName);
           if (options.preventDefault) {
             /* eslint-disable no-unused-expressions, no-param-reassign */
-            event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+            if (event.preventDefault) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              event.returnValue = false;
+            }
             /* eslint-enable no-unused-expressions, no-param-reassign */
           }
         });
