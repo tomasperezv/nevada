@@ -107,6 +107,10 @@ class EventActions {
           if (typeof locator.handler === 'function') {
             // $FlowFixMe: Review Indexable property not found
             target[eventListenerName] = locator.handler;
+          // $FlowFixMe: Indexable property not found
+          } else if (typeof target[locatorName] === 'function') {
+            // $FlowFixMe: Review Indexable property not found
+            target[eventListenerName] = target[locatorName];
           } else {
             // Empty event handler for simple message passing
             // $FlowFixMe: Review Indexable property not found

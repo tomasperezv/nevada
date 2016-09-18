@@ -22,6 +22,7 @@ import SimpleButton from './fragment/simple-button';
 const Type = {
   Base: 'base',
   Form: 'form',
+  FormRedux: 'form-redux',
   String: 'string',
   Number: 'integer',
   Date: 'date',
@@ -57,6 +58,7 @@ Map[Type.Enum] = Enum;
 Map[Type.EnumOption] = EnumOption;
 Map[Type.File] = File;
 Map[Type.Form] = Form;
+Map[Type.FormRedux] = Form;
 Map[Type.String] = String;
 Map[Type.SimpleButton] = SimpleButton;
 
