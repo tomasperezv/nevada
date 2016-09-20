@@ -25,6 +25,18 @@ class File extends Base {
           name: options.data.key,
           value: options.data.value
         }
+      },
+      {
+        selector: '.dynamic_form_field_picture_input',
+        attributes: {
+          id: `file-id-${options.data.key}`
+        }
+      },
+      {
+        selector: '.no-preview label',
+        attributes: {
+          for: `file-id-${options.data.key}`
+        }
       }
     ];
 
