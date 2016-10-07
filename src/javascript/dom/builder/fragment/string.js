@@ -35,7 +35,7 @@ class String extends Base {
       {
         selector: '.dynamic_form_input',
         attributes: {
-          placeholder: options.data.title,
+          placeholder: options.data.placeholder,
           name: options.data.key,
           value: options.data.value
         }
