@@ -29,6 +29,10 @@ class String extends Base {
         value: options.data.hint
       },
       {
+        selector: '.dynamic_form_extra_hint',
+        value: options.data.extraHint
+      },
+      {
         selector: '.dynamic_form_input',
         attributes: {
           placeholder: options.data.title,
