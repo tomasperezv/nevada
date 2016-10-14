@@ -70,11 +70,14 @@ class FragmentBuilder {
    * @private
    */
   _parseStringTemplate(type) {
-    const script = document.getElementById(`${this._templatePrefix}-${type}`);
-    const container = document.createElement('div');
-    container.innerHTML = script !== null ? script.innerHTML : this._fallbackContainer;
-
-    return container.firstElementChild;
+    if (type !== 'enum-option') {
+      const script = document.getElementById(`${this._templatePrefix}-${type}`);
+      const container = document.createElement('div');
+      container.innerHTML = script !== null ? script.innerHTML : this._fallbackContainer;
+      return container.firstElementChild;
+    } else {
+      return document.createElement('option');
+    }
   }
 
   /**
