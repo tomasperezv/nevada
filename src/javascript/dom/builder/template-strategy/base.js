@@ -3,6 +3,7 @@
 class Base {
 
   /**
+   * @param {String} type
    * @constructor
    */
   constructor(type) {
@@ -26,23 +27,30 @@ class Base {
     this._script = document.getElementById(`${this._templatePrefix}-${type}`);
 
     /**
-     * @type {null|Element} html
+     * @type {null|Element} _html
      * @private
      */
-    this.html = null;
+    this._html = null;
 
     this._setHTML();
   }
 
-
+  /**
+   * @method _setHTML
+   * @private
+   */
   _setHTML() {
     const container = document.createElement('div');
     container.innerHTML = this._script !== null ? this._script.innerHTML : this._fallbackContainer;
-    this.html = container.firstElementChild;
+    this._html = container.firstElementChild;
   }
 
+  /**
+   * @method _getHTML
+   * @private
+   */
   getHTML() {
-    return this.html;
+    return this._html;
   }
 }
 

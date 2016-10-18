@@ -3,18 +3,23 @@
 class EnumOptionTemplateStrategy {
 
   /**
+   * @param {String} type
    * @constructor
    */
   constructor(type) {
     /**
-     * @type {Element} html
+     * @type {Element} _html
      * @private
      */
-    this.html = document.createElement('option');
+    this._html = document.createElement('option');
   }
 
+  /**
+   * @method _getHTML
+   * @private
+   */
   getHTML() {
-    return this.html;
+    return this._html;
   }
 }
 
