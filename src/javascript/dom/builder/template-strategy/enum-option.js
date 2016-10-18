@@ -15,7 +15,7 @@ class EnumOptionTemplateStrategy {
   }
 
   /**
-   * @method _getHTML
+   * @method getHTML
    * @private
    */
   getHTML() {

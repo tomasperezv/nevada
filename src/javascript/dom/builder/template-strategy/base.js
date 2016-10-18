@@ -46,7 +46,7 @@ class Base {
   }
 
   /**
-   * @method _getHTML
+   * @method getHTML
    * @private
    */
   getHTML() {
