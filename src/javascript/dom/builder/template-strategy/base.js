@@ -47,7 +47,6 @@ class Base {
 
   /**
    * @method getHTML
-   * @private
    */
   getHTML() {
     return this._html;

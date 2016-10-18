@@ -16,7 +16,6 @@ class EnumOptionTemplateStrategy {
 
   /**
    * @method getHTML
-   * @private
    */
   getHTML() {
     return this._html;
