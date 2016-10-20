@@ -1,5 +1,7 @@
 'use strict';
 
+import BuilderTemplate from './template';
+
 class FragmentBuilder {
   /**
    * @param {Object} options
@@ -12,19 +14,6 @@ class FragmentBuilder {
      * @private
      */
     this._templates = {};
-
-    /**
-     * Used to compose the template id's
-     * @type {String} _templatePrefix
-     * @private
-     */
-    this._templatePrefix = 'dom-builder';
-
-    /**
-     * @type {String} _fallbackContainer
-     * @private
-     */
-    this._fallbackContainer = '<div></div>';
   }
 
   /**
@@ -70,11 +59,8 @@ class FragmentBuilder {
    * @private
    */
   _parseStringTemplate(type) {
-    const script = document.getElementById(`${this._templatePrefix}-${type}`);
-    const container = document.createElement('div');
-    container.innerHTML = script !== null ? script.innerHTML : this._fallbackContainer;
-
-    return container.firstElementChild;
+    let template = new BuilderTemplate();
+    return template.parse(type);
   }
 
   /**
