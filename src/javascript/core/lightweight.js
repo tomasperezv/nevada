@@ -11,4 +11,4 @@ require('core-js/modules/es6.date.now');
 require('core-js/modules/es6.symbol');
 require('core-js/es6/object');
 require('core-js/es6/map');
-Environment.version = Environment.NEVADA_LIGHTWEIGHT;
+Environment.version = Environment.NEVADA_LIGHT;
