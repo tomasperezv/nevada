@@ -1,6 +1,6 @@
 {
   "name": "@jobandtalent/nevada",
-  "version": "2.1.106",
+  "version": "2.1.107",
   "bundle": {
     "pattern": "[folder][prefix]-[version].[name]",
     "prefix": "jt-fw",
