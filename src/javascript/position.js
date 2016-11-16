@@ -29,7 +29,6 @@ class Position {
     Object.keys(targetDOMRect).forEach((key) => {
       if (relativeDOMRect.hasOwnProperty(key) && key !== 'width' && key !== 'height') {
         result[key] = targetDOMRect[key] - relativeDOMRect[key];
-        console.log(key + ' ' + result[key]);
       }
     });
 
