@@ -29,6 +29,7 @@ const BaseView = require('../component/base/base-view').default;
 const CookieStorage = require('../cookie-storage').default;
 const CloneObject = require('../clone-object').default;
 const Environment = require('../environment').default;
+const Position = require('../dom/position').default;
 
 // @see ../dom/builder
 ModuleJS.define('Builder/Factory', () => require('../dom/builder/factory').Factory);
@@ -41,6 +42,7 @@ ModuleJS.define('BaseView', () => BaseView);
 ModuleJS.define('CookieStorage', () => CookieStorage);
 ModuleJS.define('CloneObject', () => CloneObject);
 ModuleJS.define('Environment', () => Environment);
+ModuleJS.define('Position', () => Position);
 
 // Exposes the ModuleJS object in the global scope, that way
 // we can preserve compatibility with the current projects.
