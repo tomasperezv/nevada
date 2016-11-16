@@ -6,29 +6,49 @@
  * @module Position
  */
 class Position {
+  _from: Element;
+
+  /**
+   * @param {Element} from
+   * @constructor
+   */
+  constructor(from: Element): void {
+    this._from = from;
+
+    if (typeof this._from === 'undefined' || this._from.nodeType !== Node.ELEMENT_NODE) {
+      throw new Error('An Element must be passed as argument');
+    }
+  }
+
   /**
    * Get position relative to viewport
    * @method get
    * @returns {Object}
    */
-  get(target: Object): Object {
-    return target.getBoundingClientRect();
+  get(): Object {
+    return this._from.getBoundingClientRect();
   }
 
   /**
    * Get position relative to another element. By default, relative to body so
    * we can get an absolute position indeed
    * @method relativeGet
+   * @param {Object} relativeTo
    * @returns {Object}
    */
-  relativeGet(target: Object, relativeToElement: Object = document.body): Object {
-    var result = {};
-    var targetDOMRect = this.get(target);
-    var relativeDOMRect = this.get(relativeToElement);
+  relativeGet(relativeTo: Object = document.body): Object {
+    if (relativeTo.nodeType !== Node.DOCUMENT_NODE &&
+        relativeTo.nodeType !== Node.ELEMENT_NODE) {
+      throw new Error('Relative element must have Document or Element node type');
+    }
 
-    Object.keys(targetDOMRect).forEach((key) => {
-      if (relativeDOMRect.hasOwnProperty(key) && key !== 'width' && key !== 'height') {
-        result[key] = targetDOMRect[key] - relativeDOMRect[key];
+    const result = {};
+    const fromDOMRect = this.get(this._from);
+    const relativeToDOMRect = relativeTo.getBoundingClientRect();
+
+    Object.keys(fromDOMRect).forEach((key) => {
+      if (relativeToDOMRect.hasOwnProperty(key) && key !== 'width' && key !== 'height') {
+        result[key] = fromDOMRect[key] - relativeToDOMRect[key];
       }
     });
 
@@ -36,4 +56,4 @@ class Position {
   }
 }
 
-export default new Position();
+export default Position;

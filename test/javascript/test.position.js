@@ -55,8 +55,20 @@ describe('Position', () => {
   /**
    * @test {Position#relativeGet}
    */
+  it("relativeGet throws exception 'Relative element must have Document or Element node type' " +
+     "if element is not Document or Element node type", () => {
+    const position = new Position(sourceElement);
+
+    assert.throws(() => position.relativeGet('test'),
+      Error, 'Relative element must have Document or Element node type');
+  });
+
+  /**
+   * @test {Position#relativeGet}
+   */
   it("relativeGet returns correct absolute position", () => {
-    let resultDOMRect = Position.relativeGet(sourceElement, document.body);
+    const position = new Position(sourceElement);
+    const resultDOMRect = position.relativeGet();
 
     assert.equal(resultDOMRect.top, sourceDOMRect.top - relativeDOMRect.top);
     assert.equal(resultDOMRect.bottom, sourceDOMRect.bottom - relativeDOMRect.bottom);
@@ -68,7 +80,8 @@ describe('Position', () => {
    * @test {Position#relativeGet}
    */
   it("relativeGet doesn't take into account height/width relative element properties", () => {
-    let resultDOMRect = Position.relativeGet(sourceElement, document.body);
+    const position = new Position(sourceElement);
+    const resultDOMRect = position.relativeGet();
 
     assert.equal(resultDOMRect.width, sourceElement.width);
     assert.equal(resultDOMRect.height, sourceElement.height);
