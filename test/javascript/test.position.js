@@ -1,7 +1,7 @@
 'use strict';
 
 import assert from 'assert';
-import Position from '../../src/javascript/position';
+import Position from '../../src/javascript/dom/position';
 import jsdom from 'mocha-jsdom';
 import Spy from '../../src/javascript/test-framework/spy';
 
