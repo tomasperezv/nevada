@@ -13,7 +13,15 @@ describe('Position', () => {
    * @type {sourceElement|null} sourceElement
    */
   let sourceElement = null;
+
+  /**
+   * @type {sourceDOMRect|null} sourceElement
+   */
   let sourceDOMRect = null;
+
+  /**
+   * @type {relativeDOMRect|null} sourceElement
+   */
   let relativeDOMRect = null;
 
   /**
@@ -50,6 +58,14 @@ describe('Position', () => {
     spy.intercept(document.body, 'getBoundingClientRect', () => {
       return relativeDOMRect;
     });
+  });
+
+  /**
+   * @test {Position#constructor}
+   */
+  it("It throws exception 'An Element must be passed as argument' if element is Element node type", () => {
+    assert.throws(() => new Position('test'),
+      Error, 'An Element must be passed as argument');
   });
 
   /**
