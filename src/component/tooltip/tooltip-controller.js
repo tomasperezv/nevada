@@ -5,6 +5,8 @@ import BaseController from '../../javascript/component/base/base-controller';
 import CookieStorage from '../../javascript/cookie-storage';
 
 class TooltipController extends BaseController {
+  _cookieId: string;
+  _showOnce: boolean;
 
   /**
    * @param {Object} options

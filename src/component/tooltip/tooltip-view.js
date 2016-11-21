@@ -7,6 +7,14 @@ import BaseView from '../../javascript/component/base/base-view';
 import '!style!css!less!./main.less';
 
 class TooltipView extends BaseView {
+  _tooltip: Element;
+  _target: Element;
+  _pointedSide: string;
+  _alignment: string;
+  _direction: string;
+  _gap: number;
+  _position: string;
+  _showClose: boolean;
 
   /**
    * @param {Object} options
@@ -36,16 +44,11 @@ class TooltipView extends BaseView {
     this._alignment = this._getAlignment(this._controller._options.at);
     this._direction = this._getDirection();
     this._gap = this._controller._options.gap || 12;
-    this._defaultPosition = 'absolute';
-    this._position = this._controller._options.position || this._defaultPosition;
+    this._position = this._getCSSPosition(this._controller._options.position);
     this._showClose = this._controller._options.showClose || false;
 
     if (!this._showClose) {
       this._tooltip.querySelector(this.locators.closeElement).remove();
-    }
-
-    if (this._position !== this._defaultPosition && this._position !== 'fixed') {
-      throw new Error("position value has to be absolute or fixed");
     }
 
     this._positionate();
@@ -391,6 +394,22 @@ class TooltipView extends BaseView {
     } else {
       return 'horizontal';
     }
+  }
+
+  /**
+   * @method _getCSSPosition
+   * @returns {string}
+   * @private
+   */
+  _getCSSPosition(position: string): string {
+    const defaultCSSPosition = 'absolute';
+    const positionCSSValue = position || defaultCSSPosition;
+
+    if (position !== defaultCSSPosition && position !== 'fixed') {
+      throw new Error("position value has to be absolute or fixed");
+    }
+
+    return positionCSSValue;
   }
 }
 
