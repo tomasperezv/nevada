@@ -93,8 +93,8 @@ class TooltipView extends BaseView {
     this._setCSSPosition();
     this._orientateArrow();
     this._positionateArrow();
-    this._setVerticalAndHorizontalAtPositions();
-    this._offsettingPosition();
+    this._computePosition();
+    this._addExtraOffset();
   }
 
   /**
@@ -191,10 +191,10 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @method _positionateOverTarget
+   * @method _computePosition
    * @private
    */
-  _positioningRelationToTarget(): void {
+  _computePosition(): void {
     const triggerPosition = this._targetPosition();
     let verticalPosition = null;
     let horizontalPosition = null;
@@ -222,10 +222,10 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @method _offsettingPosition
+   * @method _addExtraOffset
    * @private
    */
-  _offsettingPosition(): void {
+  _addExtraOffset(): void {
     const tooltipPosition = this._tooltipPosition();
     let verticalPosition = tooltipPosition.top;
     let horizontalPosition = tooltipPosition.left;
