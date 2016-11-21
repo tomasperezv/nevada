@@ -1,0 +1,17 @@
+<aside class="tooltip_box" rel="<%= rel -%>">
+  <div class="tooltip_wrapper">
+    <i class="js_tooltip_arrow tooltip_arrow sprite"></i>
+    <div class="tooltip_content_wrapper">
+      <header class="tooltip_header">
+        <h1 class="tooltip_title"><%= name -%></h1>
+        <%= link_to "#", class: "tooltip_close js_tooltip_close" do %>
+          <span class="tooltip_close_text"><%= t("words.close") %></span>
+          <i class="sprite sprite_tooltip_close"></i>
+        <% end %>
+      </header>
+      <div class="tooltip_content">
+        <%= capture(&block) %>
+      </div>
+    </div>
+  </div>
+</aside>
