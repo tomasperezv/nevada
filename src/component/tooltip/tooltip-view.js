@@ -38,9 +38,9 @@ class TooltipView extends BaseView {
     this._gap = this._controller._options.gap || 12;
     this._defaultPosition = 'absolute';
     this._position = this._controller._options.position || this._defaultPosition;
-    this._closeElement = this._controller._options.closeElement || false;
+    this._showClose = this._controller._options.showClose || false;
 
-    if (!this._closeElement) {
+    if (!this._showClose) {
       this._tooltip.querySelector(this.locators.closeElement).remove();
     }
 
@@ -191,10 +191,10 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @method _setVerticalAndHorizontalAtPositions
+   * @method _positionateOverTarget
    * @private
    */
-  _setVerticalAndHorizontalAtPositions(): void {
+  _positioningRelationToTarget(): void {
     const triggerPosition = this._targetPosition();
     let verticalPosition = null;
     let horizontalPosition = null;
@@ -304,7 +304,7 @@ class TooltipView extends BaseView {
    * @private
    */
   _toPixels(pixels: number): string {
-    return pixels + "px";
+    return `${pixels}px`;
   }
 
   /**
