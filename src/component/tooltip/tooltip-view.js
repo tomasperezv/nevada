@@ -43,10 +43,10 @@ class TooltipView extends BaseView {
       throw new Error("tooltip has not been found");
     }
 
-    this._trigger = document.querySelector(this._controller._options.trigger);
+    this._target = document.querySelector(this._controller._options.trigger);
 
-    if (this._trigger === null) {
-      throw new Error("tooltip trigger has not been found");
+    if (this._target === null) {
+      throw new Error("tooltip target has not been found");
     }
 
     this._at = this._controller._options.at;
@@ -180,7 +180,7 @@ class TooltipView extends BaseView {
    */
   _positionateArrow(): void {
     const tooltipPosition = this._tooltipPosition();
-    const triggerPosition = this._triggerPosition();
+    const triggerPosition = this._targetPosition();
     const arrow = document.querySelector('.js_tooltip_arrow');
     const arrowPosition = arrow.getBoundingClientRect();
 
@@ -228,7 +228,7 @@ class TooltipView extends BaseView {
    * @private
    */
   _setVerticalAndHorizontalAtPositions(): void {
-    const triggerPosition = this._triggerPosition();
+    const triggerPosition = this._targetPosition();
     let verticalPosition = null;
     let horizontalPosition = null;
 
@@ -350,12 +350,12 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @method _triggerPosition
+   * @method _targetPosition
    * @returns {Object}
    * @private
    */
-  _triggerPosition(): Object {
-    return this._trigger.getBoundingClientRect();
+  _targetPosition(): Object {
+    return this._target.getBoundingClientRect();
   }
 }
 
