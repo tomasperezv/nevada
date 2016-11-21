@@ -12,4 +12,4 @@ export const ElementEvents = ['click', 'keypress', 'keyup', 'keydown'];
  * @see https://developer.mozilla.org/en-US/docs/Web/Events
  * @module DocumentEvents
  */
-export const DocumentEvents = ['load', 'error', 'scroll', 'resize'];
+export const DocumentEvents = ['load', 'error', 'scroll', 'resize', 'click'];
