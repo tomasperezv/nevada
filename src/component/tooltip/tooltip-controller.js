@@ -14,7 +14,7 @@ class TooltipController extends BaseController {
   constructor(options: Object = {}) {
     options.id = 'Tooltip'; // eslint-disable-line no-param-reassign
     super(options);
-    this._once = this._options.once || false;
+    this._showOnce = this._options.showOnce || false;
     this._cookieId = this._options.locator;
   }
 
@@ -23,7 +23,7 @@ class TooltipController extends BaseController {
    * @public
    */
   show(): void {
-    if (this._once) {
+    if (this._showOnce) {
       if (CookieStorage.get(this._cookieId) !== 'yes') {
         CookieStorage.set(this._cookieId, 'yes', { expires: 9999 });
         this._store.dispatch({ type: 'show' });
