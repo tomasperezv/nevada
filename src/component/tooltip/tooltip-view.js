@@ -20,57 +20,21 @@ class TooltipView extends BaseView {
     };
     super(options);
 
-    this._defaultAtPosition = "bottom left";
-
-    this._allowedPositions = [
-      "top left",
-      "top center",
-      "top right",
-      "left top",
-      "left center",
-      "left bottom",
-      "right top",
-      "right center",
-      "right bottom",
-      "bottom left",
-      "bottom center",
-      "bottom right"
-    ];
-
     this._tooltip = document.querySelector(this.locators.main);
 
     if (this._tooltip === null) {
       throw new Error("tooltip has not been found");
     }
 
-    this._target = document.querySelector(this._controller._options.trigger);
+    this._target = document.querySelector(this._controller._options.target);
 
     if (this._target === null) {
       throw new Error("tooltip target has not been found");
     }
 
-    this._at = this._controller._options.at;
-
-    if (typeof this._at === 'undefined') {
-      this._at = this._defaultAtPosition;
-    } else {
-      if (typeof this._at !== 'string' ||
-          !this._allowedPositions.includes(this._at)) {
-        throw new Error("'at' position is not allowed. Please set one of the following: " +
-          this._allowedPositions.join(", "));
-      }
-    }
-
-    this._at = this._at.split(' ');
-    this._side = this._at[0];
-
-    if (this._side === 'left' || this._side === 'right') {
-      this._direction = 'vertical';
-    } else {
-      this._direction = 'horizontal';
-    }
-
-    this._alignment = this._at[1];
+    this._pointedSide = this._getPointedSide(this._controller._options.at);
+    this._alignment = this._getAlignment(this._controller._options.at);
+    this._direction = this._getDirection();
     this._gap = this._controller._options.gap || 12;
     this._defaultPosition = 'absolute';
     this._position = this._controller._options.position || this._defaultPosition;
@@ -168,7 +132,7 @@ class TooltipView extends BaseView {
     }
     const arrowClassList = ['arrow'];
 
-    arrowClassList.push(arrowOrientationMap[this._side]);
+    arrowClassList.push(arrowOrientationMap[this._pointedSide]);
     arrowClassList.push(this._alignment);
     const arrowClassName = arrowClassList.join('_');
 
@@ -236,7 +200,7 @@ class TooltipView extends BaseView {
     let horizontalPosition = null;
 
     if (this._direction === 'horizontal') {
-      verticalPosition = triggerPosition[this._side];
+      verticalPosition = triggerPosition[this._pointedSide];
 
       if (this._alignment !== 'center') {
         horizontalPosition = triggerPosition[this._alignment];
@@ -244,7 +208,7 @@ class TooltipView extends BaseView {
         horizontalPosition = triggerPosition.left + triggerPosition.width/2;
       }
     } else {
-      horizontalPosition = triggerPosition[this._side];
+      horizontalPosition = triggerPosition[this._pointedSide];
 
       if (this._alignment !== 'center') {
         verticalPosition = triggerPosition[this._alignment];
@@ -300,7 +264,7 @@ class TooltipView extends BaseView {
   _calculateGap(): number {
     let gap = this._gap;
 
-    if (this._side === 'top' || this._side === 'left') {
+    if (this._poinetdSide === 'top' || this._pointedSide === 'left') {
       gap = -gap;
     }
 
@@ -359,6 +323,74 @@ class TooltipView extends BaseView {
    */
   _targetPosition(): Object {
     return this._target.getBoundingClientRect();
+  }
+
+  /**
+   * @method _convertAtValueToArray
+   * @param {string} at
+   * @returns {Array}
+   * @private
+   */
+  _convertAtValueToArray(at: string): Array<string> {
+    const allowedPositions = [
+      "top left",
+      "top center",
+      "top right",
+      "left top",
+      "left center",
+      "left bottom",
+      "right top",
+      "right center",
+      "right bottom",
+      "bottom left",
+      "bottom center",
+      "bottom right"
+    ];
+
+    if (typeof at === 'undefined') {
+      at = "bottom left";
+    } else {
+      if (typeof at !== 'string' ||
+          !allowedPositions.includes(at)) {
+        throw new Error("'at' position is not allowed. Please set one of the following: " +
+          allowedPositions.join(", "));
+      }
+    }
+
+    return at.split(' ');
+  }
+
+  /**
+   * @method _getPointedSide
+   * @param {string} at
+   * @returns {string}
+   * @private
+   */
+  _getPointedSide(at: string): string {
+    return this._convertAtValueToArray(at)[0];
+  }
+
+  /**
+   * @method _getAlignment
+   * @param {string} at
+   * @returns {string}
+   * @private
+   */
+  _getAlignment(at: string): string {
+    return this._convertAtValueToArray(at)[1];
+  }
+
+  /**
+   * @method _getDirection
+   * @returns {string}
+   * @private
+   */
+  _getDirection(): string {
+    if (this._pointedSide === 'left' || this._pointedSide === 'right') {
+      return 'vertical';
+    } else {
+      return 'horizontal';
+    }
   }
 }
 
