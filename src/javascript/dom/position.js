@@ -67,7 +67,7 @@ class Position {
    * @param {Object} clientRectObject
    * @returns {Object}
    */
-  _clientRectToEnumerable(clientRectObject: Object): void {
+  _clientRectToEnumerable(clientRectObject: Object): Object {
     if (typeof clientRectObject === 'undefined') {
       throw new Error('ClientRect argument is undefined');
     }

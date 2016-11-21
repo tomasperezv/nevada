@@ -5,6 +5,12 @@ import BaseController from '../../javascript/component/base/base-controller';
 import CookieStorage from '../../javascript/cookie-storage';
 
 class TooltipController extends BaseController {
+
+  /**
+   * @param {Object} options
+   * @constructor
+   */
+
   constructor(options: Object = {}) {
     options.id = 'Tooltip'; // eslint-disable-line no-param-reassign
     super(options);
@@ -12,6 +18,9 @@ class TooltipController extends BaseController {
     this._cookieId = this._options.locator;
   }
 
+  /**
+   * @method show
+   */
   show(): void {
     if (this._once) {
       if (CookieStorage.get(this._cookieId) !== 'yes') {
@@ -25,6 +34,9 @@ class TooltipController extends BaseController {
     }
   }
 
+  /**
+   * @method close
+   */
   close(): void {
     this._store.dispatch({ type: 'close' });
     this._eventBus.publish(`close${this._id}`, { locator: this._options.locator });

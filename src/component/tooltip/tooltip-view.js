@@ -7,6 +7,11 @@ import BaseView from '../../javascript/component/base/base-view';
 import '!style!css!less!./main.less';
 
 class TooltipView extends BaseView {
+
+  /**
+   * @param {Object} options
+   * @constructor
+   */
   constructor(options: Object) {
     options.locators = { // eslint-disable-line no-param-reassign
       arrow: '.js_tooltip_arrow',
@@ -82,15 +87,25 @@ class TooltipView extends BaseView {
     this._positionate();
   }
 
+  /**
+   * @method show
+   */
   show(): void {
     this._tooltip.style.opacity = "1";
     this._tooltip.style.display = "block";
   }
 
+  /**
+   * @method close
+   */
   close(): void {
     this._tooltip.style.display = "none";
   }
 
+  /**
+   * @param {Object} event
+   * @method onClick
+   */
   onClick(event: Object): void {
     var clickedElement = event.target;
     const closeElementClass = this.locators.closeElement.substring(1);
@@ -102,6 +117,10 @@ class TooltipView extends BaseView {
     }
   }
 
+  /**
+   * @method _positionate
+   * @private
+   */
   _positionate(): void {
     this._appendToBody();
     this._setCSSPosition();
@@ -111,12 +130,20 @@ class TooltipView extends BaseView {
     this._offsettingPosition();
   }
 
+  /**
+   * @method _setCSSPosition
+   * @private
+   */
   _setCSSPosition(): void {
     if (this._position !== this._defaultPosition) {
       this._tooltip.style.position = this._position;
     }
   }
 
+  /**
+   * @method _appendToBody
+   * @private
+   */
   _appendToBody(): void {
     if (this._tooltip.parentNode !== document.body) {
       const clonedTooltip = this._tooltip.cloneNode(true);
@@ -125,6 +152,10 @@ class TooltipView extends BaseView {
     }
   }
 
+  /**
+   * @method _orientateArrow
+   * @private
+   */
   _orientateArrow(): void {
     const arrowOrientationMap = {
       'top': 'bottom',
@@ -143,6 +174,10 @@ class TooltipView extends BaseView {
     }
   }
 
+  /**
+   * @method _positionateArrow
+   * @private
+   */
   _positionateArrow(): void {
     const tooltipPosition = this._tooltipPosition();
     const triggerPosition = this._triggerPosition();
@@ -188,6 +223,10 @@ class TooltipView extends BaseView {
     }
   }
 
+  /**
+   * @method _setVerticalAndHorizontalAtPositions
+   * @private
+   */
   _setVerticalAndHorizontalAtPositions(): void {
     const triggerPosition = this._triggerPosition();
     let verticalPosition = null;
@@ -215,6 +254,10 @@ class TooltipView extends BaseView {
     this._positionateLeft(horizontalPosition);
   }
 
+  /**
+   * @method _offsettingPosition
+   * @private
+   */
   _offsettingPosition(): void {
     const tooltipPosition = this._tooltipPosition();
     let verticalPosition = tooltipPosition.top;
@@ -246,6 +289,11 @@ class TooltipView extends BaseView {
     this._positionateTop(verticalPosition);
   }
 
+  /**
+   * @method _calculateGap
+   * @returns {number}
+   * @private
+   */
   _calculateGap(): number {
     let gap = this._gap;
 
@@ -256,6 +304,11 @@ class TooltipView extends BaseView {
     return gap;
   }
 
+  /**
+   * @param {number} top
+   * @method _positionateTop
+   * @private
+   */
   _positionateTop(top: number): void {
     if (this._tooltip.style.bottom !== '') {
       this._tooltip.style.bottom = null;
@@ -264,6 +317,11 @@ class TooltipView extends BaseView {
     this._tooltip.style.top = this._toPixels(top);
   }
 
+  /**
+   * @param {number} left
+   * @method _positionateLeft
+   * @private
+   */
   _positionateLeft(left: number): void {
     if (this._tooltip.style.right !== '') {
       this._tooltip.style.right = null;
@@ -272,14 +330,30 @@ class TooltipView extends BaseView {
     this._tooltip.style.left = this._toPixels(left);
   }
 
+  /**
+   * @param {number} pixels
+   * @method _toPixels
+   * @returns {string}
+   * @private
+   */
   _toPixels(pixels: number): string {
     return pixels + "px";
   }
 
+  /**
+   * @method _tooltipPosition
+   * @returns {Object}
+   * @private
+   */
   _tooltipPosition(): Object {
     return this._tooltip.getBoundingClientRect();
   }
 
+  /**
+   * @method _triggerPosition
+   * @returns {Object}
+   * @private
+   */
   _triggerPosition(): Object {
     return this._trigger.getBoundingClientRect();
   }
