@@ -10,7 +10,6 @@ class TooltipController extends BaseController {
    * @param {Object} options
    * @constructor
    */
-
   constructor(options: Object = {}) {
     options.id = 'Tooltip'; // eslint-disable-line no-param-reassign
     super(options);
