@@ -55,29 +55,8 @@ class Position {
         }
       }
     });
-    
+
     return result;
-  }
-
-  /**
-   * Set new position top and/or left to element. New postion will be taken into account
-   * only if element is absolute, relative or fixed positioned.
-   * @method set
-   * @param {Object} position
-   * @returns {Object}
-   */
-  set(position: Object = {}): void {
-    if (!position.hasOwnProperty('top') && !position.hasOwnProperty('left')) {
-      throw new Error('Position needs top or left or both keys to be applied');
-    }
-
-    if (position.hasOwnProperty('top')) {
-      this._from.style.top = position.top;
-    }
-
-    if (position.hasOwnProperty('left')) {
-      this._from.style.left = position.left;
-    }
   }
 
   /**
