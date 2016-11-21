@@ -20,6 +20,7 @@ class TooltipController extends BaseController {
 
   /**
    * @method show
+   * @public
    */
   show(): void {
     if (this._once) {
@@ -36,6 +37,7 @@ class TooltipController extends BaseController {
 
   /**
    * @method close
+   * @public
    */
   close(): void {
     this._store.dispatch({ type: 'close' });

@@ -89,6 +89,7 @@ class TooltipView extends BaseView {
 
   /**
    * @method show
+   * @public
    */
   show(): void {
     this._tooltip.style.opacity = "1";
@@ -97,6 +98,7 @@ class TooltipView extends BaseView {
 
   /**
    * @method close
+   * @public
    */
   close(): void {
     this._tooltip.style.display = "none";
@@ -105,6 +107,7 @@ class TooltipView extends BaseView {
   /**
    * @param {Object} event
    * @method onClick
+   * @public
    */
   onClick(event: Object): void {
     var clickedElement = event.target;
