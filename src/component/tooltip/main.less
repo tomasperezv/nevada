@@ -4,6 +4,8 @@
 
 @tooltipBg: rgb(47, 50, 58);
 @tooltipTitleColor: rgb(135, 192, 81);
+@arrowWidth: 16px;
+@arrowHeight: 8px;
 
 .tooltip_box {
   position: absolute;
@@ -22,17 +24,17 @@
     padding-right: 25px;
   }
 
+  .tooltip_title {
+    color: @tooltipTitleColor;
+    margin-bottom: 8px;
+    .semi_bold;
+  }
+
   .tooltip_close {
     position: absolute;
     right: 11px;
     top: 8px;
     outline: 0;
-  }
-
-  .tooltip_title {
-    color: @tooltipTitleColor;
-    margin-bottom: 8px;
-    .semi_bold;
   }
 
   .tooltip_close_text {
@@ -61,24 +63,131 @@
     .box-shadow(0px 0px 5px 0px rgba(0,0,0,0.2));
   }
 
-  &.arrow_top {
-    padding-top: 8px;
-  }
-
-  &.arrow_bottom {
-    padding-bottom: 8px;
-  }
-
-  &.arrow_left {
-    padding-left: 8px;
-  }
-
-  &.arrow_right {
-    padding-right: 8px;
-  }
-
   .tooltip_arrow {
     position: absolute;
     z-index: 1;
+  }
+
+  &.arrow_top_left,
+  &.arrow_top_center,
+  &.arrow_top_right {
+    .tooltip_wrapper {
+      padding-top: @arrowHeight;
+    }
+
+    .tooltip_arrow {
+      top: 0;
+    }
+  }
+
+  &.arrow_top_left {
+    .tooltip_arrow {
+      left: @arrowWidth;
+    }
+  }
+
+  &.arrow_top_center {
+    .tooltip_arrow {
+      left: 50%;
+      margin-left: -@arrowWidth/2;
+    }
+  }
+
+  &.arrow_top_right {
+    .tooltip_arrow {
+      right: @arrowWidth;
+    }
+  }
+
+  &.arrow_left_top,
+  &.arrow_left_center,
+  &.arrow_left_bottom {
+    .tooltip_wrapper {
+      padding-left: @arrowHeight;
+    }
+
+    .tooltip_arrow {
+      left: 0;
+    }
+  }
+
+  &.arrow_left_top {
+    .tooltip_arrow {
+      top: @arrowWidth;
+    }
+  }
+
+  &.arrow_left_center {
+    .tooltip_arrow {
+      top: 50%;
+    }
+  }
+
+  &.arrow_left_bottom {
+    .tooltip_arrow {
+      bottom: @arrowWidth;
+    }
+  }
+
+  &.arrow_right_top,
+  &.arrow_right_center,
+  &.arrow_right_bottom {
+    .tooltip_wrapper {
+      padding-right: @arrowHeight;
+    }
+
+    .tooltip_arrow {
+      right: 0;
+    }
+  }
+
+  &.arrow_right_top {
+    .tooltip_arrow {
+      top: @arrowWidth;
+    }
+  }
+
+  &.arrow_right_center {
+    .tooltip_arrow {
+      top: 50%;
+      margin-top: -@arrowWidth/2;
+    }
+  }
+
+  &.arrow_right_bottom {
+    .tooltip_arrow {
+      bottom: @arrowWidth;
+    }
+  }
+
+  &.arrow_bottom_left,
+  &.arrow_bottom_center,
+  &.arrow_bottom_right {
+    .tooltip_wrapper {
+      padding-bottom: @arrowHeight;
+    }
+
+    .tooltip_arrow {
+      bottom: 0;
+    }
+  }
+
+  &.arrow_bottom_left {
+    .tooltip_arrow {
+      left: @arrowWidth;
+    }
+  }
+
+  &.arrow_bottom_center {
+    .tooltip_arrow {
+      left: 50%;
+      margin-left: -@arrowWidth/2;
+    }
+  }
+
+  &.arrow_bottom_right {
+    .tooltip_arrow {
+      right: @arrowWidth;
+    }
   }
 }
