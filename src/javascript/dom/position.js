@@ -26,7 +26,7 @@ class Position {
    * @returns {Object}
    */
   get(): Object {
-    return this._from.getBoundingClientRect();
+    return this._clientRectToEnumerable(this._from.getBoundingClientRect());
   }
 
   /**
@@ -44,15 +44,41 @@ class Position {
 
     const result = {};
     const fromDOMRect = this.get(this._from);
-    const relativeToDOMRect = relativeTo.getBoundingClientRect();
+    const relativeToDOMRect = this._clientRectToEnumerable(relativeTo.getBoundingClientRect());
 
     Object.keys(fromDOMRect).forEach((key) => {
-      if (relativeToDOMRect.hasOwnProperty(key) && key !== 'width' && key !== 'height') {
-        result[key] = fromDOMRect[key] - relativeToDOMRect[key];
+      if (relativeToDOMRect.hasOwnProperty(key)) {
+        if (key !== 'width' && key !== 'height') {
+          result[key] = fromDOMRect[key] - relativeToDOMRect[key];
+        } else {
+          result[key] = fromDOMRect[key];
+        }
       }
     });
 
     return result;
+  }
+
+  /**
+   * ClientRect object is not Enumerable, so we cannot use Object.keys to get its keys for looping
+   * This method returns an Enumerable object with same keys and values than client object passed
+   * by argument. Used by Position#get to returns same kind of object than relativeGet
+   * @method _clientRectToEnumerable
+   * @param {Object} clientRectObject
+   * @returns {Object}
+   */
+  _clientRectToEnumerable(clientRectObject: Object): Object {
+    if (typeof clientRectObject === 'undefined') {
+      throw new Error('ClientRect argument is undefined');
+    }
+
+    const obj = {};
+
+    for (let key in clientRectObject) {
+      obj[key] = clientRectObject[key]
+    }
+
+    return obj;
   }
 }
 

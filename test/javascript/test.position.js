@@ -95,11 +95,21 @@ describe('Position', () => {
   /**
    * @test {Position#relativeGet}
    */
-  it("relativeGet doesn't take into account height/width relative element properties", () => {
+  it("relativeGet let height/width properties unmodified", () => {
     const position = new Position(sourceElement);
     const resultDOMRect = position.relativeGet();
 
-    assert.equal(resultDOMRect.width, sourceElement.width);
-    assert.equal(resultDOMRect.height, sourceElement.height);
+    assert.equal(resultDOMRect.width, sourceDOMRect.width);
+    assert.equal(resultDOMRect.height, sourceDOMRect.height);
+  });
+
+  /**
+   * @test {Position#_clientRectToEnumerable}
+   */
+  it("_clientRectToEnumerable throws exception '' if argument is undefined", () => {
+    const position = new Position(sourceElement);
+
+    assert.throws(() => position._clientRectToEnumerable(),
+      Error, 'ClientRect argument is undefined');
   });
 });
