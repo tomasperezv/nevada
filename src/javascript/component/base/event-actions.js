@@ -43,7 +43,7 @@ class EventActions {
             }
             /* eslint-enable no-unused-expressions, no-param-reassign */
           }
-        });
+        }, options.eventListenerName);
       };
 
       this._genericEventProcess(target, attachCallback);
@@ -57,7 +57,7 @@ class EventActions {
    */
   clear(target: BaseView): void {
     const detachCallback = (options) => {
-      this._detachEventListener(options.element, options.eventName, options.eventHandler);
+      this._detachEventListener(options.element, options.eventName, options.eventListenerName);
     };
 
     this._genericEventProcess(target, detachCallback);
@@ -161,12 +161,14 @@ class EventActions {
    * @param {Node} element
    * @param {String} eventName
    * @param {Function} callback
+   * @param {String} listenerName
    * @private
    */
-  _attachEventListener(element: Node, eventName: string, callback: EventListener): void {
+  _attachEventListener(element: Node, eventName: string, callback: EventListener,
+    listenerName: string): void {
     if (element !== null && typeof element !== 'undefined') {
       element.addEventListener(eventName, callback, false);
-      this._eventMap.set(eventName, callback);
+      this._eventMap.set(listenerName, callback);
     }
   }
 
@@ -174,14 +176,14 @@ class EventActions {
    * @method _detachEventListener
    * @param {Node} element
    * @param {String} eventName
-   * @param {Function} callback
+   * @param {String} listenerName
    * @private
    */
-  _detachEventListener(element: Node, eventName: string): void {
-    const eventHandler = this._eventMap.get(eventName);
+  _detachEventListener(element: Node, eventName: string, listenerName: string): void {
+    const eventHandler = this._eventMap.get(listenerName);
     if (element !== null && typeof eventHandler !== 'undefined') {
       element.removeEventListener(eventName, eventHandler, false);
-      this._eventMap.delete(eventName);
+      this._eventMap.delete(listenerName);
     }
   }
 

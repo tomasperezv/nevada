@@ -13,6 +13,7 @@ class BaseView {
   _controller: Object|null;
   _id: string;
   _template: string|null;
+  _eventActions: EventActions;
   $: Function;
 
   /**
@@ -59,8 +60,16 @@ class BaseView {
    * @private
    */
   _attachEvents(): void {
-    const eventActions = new EventActions();
-    eventActions.augment(this);
+    this._eventActions = new EventActions();
+    this._eventActions.augment(this);
+  }
+
+  /**
+   * @method clearEvents
+   * @public
+   */
+  clearEvents(): void {
+    this._eventActions.clear(this);
   }
 
   /**
