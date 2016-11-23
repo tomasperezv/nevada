@@ -24,6 +24,7 @@ class TooltipView extends BaseView {
     options.locators = { // eslint-disable-line no-param-reassign
       arrow: '.js_tooltip_arrow',
       closeElement: '.js_tooltip_close',
+      arrow: '.js_tooltip_arrow',
       closeTooltip: document
     };
     super(options);
@@ -50,6 +51,9 @@ class TooltipView extends BaseView {
     if (!this._showClose) {
       this._tooltip.querySelector(this.locators.closeElement).remove();
     }
+
+    this._top = 0;
+    this._left = 0;
 
     this._positionate();
   }
@@ -95,9 +99,11 @@ class TooltipView extends BaseView {
     this._appendToBody();
     this._setCSSPosition();
     this._orientateArrow();
-    this._positionateArrow();
     this._computePosition();
     this._addExtraOffset();
+    this._positionateTop(this._top);
+    this._positionateLeft(this._left);
+    this._positionateArrow();
   }
 
   /**
@@ -145,83 +151,45 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @method _positionateArrow
-   * @private
-   */
-  _positionateArrow(): void {
-    const tooltipPosition = this._tooltipPosition();
-    const triggerPosition = this._targetPosition();
-    const arrow = document.querySelector('.js_tooltip_arrow');
-    const arrowPosition = arrow.getBoundingClientRect();
-
-    if (this._direction === 'horizontal') {
-      const tooltipWidth = tooltipPosition.width;
-      const triggerWidth = triggerPosition.width;
-
-      if (tooltipWidth >= triggerWidth) {
-        const triggerCenter = triggerPosition.width/2;
-
-        if ((this._alignment === 'left' &&
-            triggerCenter > 3/2 * arrowPosition.width) ||
-            (this._alignment === 'right' &&
-            triggerCenter < tooltipPosition.width - 3/2 * arrowPosition.width)) {
-          arrow.style[this._alignment] = this._toPixels(triggerCenter);
-          arrow.style.marginLeft = this._toPixels(-arrowPosition.width/2);
-        }
-      } else {
-        arrow.style.left = '50%';
-        arrow.style.marginLeft = this._toPixels(-arrowPosition.width/2);
-      }
-    } else {
-      const tooltipHeight = tooltipPosition.height;
-      const triggerHeight = triggerPosition.height;
-
-      if (tooltipHeight >= triggerHeight) {
-        const triggerCenter = triggerPosition.height/2;
-
-        if ((this._alignment === 'top' &&
-            triggerCenter > 3/2 * arrowPosition.height) ||
-            (this._alignment === 'bottom' &&
-            triggerCenter < tooltipPosition.height - 3/2 * arrowPosition.height)) {
-          arrow.style[this._alignment] = this._toPixels(triggerCenter);
-          arrow.style.marginTop = this._toPixels(-arrowPosition.height/2);
-        }
-      } else {
-        arrow.style.top = '50%';
-        arrow.style.marginTop = this._toPixels(-arrowPosition.height/2);
-      }
-    }
-  }
-
-  /**
    * @method _computePosition
    * @private
    */
   _computePosition(): void {
-    const triggerPosition = this._targetPosition();
-    let verticalPosition = null;
-    let horizontalPosition = null;
+    const targetPosition = this._targetPosition();
+    let top = 0;
+    let left = 0;
 
-    if (this._direction === 'horizontal') {
-      verticalPosition = triggerPosition[this._pointedSide];
-
-      if (this._alignment !== 'center') {
-        horizontalPosition = triggerPosition[this._alignment];
-      } else {
-        horizontalPosition = triggerPosition.left + triggerPosition.width/2;
-      }
-    } else {
-      horizontalPosition = triggerPosition[this._pointedSide];
-
-      if (this._alignment !== 'center') {
-        verticalPosition = triggerPosition[this._alignment];
-      } else {
-        verticalPosition = triggerPosition.top + triggerPosition.height/2;
+    const positionOffsetMap = {
+      top: targetPosition.top,
+      bottom: targetPosition.bottom,
+      left: targetPosition.left,
+      right: targetPosition.right,
+      center: {
+        horizontal: targetPosition.left + parseInt(targetPosition.width/2, 10),
+        vertical: targetPosition.top + parseInt(targetPosition.height/2, 10)
       }
     }
 
-    this._positionateTop(verticalPosition);
-    this._positionateLeft(horizontalPosition);
+    if (this._direction === 'horizontal') {
+      top = positionOffsetMap[this._pointedSide];
+      if (this._alignment === 'center') {
+        left = positionOffsetMap[this._alignment]['horizontal'];
+      } else {
+        left = positionOffsetMap[this._alignment];
+      }
+    }
+
+    if (this._direction === 'vertical') {
+      left = positionOffsetMap[this._pointedSide];
+      if (this._alignment === 'center') {
+        top = positionOffsetMap[this._alignment]['vertical'];
+      } else {
+        top = positionOffsetMap[this._alignment];
+      }
+    }
+
+    this._top = top;
+    this._left = left;
   }
 
   /**
@@ -230,33 +198,67 @@ class TooltipView extends BaseView {
    */
   _addExtraOffset(): void {
     const tooltipPosition = this._tooltipPosition();
-    let verticalPosition = tooltipPosition.top;
-    let horizontalPosition = tooltipPosition.left;
 
-    if (this._direction === 'horizontal') {
-      verticalPosition += this._calculateGap();
-
-      if (this._alignment === 'center') {
-        horizontalPosition -= tooltipPosition.width/2;
-      }
-
-      if (this._alignment === 'right') {
-        horizontalPosition -= tooltipPosition.width;
-      }
-    } else {
-      horizontalPosition += this._calculateGap();
-
-      if (this._alignment === 'center') {
-        verticalPosition -= tooltipPosition.height/2;
-      }
-
-      if (this._alignment === 'right') {
-        verticalPosition -= tooltipPosition.height;
+    const extraOffset = {
+      horizontal: {
+        side: this._calculateGap(),
+        alignment: {
+          left: 0,
+          center: parseInt(tooltipPosition.width/2, 10) * -1,
+          right: tooltipPosition.width * -1
+        }
+      },
+      vertical: {
+        side: this._calculateGap(),
+        alignment: {
+          top: 0,
+          center: parseInt(tooltipPosition.height/2, 10) * -1,
+          bottom: tooltipPosition.height * -1
+        }
       }
     }
 
-    this._positionateLeft(horizontalPosition);
-    this._positionateTop(verticalPosition);
+    if (this._direction === 'horizontal') {
+      this._top += extraOffset[this._direction].side;
+      this._left += extraOffset[this._direction].alignment[this._alignment];
+    } else {
+      this._left += extraOffset[this._direction].side;
+      this._top += extraOffset[this._direction].alignment[this._alignment];
+    }
+  }
+
+  /**
+   * @method _positionateArrow
+   * @private
+   */
+  _positionateArrow(): void {
+    const tooltipPosition = this._tooltipPosition();
+    const targetPosition = this._targetPosition();
+    const arrow = this._tooltip.querySelector(this.locators.arrow);
+    const arrowPosition = arrow.getBoundingClientRect();
+    const dimensionMap = {
+      horizontal: 'width',
+      vertical: 'height'
+    }
+    const dimension = dimensionMap[this._direction];
+    let biggerPosition = null;
+    let smallerPosition = null;
+
+    if (tooltipPosition[dimension] >= targetPosition[dimension]) {
+      biggerPosition = tooltipPosition;
+      smallerPosition = targetPosition;
+    } else {
+      biggerPosition = targetPosition;
+      smallerPosition = tooltipPosition;
+    }
+
+    const minPosition = parseInt(3/2 * arrowPosition[dimension], 10);
+    const centerPosition = parseInt(smallerPosition[dimension]/2, 10);
+
+    if (this._alignment != 'center' && centerPosition > minPosition) {
+      arrow.style[this._alignment] = this._toPixels(centerPosition);
+      arrow.style[`margin-${this._alignment}`] = this._toPixels(parseInt(-arrowPosition[dimension]/2, 10));
+    }
   }
 
   /**
@@ -267,7 +269,7 @@ class TooltipView extends BaseView {
   _calculateGap(): number {
     let gap = this._gap;
 
-    if (this._poinetdSide === 'top' || this._pointedSide === 'left') {
+    if (this._pointedSide === 'top' || this._pointedSide === 'left') {
       gap = -gap;
     }
 
@@ -280,8 +282,8 @@ class TooltipView extends BaseView {
    * @private
    */
   _positionateTop(top: number): void {
-    if (this._tooltip.style.bottom !== '') {
-      this._tooltip.style.bottom = null;
+    if (this._tooltip.style.top !== '') {
+      this._tooltip.style.top = null;
     }
 
     this._tooltip.style.top = this._toPixels(top);
@@ -293,8 +295,8 @@ class TooltipView extends BaseView {
    * @private
    */
   _positionateLeft(left: number): void {
-    if (this._tooltip.style.right !== '') {
-      this._tooltip.style.right = null;
+    if (this._tooltip.style.left !== '') {
+      this._tooltip.style.left = null;
     }
 
     this._tooltip.style.left = this._toPixels(left);
@@ -405,7 +407,7 @@ class TooltipView extends BaseView {
     const defaultCSSPosition = 'absolute';
     const positionCSSValue = position || defaultCSSPosition;
 
-    if (position !== defaultCSSPosition && position !== 'fixed') {
+    if (positionCSSValue !== defaultCSSPosition && positionCSSValue !== 'fixed') {
       throw new Error("position value has to be absolute or fixed");
     }
 
