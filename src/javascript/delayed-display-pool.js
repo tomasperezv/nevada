@@ -78,7 +78,7 @@ class DelayedDisplayPool {
 
   /**
    * @param {component} component
-   * @method _closeComponent
+   * @method _delayClose
    * @private
    */
   _delayClose(component: Object): Object {
