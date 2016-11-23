@@ -10,7 +10,7 @@ class DelayedDisplayPool {
   _components: Array;
 
   /**
-   * @param {number} ms
+   * @param {number} milliseconds
    * @param {Array} components
    * @constructor
    */
@@ -18,11 +18,11 @@ class DelayedDisplayPool {
     this.$ = require('./dom/core');
 
     if (typeof milliseconds !== 'number') {
-      throw new Error('ms has to be a number');
+      throw new Error('milliseconds has to be a number');
     }
 
     if (milliseconds < 0) {
-      throw new Error('ms has to be equals or bigger than 0 (ms)');
+      throw new Error('milliseconds has to be equals or bigger than 0 (milliseconds)');
     }
 
     this._milliseconds = milliseconds;
@@ -77,7 +77,7 @@ class DelayedDisplayPool {
   }
 
   /**
-   * @param {component} ms
+   * @param {component} component
    * @method _closeComponent
    * @private
    */
