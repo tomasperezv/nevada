@@ -24,6 +24,7 @@ class TooltipView extends BaseView {
     options.locators = { // eslint-disable-line no-param-reassign
       arrow: '.js_tooltip_arrow',
       closeElement: '.js_tooltip_close',
+      arrow: '.js_tooltip_arrow',
       closeTooltip: document
     };
     super(options);
@@ -164,8 +165,8 @@ class TooltipView extends BaseView {
       left: targetPosition.left,
       right: targetPosition.right,
       center: {
-        horizontal: targetPosition.left + targetPosition.width/2,
-        vertical: targetPosition.top + targetPosition.height/2
+        horizontal: targetPosition.left + parseInt(targetPosition.width/2, 10),
+        vertical: targetPosition.top + parseInt(targetPosition.height/2, 10)
       }
     }
 
@@ -203,16 +204,16 @@ class TooltipView extends BaseView {
         side: this._calculateGap(),
         alignment: {
           left: 0,
-          center: -tooltipPosition.width/2,
-          right: -tooltipPosition.width
+          center: parseInt(tooltipPosition.width/2, 10) * -1,
+          right: tooltipPosition.width * -1
         }
       },
       vertical: {
         side: this._calculateGap(),
         alignment: {
           top: 0,
-          center: -tooltipPosition.height/2,
-          bottom: -tooltipPosition.height
+          center: parseInt(tooltipPosition.height/2, 10) * -1,
+          bottom: tooltipPosition.height * -1
         }
       }
     }
@@ -233,7 +234,7 @@ class TooltipView extends BaseView {
   _positionateArrow(): void {
     const tooltipPosition = this._tooltipPosition();
     const targetPosition = this._targetPosition();
-    const arrow = this._tooltip.querySelector('.js_tooltip_arrow');
+    const arrow = this._tooltip.querySelector(this.locators.arrow);
     const arrowPosition = arrow.getBoundingClientRect();
     const dimensionMap = {
       horizontal: 'width',
@@ -251,12 +252,12 @@ class TooltipView extends BaseView {
       smallerPosition = tooltipPosition;
     }
 
-    const minPosition = 3/2 * arrowPosition[dimension];
-    const centerPosition = smallerPosition[dimension]/2;
+    const minPosition = parseInt(3/2 * arrowPosition[dimension], 10);
+    const centerPosition = parseInt(smallerPosition[dimension]/2, 10);
 
     if (this._alignment != 'center' && centerPosition > minPosition) {
       arrow.style[this._alignment] = this._toPixels(centerPosition);
-      arrow.style[`margin-${this._alignment}`] = this._toPixels(-arrowPosition.width/2);
+      arrow.style[`margin-${this._alignment}`] = this._toPixels(parseInt(-arrowPosition[dimension]/2, 10));
     }
   }
 
