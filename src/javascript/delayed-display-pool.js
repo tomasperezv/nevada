@@ -79,6 +79,7 @@ class DelayedDisplayPool {
   /**
    * @param {Object} component
    * @method _delayClose
+   * @returns {Object}
    * @private
    */
   _delayClose(component: Object): Object {
@@ -99,6 +100,7 @@ class DelayedDisplayPool {
   /**
    * @param {Array} components
    * @method _isAnArrayOfObjects
+   * @returns {boolean}
    * @private
    */
   _isAnArrayOfObjects(components: Array<Object>): boolean {
