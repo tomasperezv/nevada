@@ -37,15 +37,15 @@ class DelayedDisplayPool {
    * @public
    */
   start(): void {
-    var _this = this;
+    const self = this;
     this._components.reduce((promise, component) => {
       return promise.then(() => {
-        _this._showComponent(component);
-        return _this._delayClose(component);
+        self._showComponent(component);
+        return self._delayClose(component);
       }, (error) => {
         throw new Error(error);
       });
-    }, _this.$.Deferred().resolve());
+    }, self.$.Deferred().resolve());
   }
 
   /**
@@ -81,16 +81,16 @@ class DelayedDisplayPool {
    */
   _delayClose(component: Object): Object {
     const deferred = this.$.Deferred();
-    const _this = this;
+    const self = this;
 
     setTimeout(() => {
       try {
-        _this._closeComponent(component);
+        self._closeComponent(component);
       } catch (error) {
         deferred.reject(error);
       }
       deferred.resolve();
-    }, _this._milliseconds);
+    }, self._milliseconds);
 
     return deferred.promise();
   }
