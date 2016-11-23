@@ -96,7 +96,7 @@ class DelayedDisplayPool {
     });
   }
 
-  _isAnArrayOfObjects(components): boolean {
+  _isAnArrayOfObjects(components: Array<Object>): boolean {
     return Array.isArray(components) && components.every(component => typeof component === 'object');
   }
 }
