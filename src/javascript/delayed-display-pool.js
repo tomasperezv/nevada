@@ -104,7 +104,8 @@ class DelayedDisplayPool {
    * @private
    */
   _isAnArrayOfObjects(components: Array<Object>): boolean {
-    return Array.isArray(components) && components.every(component => typeof component === 'object');
+    return Array.isArray(components) && components.length &&
+           components.every(component => typeof component === 'object');
   }
 }
 
