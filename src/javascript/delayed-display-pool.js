@@ -15,21 +15,23 @@ class DelayedDisplayPool {
    * @constructor
    */
   constructor(milliseconds = 0, components: Array<Object>) {
-    this._milliseconds = milliseconds;
-    this._components = components;
     this.$ = require('./dom/core');
 
-    if (typeof this._milliseconds !== 'number') {
+    if (typeof milliseconds !== 'number') {
       throw new Error('ms has to be a number');
     }
 
-    if (this._milliseconds < 0) {
+    if (milliseconds < 0) {
       throw new Error('ms has to be equals or bigger than 0 (ms)');
     }
+
+    this._milliseconds = milliseconds;
 
     if (Array.isArray(components)) {
       throw new Error('components has to be an array of components');
     }
+
+    this._components = components;
   }
 
   /**
