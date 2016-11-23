@@ -3,7 +3,7 @@
 
 /**
  * Used for show/hide components sequencely
- * @module DisplayPool
+ * @module DelayedDisplayPool
  */
 class DelayedDisplayPool {
   _milliseconds: number;
