@@ -27,7 +27,7 @@ class DelayedDisplayPool {
 
     this._milliseconds = milliseconds;
 
-    if (Array.isArray(components)) {
+    if (!this._isAnArrayOfObjects(components)) {
       throw new Error('components has to be an array of components');
     }
 
@@ -47,7 +47,7 @@ class DelayedDisplayPool {
       }, (error) => {
         throw new Error(error);
       });
-    }, self.$.Deferred().resolve());
+    }, Promise.resolve());
   }
 
   /**
@@ -82,19 +82,22 @@ class DelayedDisplayPool {
    * @private
    */
   _delayClose(component: Object): Object {
-    const deferred = this.$.Deferred();
     const self = this;
 
-    setTimeout(() => {
-      try {
-        self._closeComponent(component);
-      } catch (error) {
-        deferred.reject(error);
-      }
-      deferred.resolve();
-    }, self._milliseconds);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          self._closeComponent(component);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      }, self._milliseconds);
+    });
+  }
 
-    return deferred.promise();
+  _isAnArrayOfObjects(components): boolean {
+    return Array.isArray(components) && components.every(component => typeof component === 'object');
   }
 }
 

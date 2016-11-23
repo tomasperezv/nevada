@@ -17,6 +17,7 @@ require('core-js/modules/es6.array.for-each.js');
 require('core-js/modules/es6.array.filter.js');
 require('core-js/modules/es6.array.is-array.js');
 require('core-js/modules/es6.array.reduce.js');
+require('core-js/modules/es6.array.every');
 require('core-js/modules/es6.array.map.js');
 require('core-js/modules/es6.array.index-of.js');
 require('core-js/modules/es6.function.bind.js');
