@@ -3,7 +3,6 @@
 import assert from 'assert';
 import jsdom from 'mocha-jsdom';
 import DelayedDisplayPool from '../../src/javascript/delayed-display-pool';
-import Spy from '../../src/javascript/test-framework/spy';
 
 /**
  * @test {DelayedDisplayPool}
