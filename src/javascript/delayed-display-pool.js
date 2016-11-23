@@ -6,7 +6,7 @@
  * @module DisplayPool
  */
 class DelayedDisplayPool {
-  _ms: number;
+  _milliseconds: number;
   _components: Array;
 
   /**
@@ -14,16 +14,16 @@ class DelayedDisplayPool {
    * @param {Array} components
    * @constructor
    */
-  constructor(ms = 0, components: Array<Object>) {
-    this._ms = ms;
+  constructor(milliseconds = 0, components: Array<Object>) {
+    this._milliseconds = milliseconds;
     this._components = components;
     this.$ = require('./dom/core');
 
-    if (typeof this._ms !== 'number') {
+    if (typeof this._milliseconds !== 'number') {
       throw new Error('ms has to be a number');
     }
 
-    if (this._ms < 0) {
+    if (this._milliseconds < 0) {
       throw new Error('ms has to be equals or bigger than 0 (ms)');
     }
 
@@ -90,7 +90,7 @@ class DelayedDisplayPool {
         deferred.reject(error);
       }
       deferred.resolve();
-    }, _this._ms);
+    }, _this._milliseconds);
 
     return deferred.promise();
   }
