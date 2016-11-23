@@ -77,7 +77,7 @@ class DelayedDisplayPool {
   }
 
   /**
-   * @param {component} component
+   * @param {Object} component
    * @method _delayClose
    * @private
    */
@@ -96,6 +96,11 @@ class DelayedDisplayPool {
     });
   }
 
+  /**
+   * @param {Array} components
+   * @method _isAnArrayOfObjects
+   * @private
+   */
   _isAnArrayOfObjects(components: Array<Object>): boolean {
     return Array.isArray(components) && components.every(component => typeof component === 'object');
   }
