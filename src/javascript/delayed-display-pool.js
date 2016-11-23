@@ -27,7 +27,7 @@ class DelayedDisplayPool {
       throw new Error('ms has to be equals or bigger than 0 (ms)');
     }
 
-    if (Object.prototype.toString.call(components) !== '[object Array]') {
+    if (Array.isArray(components)) {
       throw new Error('components has to be an array of components');
     }
   }
