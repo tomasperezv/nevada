@@ -16,7 +16,7 @@ class TooltipController extends BaseController {
     options.id = 'Tooltip'; // eslint-disable-line no-param-reassign
     super(options);
     this._showOnce = this._options.showOnce || false;
-    this._cookieId = this._options.locator;
+    this._cookieId = this._setCookieName(this._options.locator);
   }
 
   /**
@@ -43,6 +43,15 @@ class TooltipController extends BaseController {
   close(): void {
     this._store.dispatch({ type: 'close' });
     this._eventBus.publish(`close${this._id}`, { locator: this._options.locator });
+  }
+
+  /**
+   * @param {string} locator
+   * @method _setCookieName
+   * @private
+   */
+  _setCookieName(locator: string): string {
+    return locator.replace(/[_\W]+/g, "_");
   }
 }
 
