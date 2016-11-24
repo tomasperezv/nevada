@@ -38,6 +38,15 @@ class DOMUtil {
     const resizeEvent = this._generateEventObject('resize');
     document.dispatchEvent(resizeEvent);
   }
+
+  /**
+   * @method sendDOMContentLoadedEvent
+   * @public
+   */
+  sendDOMContentLoadedEvent() {
+    const domContentLoadedEvent = this._generateEventObject('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+  }
 }
 
 export default new DOMUtil();

@@ -33,6 +33,7 @@ const CloneObject = require('../clone-object').default;
 const Environment = require('../environment').default;
 const Position = require('../dom/position').default;
 const DelayedDisplayPool = require('../delayed-display-pool').default;
+const Router = require('../router').default;
 
 // @see ../dom/builder
 ModuleJS.define('Builder/Factory', () => require('../dom/builder/factory').Factory);
@@ -47,6 +48,7 @@ ModuleJS.define('CloneObject', () => CloneObject);
 ModuleJS.define('Environment', () => Environment);
 ModuleJS.define('Position', () => Position);
 ModuleJS.define('DelayedDisplayPool', () => DelayedDisplayPool);
+ModuleJS.define('Router', () => Router);
 
 // Exposes the ModuleJS object in the global scope, that way
 // we can preserve compatibility with the current projects.
