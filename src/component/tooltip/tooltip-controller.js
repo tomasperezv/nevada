@@ -26,7 +26,7 @@ class TooltipController extends BaseController {
   show(): void {
     if (this._showOnce) {
       if (CookieStorage.get(this._cookieId) !== 'yes') {
-        CookieStorage.set(this._cookieId, 'yes', { expires: 9999 });
+        this._setAsShown();
         this._store.dispatch({ type: 'show' });
         this._eventBus.publish(`show${this._id}`, { locator: this._options.locator });
       }
@@ -51,7 +51,20 @@ class TooltipController extends BaseController {
    * @private
    */
   _getCookieName(locator: string): string {
-    return locator.replace(/[_\W]+/g, "_");
+    return locator.replace(/[_\W]+/g, '_');
+  }
+
+  /**
+   * @method _setAsShown
+   * @private
+   */
+  _setAsShown(): void {
+    const expires = new Date();
+    expires.setMilliseconds(expires.getMilliseconds() + 9999 * 864e+5);
+
+    document.cookie = [
+      this._cookieId, '=', 'yes', '; expires=', expires.toUTCString()
+    ].join('');
   }
 }
 
