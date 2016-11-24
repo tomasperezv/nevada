@@ -40,7 +40,7 @@ class DelayedDisplayPool {
    */
   start(): void {
     const self = this;
-    this._components.reduce((promise, component) => {
+    this._components.reduce((promise, component) => { // eslint-disable-line arrow-body-style
       return promise.then(() => {
         self._showComponent(component);
         return self._delayClose(component);

@@ -24,7 +24,6 @@ class TooltipView extends BaseView {
     options.locators = { // eslint-disable-line no-param-reassign
       arrow: '.js_tooltip_arrow',
       closeElement: '.js_tooltip_close',
-      arrow: '.js_tooltip_arrow',
       closeTooltip: document
     };
     super(options);
@@ -32,13 +31,13 @@ class TooltipView extends BaseView {
     this._tooltip = document.querySelector(this.locators.main);
 
     if (this._tooltip === null) {
-      throw new Error("tooltip has not been found");
+      throw new Error('tooltip has not been found');
     }
 
     this._target = document.querySelector(this._controller._options.target);
 
     if (this._target === null) {
-      throw new Error("tooltip target has not been found");
+      throw new Error('tooltip target has not been found');
     }
 
     this._pointedSide = this._getPointedSide(this._controller._options.at);
@@ -63,8 +62,8 @@ class TooltipView extends BaseView {
    * @public
    */
   show(): void {
-    this._tooltip.style.opacity = "1";
-    this._tooltip.style.display = "block";
+    this._tooltip.style.opacity = '1';
+    this._tooltip.style.display = 'block';
   }
 
   /**
@@ -72,7 +71,7 @@ class TooltipView extends BaseView {
    * @public
    */
   close(): void {
-    this._tooltip.style.display = "none";
+    this._tooltip.style.display = 'none';
   }
 
   /**
@@ -124,11 +123,11 @@ class TooltipView extends BaseView {
    */
   _orientateArrow(): void {
     const arrowOrientationMap = {
-      'top': 'bottom',
-      'bottom': 'top',
-      'left': 'right',
-      'right': 'left'
-    }
+      top: 'bottom',
+      bottom: 'top',
+      left: 'right',
+      right: 'left'
+    };
     const arrowClassList = ['arrow'];
 
     arrowClassList.push(arrowOrientationMap[this._pointedSide]);
@@ -136,7 +135,7 @@ class TooltipView extends BaseView {
     const arrowClassName = arrowClassList.join('_');
 
     if (this._tooltip.className.indexOf(arrowClassName) === -1) {
-      this._tooltip.className += ' ' + arrowClassName;
+      this._tooltip.className += ` ${arrowClassName}`;
     }
   }
 
@@ -155,15 +154,15 @@ class TooltipView extends BaseView {
       left: targetPosition.left,
       right: targetPosition.right,
       center: {
-        horizontal: targetPosition.left + parseInt(targetPosition.width/2, 10),
-        vertical: targetPosition.top + parseInt(targetPosition.height/2, 10)
+        horizontal: targetPosition.left + parseInt(targetPosition.width / 2, 10),
+        vertical: targetPosition.top + parseInt(targetPosition.height / 2, 10)
       }
-    }
+    };
 
     if (this._direction === 'horizontal') {
       top = positionOffsetMap[this._pointedSide];
       if (this._alignment === 'center') {
-        left = positionOffsetMap[this._alignment]['horizontal'];
+        left = positionOffsetMap[this._alignment].horizontal;
       } else {
         left = positionOffsetMap[this._alignment];
       }
@@ -172,7 +171,7 @@ class TooltipView extends BaseView {
     if (this._direction === 'vertical') {
       left = positionOffsetMap[this._pointedSide];
       if (this._alignment === 'center') {
-        top = positionOffsetMap[this._alignment]['vertical'];
+        top = positionOffsetMap[this._alignment].vertical;
       } else {
         top = positionOffsetMap[this._alignment];
       }
@@ -194,7 +193,7 @@ class TooltipView extends BaseView {
         side: this._calculateGap(),
         alignment: {
           left: 0,
-          center: parseInt(tooltipPosition.width/2, 10) * -1,
+          center: parseInt(tooltipPosition.width / 2, 10) * -1,
           right: tooltipPosition.width * -1
         }
       },
@@ -202,11 +201,11 @@ class TooltipView extends BaseView {
         side: this._calculateGap(),
         alignment: {
           top: 0,
-          center: parseInt(tooltipPosition.height/2, 10) * -1,
+          center: parseInt(tooltipPosition.height / 2, 10) * -1,
           bottom: tooltipPosition.height * -1
         }
       }
-    }
+    };
 
     if (this._direction === 'horizontal') {
       this._top += extraOffset[this._direction].side;
@@ -229,25 +228,23 @@ class TooltipView extends BaseView {
     const dimensionMap = {
       horizontal: 'width',
       vertical: 'height'
-    }
+    };
     const dimension = dimensionMap[this._direction];
-    let biggerPosition = null;
+
     let smallerPosition = null;
 
     if (tooltipPosition[dimension] >= targetPosition[dimension]) {
-      biggerPosition = tooltipPosition;
       smallerPosition = targetPosition;
     } else {
-      biggerPosition = targetPosition;
       smallerPosition = tooltipPosition;
     }
 
-    const minPosition = parseInt(3/2 * arrowPosition[dimension], 10);
-    const centerPosition = parseInt(smallerPosition[dimension]/2, 10);
+    const minPosition = parseInt(3 / 2 * arrowPosition[dimension], 10);
+    const centerPosition = parseInt(smallerPosition[dimension] / 2, 10);
 
-    if (this._alignment != 'center' && centerPosition > minPosition) {
+    if (this._alignment !== 'center' && centerPosition > minPosition) {
       arrow.style[this._alignment] = this._toPixels(centerPosition);
-      arrow.style[`margin-${this._alignment}`] = this._toPixels(parseInt(-arrowPosition[dimension]/2, 10));
+      arrow.style[`margin-${this._alignment}`] = this._toPixels(parseInt(-arrowPosition[dimension] / 2, 10));
     }
   }
 
@@ -327,32 +324,34 @@ class TooltipView extends BaseView {
    * @private
    */
   _convertAtValueToArray(at: string): Array<string> {
+    let atAux = at;
+
     const allowedPositions = [
-      "top left",
-      "top center",
-      "top right",
-      "left top",
-      "left center",
-      "left bottom",
-      "right top",
-      "right center",
-      "right bottom",
-      "bottom left",
-      "bottom center",
-      "bottom right"
+      'top left',
+      'top center',
+      'top right',
+      'left top',
+      'left center',
+      'left bottom',
+      'right top',
+      'right center',
+      'right bottom',
+      'bottom left',
+      'bottom center',
+      'bottom right'
     ];
 
-    if (typeof at === 'undefined') {
-      at = "bottom left";
+    if (typeof atAux === 'undefined') {
+      atAux = 'bottom left';
     } else {
-      if (typeof at !== 'string' ||
-          !allowedPositions.includes(at)) {
-        throw new Error("'at' position is not allowed. Please set one of the following: " +
-          allowedPositions.join(", "));
+      if (typeof atAux !== 'string' ||
+          !allowedPositions.includes(atAux)) {
+        throw new Error('at position is not allowed. Please set one of the following: ' +
+          allowedPositions.join(', '));
       }
     }
 
-    return at.split(' ');
+    return atAux.split(' ');
   }
 
   /**
@@ -381,11 +380,13 @@ class TooltipView extends BaseView {
    * @private
    */
   _getDirection(): string {
+    let position = 'horizontal';
+
     if (this._pointedSide === 'left' || this._pointedSide === 'right') {
-      return 'vertical';
-    } else {
-      return 'horizontal';
+      position = 'vertical';
     }
+
+    return position;
   }
 
   /**
@@ -398,7 +399,7 @@ class TooltipView extends BaseView {
     const positionCSSValue = position || defaultCSSPosition;
 
     if (positionCSSValue !== defaultCSSPosition && positionCSSValue !== 'fixed') {
-      throw new Error("position value has to be absolute or fixed");
+      throw new Error('position value has to be absolute or fixed');
     }
 
     return positionCSSValue;
