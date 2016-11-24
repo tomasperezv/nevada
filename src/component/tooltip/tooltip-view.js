@@ -97,23 +97,13 @@ class TooltipView extends BaseView {
    */
   _positionate(): void {
     this._appendToBody();
-    this._setCSSPosition();
+    this._tooltip.style.position = this._position;
     this._orientateArrow();
     this._computePosition();
     this._addExtraOffset();
     this._positionateTop(this._top);
     this._positionateLeft(this._left);
     this._positionateArrow();
-  }
-
-  /**
-   * @method _setCSSPosition
-   * @private
-   */
-  _setCSSPosition(): void {
-    if (this._position !== this._defaultPosition) {
-      this._tooltip.style.position = this._position;
-    }
   }
 
   /**
