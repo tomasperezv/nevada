@@ -83,7 +83,7 @@ class TooltipView extends BaseView {
     var clickedElement = event.target;
     const closeElementClass = this.locators.closeElement.substring(1);
 
-    if (this._tooltip.hasChildNodes(clickedElement) &&
+    if (this._tooltip.contains(clickedElement) &&
         (clickedElement.className.indexOf(closeElementClass) !== -1 ||
          clickedElement.parentElement.className.indexOf(closeElementClass) !== -1)) {
       this.close();
