@@ -84,53 +84,56 @@ class EventActions {
       const eventName = events[i];
       for (const locatorName in locators) { // eslint-disable-line guard-for-in
         const locator = locators[locatorName];
-        let eventListenerName = this._getEventListenerName(eventName, locatorName);
-        let element;
 
-        if (locator === document || locator.id === document) {
-          element = document;
-          eventListenerName = eventListenerName.replace('Document', '');
-        } else {
-          let locatorAsString = this._getLocatorString(locator);
-          if (typeof locatorAsString !== 'undefined') {
-            if (typeof locators.wrapper !== 'undefined') {
-              locatorAsString = `${locators.wrapper} ${locatorAsString}`;
-            }
+        if (locator !== null) {
+          let eventListenerName = this._getEventListenerName(eventName, locatorName);
+          let element;
 
-            element = document.querySelector(locatorAsString);
-          }
-        }
-
-        const preventDefault = this._getPreventDefault(locator);
-
-        if (locator !== null && typeof locator === 'object' &&
-            typeof locator.__set__ === 'undefined') {
-          // Views can avoid having to define the listeners methods by using object locators,
-          // that way we support passing simple state changes view -> controller -> dispatcher -> view
-          /* eslint-disable no-param-reassign */
-          if (typeof locator.handler === 'function') {
-            // $FlowFixMe: Review Indexable property not found
-            target[eventListenerName] = locator.handler;
+          if (locator === document || locator.id === document) {
+            element = document;
+            eventListenerName = eventListenerName.replace('Document', '');
           } else {
-            // Empty event handler for simple message passing
-            // $FlowFixMe: Review Indexable property not found
-            target[eventListenerName] = () => {};
+            let locatorAsString = this._getLocatorString(locator);
+            if (typeof locatorAsString !== 'undefined') {
+              if (typeof locators.wrapper !== 'undefined') {
+                locatorAsString = `${locators.wrapper} ${locatorAsString}`;
+              }
+
+              element = document.querySelector(locatorAsString);
+            }
           }
-          /* eslint-enable no-param-reassign */
 
-          locator.__set__ = true;
-        }
+          const preventDefault = this._getPreventDefault(locator);
 
-        // $FlowFixMe: Indexable signature not found
-        if (typeof target[eventListenerName] === 'function') {
-          callback({
-            element,
-            eventName,
-            eventListenerName,
-            eventHandler: target[eventListenerName].bind(target),
-            locatorName,
-            preventDefault
-          });
+          if (locator !== null && typeof locator === 'object' &&
+              typeof locator.__set__ === 'undefined') {
+            // Views can avoid having to define the listeners methods by using object locators,
+            // that way we support passing simple state changes view -> controller -> dispatcher -> view
+            /* eslint-disable no-param-reassign */
+            if (typeof locator.handler === 'function') {
+              // $FlowFixMe: Review Indexable property not found
+              target[eventListenerName] = locator.handler;
+            } else {
+              // Empty event handler for simple message passing
+              // $FlowFixMe: Review Indexable property not found
+              target[eventListenerName] = () => {};
+            }
+            /* eslint-enable no-param-reassign */
+
+            locator.__set__ = true;
+          }
+
+          // $FlowFixMe: Indexable signature not found
+          if (typeof target[eventListenerName] === 'function') {
+            callback({
+              element,
+              eventName,
+              eventListenerName,
+              eventHandler: target[eventListenerName].bind(target),
+              locatorName,
+              preventDefault
+            });
+          }
         }
       }
     }
@@ -145,7 +148,7 @@ class EventActions {
   _getPreventDefault(locator: Object|string): boolean {
     let preventDefault = false;
 
-    if (locator !== document && locator.id !== document) {
+    if (locator !== null && locator !== document && locator.id !== document) {
       preventDefault = typeof locator.preventDefault !== 'undefined' ? locator.preventDefault : true;
     }
 
