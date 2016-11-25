@@ -101,7 +101,7 @@ class EventActions {
           }
         }
 
-        let preventDefault = this._getPreventDefault(locator);
+        const preventDefault = this._getPreventDefault(locator);
 
         if (locator !== null && typeof locator === 'object' &&
             typeof locator.__set__ === 'undefined') {
