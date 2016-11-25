@@ -84,21 +84,25 @@ class EventActions {
       const eventName = events[i];
       for (const locatorName in locators) { // eslint-disable-line guard-for-in
         const locator = locators[locatorName];
-        let locatorAsString = this._getLocatorString(locator);
         let eventListenerName = this._getEventListenerName(eventName, locatorName);
         let element;
-        if (locator === document) {
+
+        if (locator === document || locator.id === document) {
           element = document;
           eventListenerName = eventListenerName.replace('Document', '');
-        } else if (typeof locatorAsString !== 'undefined') {
-          if (typeof locators.wrapper !== 'undefined') {
-            locatorAsString = `${locators.wrapper} ${locatorAsString}`;
-          }
+        } else {
+          let locatorAsString = this._getLocatorString(locator);
+          if (typeof locatorAsString !== 'undefined') {
+            if (typeof locators.wrapper !== 'undefined') {
+              locatorAsString = `${locators.wrapper} ${locatorAsString}`;
+            }
 
-          element = document.querySelector(locatorAsString);
+            element = document.querySelector(locatorAsString);
+          }
         }
 
-        let preventDefault = true;
+        let preventDefault = this._getPreventDefault(locator);
+
         if (locator !== null && typeof locator === 'object' &&
             typeof locator.__set__ === 'undefined') {
           // Views can avoid having to define the listeners methods by using object locators,
@@ -115,7 +119,6 @@ class EventActions {
           /* eslint-enable no-param-reassign */
 
           locator.__set__ = true;
-          preventDefault = locator.preventDefault || true;
         }
 
         // $FlowFixMe: Indexable signature not found
@@ -131,6 +134,22 @@ class EventActions {
         }
       }
     }
+  }
+
+  /**
+   * @param {Object|string} locator
+   * @returns {Boolean}
+   * @method _getPreventDefault
+   * @private
+   */
+  _getPreventDefault(locator: Object|string): boolean {
+    let preventDefault = false;
+
+    if (locator !== document && locator.id !== document) {
+      preventDefault = typeof locator.preventDefault !== 'undefined' ? locator.preventDefault : true;
+    }
+
+    return preventDefault;
   }
 
   /**
