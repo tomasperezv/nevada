@@ -105,7 +105,7 @@ class EventActions {
 
           const preventDefault = this._getPreventDefault(locator);
 
-          if (locator !== null && typeof locator === 'object' &&
+          if (typeof locator === 'object' &&
               typeof locator.__set__ === 'undefined') {
             // Views can avoid having to define the listeners methods by using object locators,
             // that way we support passing simple state changes view -> controller -> dispatcher -> view
