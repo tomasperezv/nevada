@@ -51,6 +51,26 @@ module.exports = {
   },
 
   /**
+   * @returns {String}
+   * @method compilationTime
+   * @public
+   */
+  compilationTime() {
+    return new Date().toLocaleDateString('en-US', {
+      day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minutes: 'numeric'
+    });
+  },
+
+  /**
+   * @method getInfo
+   * @returns {String}
+   * @public
+   */
+  getInfo() {
+    return `${this.getVersion()}, generated at ${this.compilationTime()} by ${process.env.USER}`;
+  },
+
+  /**
    * We iterate through the map of values that we want to replace, for instance:
    *  - valuesMap = {'something': 'MyValue'};
    *  - pattern = 'this-is-[something].js';

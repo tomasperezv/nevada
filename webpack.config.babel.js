@@ -130,6 +130,11 @@ const config = {
       {
         test: /\.(png|jpg|jpeg|gif|woff)$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\/modulejs-core\.js$/,
+        loader: 'webpack-append',
+        query: `var e = ModuleJS.require('Environment'); e.info = e.version + ' ${bundleName.getInfo()}';`
       }
     ]
   },

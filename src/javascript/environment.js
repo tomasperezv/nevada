@@ -44,6 +44,15 @@ class Environment {
      * @type {string} version
      */
     this.version = this.NEVADA;
+
+    /**
+     * This will contain useful information regarding the version and
+     * the environment. It's generated in compilation time dynamically
+     * by the webpack-append loader.
+     *
+     * @type {string} info
+     */
+    this.info = '';
   }
 
   /**
@@ -68,6 +77,14 @@ class Environment {
    */
   getVersion(): string {
     return this.version;
+  }
+
+  /**
+   * @method info
+   * @return {String}
+   */
+  getInfo(): string {
+    return this.info;
   }
 }
 
