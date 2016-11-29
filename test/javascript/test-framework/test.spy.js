@@ -2,7 +2,7 @@
 
 import assert from 'assert';
 import Spy from '../../../src/javascript/test-framework/spy';
-import ModuleJS from '@lrsjng/modulejs';
+import ModuleJS from 'modulejs';
 
 /**
  * @test {Spy}

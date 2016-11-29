@@ -3,7 +3,7 @@
 
 import Inject from './inject';
 import ProxyHandler from './proxy-spy-handler';
-import ModuleJS from '@lrsjng/modulejs';
+import ModuleJS from 'modulejs';
 
 declare class Proxy {
   create(handler: ProxyHandler, proto: Object): Proxy;
@@ -51,7 +51,7 @@ class Spy {
           if (self._handler !== null && !self._handler.__modulejs__) {
             Inject.attach(self._originalObject, name);
           } else {
-            delete ModuleJS._private.definitions[name];
+            delete ModuleJS._d[name];
             ModuleJS.define(name, self._originalObject);
           }
           self._handler = null;
@@ -206,8 +206,8 @@ class Spy {
 
     const proxy = this.watch(object);
     if (useModuleJS) {
-      if (typeof ModuleJS._private.definitions[name] !== 'undefined') {
-        delete ModuleJS._private.definitions[name];
+      if (typeof ModuleJS._d[name] !== 'undefined') {
+        delete ModuleJS._d[name];
       }
 
       ModuleJS.define(name, () => proxy);

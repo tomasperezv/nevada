@@ -1,6 +1,6 @@
 /* @flow */
 'use strict';
-import Cookie from '@tomasperezv/js-cookie';
+import Cookie from 'js-cookie';
 
 /**
  * Adapter object for storing data in cookies without depending on a specific implementation.

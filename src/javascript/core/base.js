@@ -25,7 +25,7 @@ require('core-js/modules/es6.date.now');
 require('core-js/modules/es6.promise');
 
 // ModuleJS modules
-const ModuleJS = require('@lrsjng/modulejs');
+const ModuleJS = require('modulejs');
 const BaseController = require('../component/base/base-controller').default;
 const BaseView = require('../component/base/base-view').default;
 const CookieStorage = require('../cookie-storage').default;
