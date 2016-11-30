@@ -5,25 +5,25 @@ Overlay = require('../overlay/overlay-controller.coffee').default
 require('!style!css!less!./main.less')
 
 class PopupView extends BaseView
-
-  locators:
-    main: '#popup'
-    close:
-      id: '[data-where=close_modal]'
-      event: 'click'
-    show:
-      id: '[data-where=trigger]'
-      event: 'click'
-    header: '.m_popup_with_header'
-
+  # @method constructor
+  # @param {Object} options
   constructor: (options) ->
+    @locators =
+      close:
+        id: options.locator + " [data-where='close_modal']"
+        event: 'click'
+      show: options.locator + " [data-where='trigger']"
+      header: '.m_popup_with_header'
+
     super(options)
 
-    @element = @$(@locators.main)
+    @element = @$(options.locator)
     if @element.data('modal')
       @overlay = new Overlay()
 
-  show: () =>
+  # @method show
+  # @public
+  show: =>
     if @element.hasClass 'hidden'
       @element.removeClass 'hidden'
       @$('body').css 'overflow', 'hidden'
@@ -32,7 +32,9 @@ class PopupView extends BaseView
 
     if @overlay? then @overlay.show(true)
 
-  close: () =>
+  # @method close
+  # @public
+  close: =>
     @element.addClass 'hidden'
     @$('body').css 'overflow', 'visible'
 
