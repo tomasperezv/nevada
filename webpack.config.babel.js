@@ -34,7 +34,8 @@ const config = {
       './src/stylesheets/colors.less',
       './src/stylesheets/typography.less',
       './src/stylesheets/main.less',
-      './src/stylesheets/form-builder.less'
+      './src/stylesheets/form-builder.less',
+      './src/stylesheets/candidates.less'
     ],
     /**
      * Core Javascript library
