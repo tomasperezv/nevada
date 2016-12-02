@@ -103,6 +103,7 @@ class TooltipView extends BaseView {
     this._positionateTop(this._top);
     this._positionateLeft(this._left);
     this._positionateArrow();
+    this._tooltip.style.display = 'none';
   }
 
   /**
