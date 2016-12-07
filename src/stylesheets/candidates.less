@@ -13,12 +13,9 @@ a {
 }
 
 .page_wrapper {
+  .clearfix;
   max-width: 970px;
   margin: 0 auto;
-}
-
-.hidden_on_mobile {
-  display: none!important;
 }
 
 .main_header {
@@ -32,6 +29,10 @@ a {
 
 .header_logo {
   display: none;
+
+  @media only screen and (min-width: 750px) {
+    display: inline-block;
+  }
 }
 
 .header_page_title {
@@ -39,6 +40,10 @@ a {
   display: inline-block;
   font-size: 20px;
   font-weight: 400;
+
+  @media only screen and (min-width: 750px) {
+    display: none;
+  }
 }
 
 .header_links {
@@ -80,11 +85,25 @@ a {
       display: none;
     }
   }
+
+  &.to_companies {
+    display: none;
+
+    @media only screen and (min-width: 750px) {
+      display: inline-block;
+    }
+  }
 }
 
 .main_footer {
   background-color: #2B373D;
   padding: 15px 0 30px;
+
+  @media only screen and (min-width: 750px) {
+    .clearfix;
+    margin-top: 100px;
+    padding: 35px 0 50px;
+  }
 }
 
 .main_footer_links {
@@ -117,6 +136,25 @@ a {
       border-right: 1px solid fade(@high-light-text, 30%);
     }
   }
+
+  @media only screen and (min-width: 750px) {
+    float: left;
+    margin-bottom: 30px;
+    width: 25%;
+
+    a {
+      border: none;
+      display: inline-block;
+      font-weight: 400;
+      font-size: 18px;
+      padding-left: 0;
+      line-height: 24px;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
 }
 
 .main_footer_links_title {
@@ -125,6 +163,14 @@ a {
   font-weight: 400;
   text-transform: uppercase;
   margin: 5px 0 0 20px;
+
+  @media only screen and (min-width: 750px) {
+    text-transform: none;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: @low-primary;
+    font-weight: 600;
+  }
 }
 
 .locale_dropdown_toggler a {
@@ -148,6 +194,12 @@ a {
 
 .main_footer_explanation, .main_footer_app_stores {
   display: none;
+
+  @media only screen and (min-width: 750px) {
+    display: block;
+    clear: both;
+    width: 560px;
+  }
 }
 
 .main_footer_copy {
@@ -155,11 +207,21 @@ a {
   margin-top: 25px;
   padding-left: 20px;
   font-size: 13px;
+
+  @media only screen and (min-width: 750px) {
+    padding: 0;
+  }
 }
 
 .job_opening_image {
   width: 100%;
   max-height: 250px;
+
+  @media only screen and (min-width: 750px) {
+    .border-radius(3px);
+    width: 96px;
+    float: left;
+  }
 }
 
 .job_opening_section {
@@ -169,12 +231,23 @@ a {
   border-bottom: 1px solid @dark-border;
   margin-bottom: 10px;
   background-color: @light-block-background;
+
+  @media only screen and (min-width: 750px) {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .job_opening_title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 5px;
+
+  @media only screen and (min-width: 750px) {
+    font-size: 26px;
+    font-weight: 400;
+  }
 }
 
 .job_opening_date {
@@ -183,6 +256,10 @@ a {
   right: 15px;
   color: @dark-text;
   font-size: 12px;
+
+  @media only screen and (min-width: 750px) {
+    position: static;
+  }
 }
 
 .job_opening_company {
@@ -200,15 +277,49 @@ a {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
+
+  @media only screen and (min-width: 750px) {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
 }
 
 .apply_button {
   .box-shadow(0 -1px 2px @dark-border);
-  display: block;
   background-color: @primary;
   line-height: 44px;
   text-align: center;
   color: @high-light-text;
+
+  &.for_mobile {
+    display: block;
+  }
+
+  &.for_desktop {
+    display: none;
+  }
+
+  @media only screen and (min-width: 750px) {
+    &.for_desktop {
+      .border-radius(3px);
+      display: inline-block;
+    }
+
+    &.for_sidebar {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    &.for_description {
+      min-width: 190px;
+      float: right;
+    }
+
+    &.for_mobile {
+      display: none;
+    }
+  }
 }
 
 .sharing_links_list_wrapper {
@@ -218,6 +329,12 @@ a {
   background-color: @light-block-background;
   margin-bottom: 50px;
   text-align: center;
+
+  @media only screen and (min-width: 750px) {
+    .border-radius(3px);
+    border: 1px solid @dark-border;
+    margin-bottom: 20px;
+  }
 }
 
 .sharing_links_list {
@@ -243,5 +360,92 @@ a {
 
   &:last-child:after {
     display: none;
+  }
+
+  @media only screen and (min-width: 750px) {
+    &.sharing_link_email:after {
+      display: none;
+    }
+
+    &.sharing_link_whatsapp {
+      display: none;
+    }
+  }
+}
+
+.download_app_banner {
+  display: none;
+  .border-radius(5px);
+  background-color: @light-block-background;
+  padding: 20px;
+
+  .download_app_banner_header {
+    line-height: 21px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .download_app_banner_text {
+    line-height: 20px;
+    margin-bottom: 15px;
+  }
+
+  .download_app_banner_button {
+    .border-radius(3px);
+    display: block;
+    color: @primary;
+    line-height: 40px;
+    border: 1px solid @low-primary;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  @media only screen and (min-width: 750px) {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .job_opening_wrapper {
+    .border-radius(3px);
+    .box-sizing(border-box);
+    float: left;
+    width: 690px;
+    margin-top: 15px;
+    background-color: @light-block-background;
+    padding: 20px;
+    border: 1px solid @dark-border;
+    margin-right: 30px;
+  }
+
+  .job_opening_main_info {
+    margin-left: 126px;
+    min-height: 60px;
+  }
+
+  .job_opening_description {
+    clear: both;
+    margin-top: 25px;
+  }
+
+  .job_opening_description_wrapper {
+    margin-bottom: 50px;
+  }
+
+  .main_sidebar {
+    margin-left: 720px;
+    margin-top: 15px;
+    width: 250px;
+  }
+
+  .main_footer_social_link {
+    .border-radius(2px);
+    float: left;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    background-color: @light-dark-background;
+    text-align: center;
+    line-height: 44px;
   }
 }
