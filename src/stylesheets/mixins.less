@@ -18,7 +18,7 @@
 
 .opacity(@opacity) {
   opacity: @opacity / 100;
-  filter: ~"alpha(opacity=@{opacity})";
+  filter: ~'alpha(opacity=@{opacity})';
 }
 
 .placeholder(@color) {
@@ -38,10 +38,10 @@
   &:before,
   &:after {
     display: table;
-    content: "";
+    content: '';
     // Fixes Opera/contenteditable bug:
     // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
-    line-height: 0;
+    line-height: 0px;
   }
   &:after {
     clear: both;
@@ -53,5 +53,5 @@
   color: transparent;
   text-shadow: none;
   background-color: transparent;
-  border: 0;
+  border: 0px;
 }
