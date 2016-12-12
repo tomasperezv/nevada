@@ -23,8 +23,7 @@ class TooltipView extends BaseView {
   constructor(options: Object) {
     options.locators = { // eslint-disable-line no-param-reassign
       arrow: '.js_tooltip_arrow',
-      closeElement: '.js_tooltip_close',
-      closeTooltip: document
+      closeTooltip: '.js_tooltip_close'
     };
     super(options);
 
@@ -48,13 +47,14 @@ class TooltipView extends BaseView {
     this._showClose = this._controller._options.showClose || false;
 
     if (!this._showClose) {
-      this._tooltip.querySelector(this.locators.closeElement).remove();
+      this._tooltip.querySelector(this.locators.closeTooltip).remove();
     }
 
     this._top = 0;
     this._left = 0;
 
     this._positionate();
+    this._initEvents();
   }
 
   /**
@@ -75,18 +75,22 @@ class TooltipView extends BaseView {
   }
 
   /**
-   * @param {Object} event
-   * @method onClick
-   * @public
+   * @method _initEvents
+   * @private
    */
-  onClick(event: Object): void {
-    var clickedElement = event.target;
-    const closeElementClass = this.locators.closeElement.substring(1);
+  _initEvents(): void {
+    const self = this;
+    const closeElement = this._tooltip.querySelector(this.locators.closeTooltip);
+    if (closeElement !== null) {
+      closeElement.addEventListener('click', (event) => {
+        const clickedElement = event.target;
+        const closeElementClass = self.locators.closeTooltip.substring(1);
 
-    if (this._tooltip.contains(clickedElement) &&
-        (clickedElement.className.indexOf(closeElementClass) !== -1 ||
-         clickedElement.parentElement.className.indexOf(closeElementClass) !== -1)) {
-      this.close();
+        if (clickedElement.className.indexOf(closeElementClass) !== -1 ||
+            clickedElement.parentElement.className.indexOf(closeElementClass) !== -1) {
+          self.close();
+        }
+      });
     }
   }
 
