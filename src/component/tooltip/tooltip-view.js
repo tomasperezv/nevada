@@ -81,8 +81,8 @@ class TooltipView extends BaseView {
   _initEvents(): void {
     const self = this;
     const closeElement = this._tooltip.querySelector(this.locators.closeTooltip);
-    if (closeElement !== null ) {
-      closeElement.addEventListener('click', function(event) {
+    if (closeElement !== null) {
+      closeElement.addEventListener('click', (event) => {
         const clickedElement = event.target;
         const closeElementClass = self.locators.closeTooltip.substring(1);
 
