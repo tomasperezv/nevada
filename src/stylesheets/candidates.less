@@ -264,6 +264,10 @@ a {
     position: static;
     width: 96px;
     float: left;
+
+    &.for_mobile {
+      display: none;
+    }
   }
 }
 
@@ -403,7 +407,7 @@ a {
 
   a {
     .hide-text;
-    display: inline-block;
+    display: block;
   }
 
   &:last-child:after {
