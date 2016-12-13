@@ -17,6 +17,7 @@ class TooltipController extends BaseController {
     super(options);
     this._showOnce = this._options.showOnce || false;
     this._cookieId = this._getCookieName(this._options.locator);
+    this._isShown = false;
   }
 
   /**
@@ -25,14 +26,18 @@ class TooltipController extends BaseController {
    */
   show(): void {
     if (this._showOnce) {
-      if (CookieStorage.get(this._cookieId) !== 'yes') {
+      if (CookieStorage.get(this._cookieId) !== 'yes' && !this._isShown) {
         CookieStorage.set(this._cookieId, 'yes', { expires: 9999 });
         this._store.dispatch({ type: 'show' });
         this._eventBus.publish(`show${this._id}`, { locator: this._options.locator });
+        this._isShown = true;
       }
     } else {
-      this._store.dispatch({ type: 'show' });
-      this._eventBus.publish(`show${this._id}`, { locator: this._options.locator });
+      if (!this._isShown) {
+        this._store.dispatch({ type: 'show' });
+        this._eventBus.publish(`show${this._id}`, { locator: this._options.locator });
+        this._isShown = true;  
+      }
     }
   }
 
@@ -41,8 +46,11 @@ class TooltipController extends BaseController {
    * @public
    */
   close(): void {
-    this._store.dispatch({ type: 'close' });
-    this._eventBus.publish(`close${this._id}`, { locator: this._options.locator });
+    if (this._isShown) {
+      this._store.dispatch({ type: 'close' });
+      this._eventBus.publish(`close${this._id}`, { locator: this._options.locator });
+      this._isShown = false;
+    }
   }
 
   /**
