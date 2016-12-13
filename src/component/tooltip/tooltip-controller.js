@@ -36,7 +36,7 @@ class TooltipController extends BaseController {
       if (!this._isShown) {
         this._store.dispatch({ type: 'show' });
         this._eventBus.publish(`show${this._id}`, { locator: this._options.locator });
-        this._isShown = true;  
+        this._isShown = true;
       }
     }
   }
