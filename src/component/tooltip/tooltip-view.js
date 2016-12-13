@@ -89,7 +89,6 @@ class TooltipView extends BaseView {
         if (clickedElement.className.indexOf(closeElementClass) !== -1 ||
             clickedElement.parentElement.className.indexOf(closeElementClass) !== -1) {
           self._controller.close();
-          self.close();
         }
       });
     }
