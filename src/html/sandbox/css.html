@@ -14,11 +14,11 @@
     <section>
       <h3>Components</h3>
       <span class="bold">Popup</span>
-      <div id="popup" class="hidden">
-        <div class="m_popup m_popup_with_header hidden" data-trigger="trigger" data-where="where">
+      <div id="popup-1" class="hidden">
+        <div class="m_popup m_popup_with_header hidden" data-trigger="trigger">
           <div class="m_popup_with_header_header">
             <a href="#" data-where="close_modal"><small>Cerrar</small></a>
-            <span>Popup header</span>
+            <span>Popup header 1</span>
           </div>
           <div class="m_popup_with_header_content">
             <div class="m_popup_with_header_content_block">
@@ -27,7 +27,23 @@
           </div>
         </div>
       </div>
-      <a href="#" id="popup-example">Trigger link</a>
+      <a href="#" id="popup-example-1">Trigger link 1</a>
+
+      <div id="popup-2" class="hidden">
+        <div class="m_popup m_popup_with_header hidden" data-trigger="trigger">
+          <div class="m_popup_with_header_header">
+            <a href="#" data-where="close_modal"><small>Cerrar</small></a>
+            <span>Popup header 2</span>
+          </div>
+          <div class="m_popup_with_header_content">
+            <div class="m_popup_with_header_content_block">
+              Popup content
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" id="popup-example-2">Trigger link 2</a>
+
       <div id="cookie_consent_box"></div>
       <div id="form"></div>
       <script id="dom-builder-form" type="text/template">
@@ -56,8 +72,13 @@
           var Loader = modulejs.require('LoaderController');
           var Trigger = modulejs.require('TriggerController');
           var loader = new Loader(
-            [{ id: 'Popup', locator: '#popup',  action: 'show' }],
-            new Trigger({ locator: '#popup-example' })
+            [{ id: 'Popup', locator: '#popup-1',  action: 'show' }],
+            new Trigger({ locator: '#popup-example-1' })
+          );
+
+          var loader2 = new Loader(
+            [{ id: 'Popup', locator: '#popup-2', action: 'show' }],
+            new Trigger({ locator: '#popup-example-2' })
           );
 
           var CookieConsent = modulejs.require('CookieConsentController');
