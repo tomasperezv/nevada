@@ -37,7 +37,8 @@ const Type = {
   Decimal: 'decimal',
   Button: 'button',
   ButtonList: 'button-list',
-  SimpleButton: 'simple-button'
+  SimpleButton: 'simple-button',
+  Text: 'text'
 };
 
 /**
@@ -61,6 +62,7 @@ Map[Type.Form] = Form;
 Map[Type.FormRedux] = Form;
 Map[Type.String] = String;
 Map[Type.SimpleButton] = SimpleButton;
+Map[Type.Text] = String;
 
 // Expose the modules
 export default Type;
