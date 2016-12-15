@@ -195,7 +195,10 @@ class TooltipView extends BaseView {
 
     const extraOffset = {
       horizontal: {
-        side: this._calculateGap(),
+        side: {
+          top: this._calculateGap() - tooltipPosition.height,
+          bottom: this._calculateGap()
+        },
         alignment: {
           left: 0,
           center: parseInt(tooltipPosition.width / 2, 10) * -1,
@@ -203,7 +206,10 @@ class TooltipView extends BaseView {
         }
       },
       vertical: {
-        side: this._calculateGap(),
+        side: {
+          left: this._calculateGap() - tooltipPosition.width,
+          right: this._calculateGap()
+        },
         alignment: {
           top: 0,
           center: parseInt(tooltipPosition.height / 2, 10) * -1,
@@ -213,10 +219,10 @@ class TooltipView extends BaseView {
     };
 
     if (this._direction === 'horizontal') {
-      this._top += extraOffset[this._direction].side;
+      this._top += extraOffset[this._direction].side[this._pointedSide];
       this._left += extraOffset[this._direction].alignment[this._alignment];
     } else {
-      this._left += extraOffset[this._direction].side;
+      this._left += extraOffset[this._direction].side[this._pointedSide];
       this._top += extraOffset[this._direction].alignment[this._alignment];
     }
   }
