@@ -20,6 +20,13 @@ a {
   margin: 0px auto;
 }
 
+.main_page_wrapper {
+  @media only screen and (min-width: @desktopBreakpoint) {
+    // 48px (header) + 315px (footer) + 100px (content bottom margin)
+    min-height: calc(~"100vh - 463px");
+  }
+}
+
 .main_header {
   .box-sizing(border-box);
   .box-shadow(0px 1px 0px @dark-divider);
@@ -107,6 +114,7 @@ a {
     .clearfix;
     margin-top: 100px;
     padding: 35px 0px 50px;
+    height: 230px;
   }
 }
 
@@ -402,7 +410,7 @@ a {
     width: 1px;
     position: absolute;
     right: 0px;
-    top: 0px;
+    top: 1px;
   }
 
   a {
@@ -431,31 +439,36 @@ a {
   background-color: @light-block-background;
   padding: 20px;
 
-  .download_app_banner_header {
-    line-height: 21px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    .semi_bold;
-  }
-
-  .download_app_banner_text {
-    line-height: 20px;
-    margin-bottom: 15px;
-  }
-
-  .download_app_banner_button {
-    .border-radius(3px);
-    display: block;
-    color: @primary;
-    line-height: 40px;
-    border: 1px solid @low-primary;
-    text-align: center;
-    padding: 0 10px;
-  }
-
   @media only screen and (min-width: @desktopBreakpoint) {
     display: block;
   }
+}
+
+.download_app_banner_header {
+  line-height: 21px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  .semi_bold;
+}
+
+.download_app_banner_text {
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+
+.download_app_banner_image {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.download_app_banner_button {
+  .border-radius(3px);
+  display: block;
+  color: @primary;
+  line-height: 40px;
+  border: 1px solid @low-primary;
+  text-align: center;
+  padding: 0 10px;
 }
 
 @media only screen and (min-width: @desktopBreakpoint) {
@@ -483,6 +496,7 @@ a {
 
   .job_opening_description_wrapper {
     margin-bottom: 50px;
+    line-height: 21px;
   }
 
   .main_sidebar {
