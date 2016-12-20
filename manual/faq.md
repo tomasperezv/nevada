@@ -6,4 +6,4 @@ We don't recommend it but feel free to do it. It's deprecated and we will remove
 
 #### Should I have previous experience working with redux?
 
-Nop for simple components but if you need something more complex [Redux website](redux.js.org) is a good starting point.
+Nop for simple components but if you need something more complex [Redux website](http://redux.js.org) is a good starting point.
