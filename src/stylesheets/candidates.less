@@ -41,8 +41,18 @@ a {
   display: none;
   margin-top: 12px;
 
+  &.for_list {
+    display: inline-block;
+    margin-top: 0px;
+    vertical-align: middle;
+  }
+
   @media only screen and (min-width: @desktopBreakpoint) {
     display: inline-block;
+
+    &.for_list {
+      margin-top: 12px;
+    }
   }
 }
 
@@ -305,16 +315,35 @@ a {
   }
 }
 
-.job_opening_date {
+.job_opening_date_and_salary {
+  margin-top: 15px;
+
+  .sprite {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 5px;
+  }
+}
+
+.job_opening_date,
+.job_opening_salary {
   position: absolute;
   top: 15px;
   right: 15px;
   color: @dark-text;
   font-size: 12px;
 
+  &.for_list {
+    position: static;
+  }
+
   @media only screen and (min-width: @desktopBreakpoint) {
     position: static;
   }
+}
+
+.job_opening_salary {
+  margin-left: 15px;
 }
 
 .job_opening_company {
@@ -340,6 +369,90 @@ a {
   }
 }
 
+.job_openings_list {
+  background-color: @light-block-background;
+
+  @media only screen and (min-width: @desktopBreakpoint) {
+    .border-radius(3px);
+    border: 1px solid @dark-border;
+    margin-top: 30px;
+  }
+}
+
+.job_openings_number {
+  .normal;
+  background-color: @main-background;
+  padding: 20px 20px 10px;
+  font-size: 18px;
+  border-bottom: 1px solid @dark-border;
+
+  strong {
+    .semi_bold;
+  }
+
+  @media only screen and (min-width: @desktopBreakpoint) {
+    .border-radius(3px);
+    background-color: transparent;
+    padding: 20px;
+    font-size: 22px;
+  }
+}
+
+.job_opening {
+  padding: 20px;
+  position: relative;
+  border-bottom: 1px solid @dark-border;
+
+  &:nth-child(even) {
+    background-color: @high-light-block-background;
+  }
+}
+
+.job_opening_link {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  &:hover {
+    .box-shadow(0 0 0 1px @low-primary);
+    background-color: @ultra-low-primary;
+  }
+
+  @media only screen and (max-width: @desktopBreakpoint) {
+    .hide-text;
+  }
+
+  @media only screen and (min-width: @desktopBreakpoint) {
+    .border-radius(3px);
+    display: block;
+    background-color: @primary;
+    color: @high-light-text;
+    line-height: 35px;
+    padding: 0 10px;
+    left: auto;
+    bottom: auto;
+    top: 20px;
+    right: 20px;
+
+    &:hover {
+      .box-shadow(none);
+      background-color: @middle-low-primary;
+    }
+  }
+}
+
+.job_opening_description_in_list {
+  display: none;
+
+  @media only screen and (min-width: @desktopBreakpoint) {
+    display: block;
+    margin-top: 15px;
+    line-height: 20px;
+  }
+}
+
 .apply_button {
   .box-shadow(0 -1px 2px @dark-border);
   background-color: @primary;
@@ -351,7 +464,8 @@ a {
     display: block;
   }
 
-  &.for_desktop {
+  &.for_desktop,
+  &.for_list {
     display: none;
   }
 
@@ -373,6 +487,16 @@ a {
 
     &.for_mobile {
       display: none;
+    }
+
+    &.for_list {
+      .border-radius(3px);
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      padding: 0 20px;
+      line-height: 35px;
     }
   }
 }
@@ -528,6 +652,45 @@ a {
   }
 }
 
+.pagination {
+  overflow: hidden;
+  padding: 20px;
+
+  .pager {
+    .border-radius(3px);
+    float: right;
+    border: 1px solid @low-primary;
+    line-height: 33px;
+  }
+
+  a,
+  span {
+    display: block;
+    color: @primary;
+  }
+
+  li {
+    float: left;
+    min-width: 35px;
+    text-align: center;
+    border-right: 1px solid @low-primary;
+
+    &:last-child {
+      border: 0px;
+    }
+
+    span a {
+      padding: 0 10px;
+    }
+  }
+
+  .page.current,
+  a:hover {
+    background-color: @primary;
+    color: @high-light-text;
+  }
+}
+
 // SPRITES
 .sprite {
   background-image: url('/assets/sprites/job_opening@1x.png');
@@ -541,7 +704,7 @@ a {
 (min-resolution: 1.5dppx) {
   .sprite {
     background-image: url('/assets/sprites/job_opening@2x.png');
-    background-size: 190px 273px;
+    background-size: 190px 301px;
   }
 }
 
@@ -610,4 +773,16 @@ a {
   width: 16px;
   height: 16px;
   background-position: 0 -257px;
+}
+
+.sprite_money {
+  width: 16px;
+  height: 12px;
+  background-position: 0 -273px;
+}
+
+.sprite_calendar {
+  width: 15px;
+  height: 16px;
+  background-position: 0 -285px;
 }
