@@ -102,6 +102,7 @@ const config = {
         query: {
           presets: ['es2015', 'flow'],
           plugins: [
+            'transform-decorators-legacy',
             'transform-class-properties',
             ['transform-es2015-classes', { loose: true }]
           ],

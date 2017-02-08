@@ -25,7 +25,7 @@ class BaseView {
     }
 
     if (typeof options.attachEvents === 'undefined') {
-      options.attachEvents = true;
+      options.attachEvents = true; // eslint-disable-line no-param-reassign
     }
 
     Object.assign(this.locators, options.locators);

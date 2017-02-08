@@ -46,16 +46,28 @@ class BaseController {
   }
 
   /**
+   * @return {Object}
+   * @method getInitialState
+   * @public
+   */
+  getInitialState(): Object {
+    return {};
+  }
+
+  /**
    * @method _initializeRedux
    * @private
    */
   _initializeRedux(): void {
     if (typeof window !== 'undefined') {
       this._stateId = `${this._id}${Math.random()}`;
+
       const state = {};
-      state[this._stateId] = BaseReducer;
+      state[this._stateId] = this.getInitialState();
+
       const reducer = {};
       reducer[this._stateId] = BaseReducer;
+
       this._store = Store.configureStore(reducer, state);
       this._subscribeToStoreChanges();
     }
@@ -109,7 +121,11 @@ class BaseController {
    */
   render(): void {
     this._eventBus.publish(`render${this._id}`, { id: this._id });
-    this._view.render();
+    if (typeof this._view.constructor.reactifier !== 'undefined') {
+      this._view.constructor.reactifier.render(this);
+    } else {
+      this._view.render();
+    }
   }
 
   /**
