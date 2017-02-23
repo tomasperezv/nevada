@@ -83,10 +83,6 @@
 
           var CookieConsent = modulejs.require('CookieConsentController');
           var cookie = new CookieConsent({ locator: '#cookie_consent_box' });
-
-          var FragmentFactory = modulejs.require('Builder/Factory');
-          var FragmentType = modulejs.require('Builder/Type');
-          FragmentFactory.create({ wrapper: '#form', data: formData, type: FragmentType.Form });
         });
       </script>
     </section>
